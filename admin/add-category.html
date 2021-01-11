@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+
+    <!-- Title -->
+    <title>Notes MarketPlace | Add Category</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../imgs/icons/favicon.ico" />
+
+    <!-- Google Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/fontawesome/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Responsive CSS -->
+	<link rel="stylesheet" href="../css/responsive.css" />
+
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header class="site-header sticky-header">
+            <div class="container-fluid">
+                <div class="header-wrapper">
+                    <div class="logo-wrapper">
+                        <a href="./dashboard.html" title="Site Logo">
+                            <img src="../imgs/icons/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper d-none d-md-flex">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li>
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./member-details-notes.html">member-details Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img contex-menu-toggle">
+                                        <img src="../imgs/user-images/user-img.png">
+                                        <div class="dropdown" id="user-context-menu">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                                <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                                <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="../logout.html"><button class="btn btn-general rblue-btn">Logout</button></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="../imgs/icons/bars-solid-rblue.png"></button>
+                    <!-- Mobile Navigation -->
+                    <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
+                            <ul class="menu-navigation navbar-nav">
+                                <li class="nav-item">
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./member-details-notes.html">member-details Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown contex-menu-toggle">
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img">
+                                        <img src="../imgs/user-images/user-img.png">
+                                    </div>
+                                    <div class="dropdown" id="user-context-menu">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                            <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                            <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><button class="btn btn-general rblue-btn" href="#">Login</button></li>
+                            </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+        </header>
+        <!-- Header Ends -->
+
+
+
+        <!-- Admin Profile page-->
+        <section id="add-category-page" class="">
+
+            <!-- Form Section -->
+            <section class="admin-form-section" id="form-section">
+
+                <div class="content-box-sm">
+
+                    <div class="container-fluid">
+                        <form name="add-category" id="add-category" action="">
+                            <section id="my-profile-details">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+                                        <div class="horizontal-heading first-heading">
+                                            <h3>Add Category</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12 col-md-9 col-lg-6 ">
+                                        <div class="form-group">
+                                            <label for="category">Category *</label>
+                                            <input type="text" class="form-control" id="category" name="category" placeholder="Enter category" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12 col-md-9 col-lg-6 ">
+                                        <div class="form-group">
+                                            <label for="description">Description *</label>
+                                            <textarea class="form-control" id="description" name="description" placeholder="Enter your description" rows="7" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <button type="submit" form="add-category" class="btn rblue-btn btn-general" name="add-category-submit">
+                                submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!-- Form Ends -->
+        </section>
+        <!-- Search Notes page Ends -->
+
+        <!-- Footer -->
+        <Footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Copy right text -->
+                    <div class="col-12 col-sm-4 text-center text-sm-left">
+
+                        <p>
+                            Version : 1.1
+                        </p>
+
+                    </div>
+
+                    <div class="col-12 col-sm-8 text-center text-sm-right">
+
+                        <p>
+                            Copyright &copy; Tatvasoft All Rights Reserved.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </Footer>
+        <!-- Footer Ends -->
+
+    </div>
+
+    <!-- JQuery -->
+    <script src="../js/jquery/jquery-3.5.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Table Sorter -->
+    <script src="../js/tablesorter/jquery.tablesorter.min.js"></script>
+
+    <!-- script.js -->
+    <script src="../js/script.js"></script>
+
+
+</body>

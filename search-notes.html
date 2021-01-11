@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+
+    <!-- Title -->
+    <title>Notes MarketPlace | Search Notes</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./imgs/icons/favicon.ico" />
+
+    <!-- Google Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css" />
+
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header class="site-header sticky-header">
+            <div class="container-fluid">
+                <div class="header-wrapper">
+                    <div class="logo-wrapper">
+                        <a href="./index.html" title="Site Logo">
+                            <img src="imgs/icons/logo.png" class="img-fluid" alt="logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper d-none d-md-flex">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li class="selected"><a href="./search-notes.html">Search Notes</a></li>
+                                <li><a href="./dashboard.html">Sell Your Notes</a></li>
+                                <li><a href="./faq.html">FAQ</a></li>
+                                <li><a href="./contact-us.html">Contact Us</a></li>
+                                <li>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img contex-menu-toggle">
+                                        <img src="imgs/user-images/user-img.png" class="img-fluid">
+                                        <div class="dropdown" id="user-context-menu">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                                <a class="dropdown-item" href="./downloads.html">My Downloads</a>
+                                                <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
+                                                <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
+                                                <a class="dropdown-item" href="./change-password.html">Change Password</a>
+                                                <a class="dropdown-item" href="./logout.html">LOGOUT</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><button class="btn btn-general rblue-btn" href="#">Logout</button></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="./imgs/icons/bars-solid-rblue.png"></button>
+                    <!-- Mobile Navigation -->
+                    <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
+                            <ul class="menu-navigation navbar-nav">
+                                <li class="nav-item"><a href="./search-notes.html">Search Notes</a></li>
+                                <li class="nav-item"><a href="./dashboard.html">Sell Your Notes</a></li>
+                                <li class="nav-item"><a href="./faq.html">FAQ</a></li>
+                                <li class="nav-item"><a href="./contact-us.html">Contact Us</a></li>
+                                <li class="nav-item contex-menu-toggle dropdown" id="user-context-menu" hidden>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img">
+                                        <img src="imgs/Clients/customer-1.png" class="img-fluid">
+                                    </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                            <a class="dropdown-item" href="./downloads.html">My Downloads</a>
+                                            <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
+                                            <a class="dropdown-item" href="./change-password.html">Change Password</a>
+                                            <a class="dropdown-item" href="./logout.html">LOGOUT</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><button class="btn btn-general rblue-btn" href="#">Login</button></li>
+                            </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+        </header>
+        <!-- Header Ends -->
+
+        <!-- search Notes page-->
+        <section id="search-notes" class="">
+
+            <!-- Banner Image Section -->
+            <section class="banner-img">
+
+                <div class="content-box-sm">
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+
+                            <div class="col-md-12 text-center">
+
+                                <h3>Search Notes</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Banner Image Ends -->
+
+            <!-- Content Section -->
+            <section id="content-section">
+
+                <div class="content-box-sm">
+                   
+                    <div class="container-fluid">
+                        <section id="filter-notes">
+                            
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="horizontal-heading first-heading">
+                                        <h4>Search and Filter notes</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="form-div">
+                               <form name="search-filter-notes" id="search-filter-notes" action="">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <img class="icon" src="./imgs/icons/search-icon.svg" alt="search-icon">
+                                                <input type="text" class="form-control" name="notes-name" id="notes-name" placeholder="Search Notes here...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4 col-xl-2">
+                                            <div class="form-group">
+                                                <select name="type" id="type" class="form-control">
+                                                    <option value="none" disabled selected>Select type</option>
+                                                    <option value=""></option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xl-2">
+                                            <div class="form-group">
+                                                <select name="category" id="category" class="form-control">
+                                                    <option value="none" disabled selected>Select category</option>
+                                                    <option value=""></option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xl-2">
+                                            <div class="form-group">
+                                                <select name="university" id="university" class="form-control">
+                                                    <option value="none" disabled selected>Select university</option>
+                                                    <option value=""></option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xl-2">
+                                            <div class="form-group">
+                                                <select name="course" id="course" class="form-control">
+                                                    <option value="none" disabled selected disabled selected>Select course</option>
+                                                    <option value=""></option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xl-2">
+                                            <div class="form-group">
+                                                <select name="" id="country" class="form-control">
+                                                    <option value="none" disabled selected>Select country</option>
+                                                    <option value=""></option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xl-2">
+                                            <div class="form-group">
+                                                <select name="rating" id="rating" class="form-control">
+                                                    <option value="none" disabled selected>Select rating</option>
+                                                    <option value=""></option>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </form>
+                            </div>
+                        </section>
+
+                        <section id="results">
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="horizontal-heading">
+                                        <h4>Total <span id="no-of-results">18</span> Notes</h4>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        
+                            
+                            <div class="row search-row" id="results-row" data-tr-per-page="9">
+                                <!-- serach row 1 -->
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search1.png" alt="search 1">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Computer Operating System - Final Exam Book With Paper Solution </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search2.png" alt="search 2">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Computer Science</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search3.png" alt="search 3">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Basic Computer Engineering Tech India Series</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            
+                            <!-- serach row 2 -->
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search4.png" alt="search 4">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Computer Science Illuminated - Seventh Edition</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search5.png" alt="search 5">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>The Principal of Computer Hardware - Oxford</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search6.png" alt="search 6">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>The Computer Book</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search1.png" alt="search 1">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Computer Operating System - Final Exam Book With Paper Solution </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search2.png" alt="search 2">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Computer Science</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search3.png" alt="search 3">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Basic Computer Engineering Tech India Series</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            
+                            <!-- serach row 2 -->
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search4.png" alt="search 4">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>Computer Science Illuminated - Seventh Edition</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search5.png" alt="search 5">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>The Principal of Computer Hardware - Oxford</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="search-column">
+                                        <div class="row cover-page">
+                                        <div class="col-md-12">
+                                            <img class="img-fluid" src="./imgs/notes-coverpages/search6.png" alt="search 6">
+                                        </div>
+                                    </div>
+                                   
+                                        <div class="note-details">
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-12 note-title">
+                                                <h4>The Computer Book</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-xl-12 note-data">
+                                            <div class="row">
+                                                <div class="col-2 text-center">
+
+                                                    <p><img src="./imgs/icons/university.png" alt="university logo"></p>
+                                                    <p><img src="./imgs/icons/pages.png" alt="pages logo"></p>
+                                                    <p><img src="./imgs/icons/date.png" alt="date logo"></p>
+                                                    <p><img src="./imgs/icons/flag.png" alt="flag logo"></p>
+
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <p>University of California, US</p>
+                                                    <p>204 Pages</p>
+                                                    <p>Thu, Nov 26 2020</p>
+                                                    <p class="inappropriate">5 users marked this note as inappropriate</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="d-block d-sm-inline-block">100 reviews</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div class="row">
+                                
+                                <div class="col-md-12">
+                                    
+                                    <span class="pagination-control" pagination-data="#results-row" max-page-shown = "20">
+
+                                        <nav aria-label="search results navigation">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item" start-page="1">
+                                                    <a class="page-link" aria-label="Previous" >
+                                                        <img src="./imgs/icons/left-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" end-page="1">
+                                                    <a class="page-link" aria-label="Next">
+                                                        <img src="./imgs/icons/right-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
+                                    </span>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <!-- Content Section Ends -->
+        </section>
+        <!-- Search Notes page Ends -->
+        
+        <!-- Footer -->
+        <Footer>
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-12 col-sm-8 text-sm-left text-center mb-3">
+                        <p>
+                            Copyright &copy; Tatvasoft All Rights Reserved.
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-sm-4 text-sm-right text-center">
+
+                        <ul>
+                            <li><a href="#"><img src="imgs/icons/facebook.png" class="img-reponsive"></a></li>
+                            <li><a href="#"><img src="imgs/icons/twitter.png" class="img-responsive"></a></li>
+                            <li><a href="#"><img src="imgs/icons/linkedin.png" class="img-responsive"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </Footer>
+        <!-- Footer Ends --> 
+    </div>
+
+    <!-- JQuery -->
+    <script src="js/jquery/jquery-3.5.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="js/fontawesome/all.min.js"></script>
+
+    <!-- script.js -->
+    <script src="js/script.js"></script>
+
+</body>

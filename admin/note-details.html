@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+
+    <!-- Title -->
+    <title>Notes MarketPlace | Admin Notes Details</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../imgs/icons/favicon.ico" />
+
+    <!-- Google Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/fontawesome/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Responsive CSS -->
+	<link rel="stylesheet" href="../css/responsive.css" />
+
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+        
+        <!-- pop-up -->
+        <div class="modal fade" id="thank-you-popup" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="row">
+                       
+                       <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+                       
+                       <div class="col-md-12 text-center">
+                           
+                            <img class="img-fluid" src="../imgs/icons/check-circle-solid-rblue.png">
+                           
+                       </div>
+                       
+                        <div class="col-md-12 text-center">
+                           
+                           <h4>Thank you for purchasing!</h4>
+                           
+                        </div>
+                        
+                        <div class="col-md-12">
+                           
+                           <h5>Dear <span id="username">Smith</span>,</h5>
+                           <p>As this is paid notes - you need to pay the seller <span id="seller">Rahil Shah</span> offline. We will send seller an email that you want to download this note. Seller may contact you further for payment process completion.</p>
+                           
+                           <p>In case, you have urgency,<br>Please contact-us on<span id="contact-us-number">+12345678910</span></p>
+                           
+                           <p>Once he receeives payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
+                           
+                           <p>Have a good day.</p>
+                           
+                       </div>
+                       
+                   </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- Header -->
+        <header class="site-header sticky-header">
+            <div class="container-fluid">
+                <div class="header-wrapper">
+                    <div class="logo-wrapper">
+                        <a href="./dashboard.html" title="Site Logo">
+                            <img src="../imgs/icons/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper d-none d-md-flex">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li>
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./member-details-notes.html">member-details Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img contex-menu-toggle">
+                                        <img src="../imgs/user-images/user-img.png">
+                                        <div class="dropdown" id="user-context-menu">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                                <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                                <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="../logout.html"><button class="btn btn-general rblue-btn">Logout</button></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="../imgs/icons/bars-solid-rblue.png"></button>
+                    <!-- Mobile Navigation -->
+                    <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
+                            <ul class="menu-navigation navbar-nav">
+                                <li class="nav-item">
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./member-details-notes.html">member-details Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown contex-menu-toggle">
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img">
+                                        <img src="../imgs/user-images/user-img.png">
+                                    </div>
+                                    <div class="dropdown" id="user-context-menu">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                            <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                            <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><button class="btn btn-general rblue-btn" href="#">Login</button></li>
+                            </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+        </header>
+        <!-- Header Ends -->
+
+
+        <!-- Note Details page-->
+        <!-- Note Details page-->
+        <section id="note-details" class="">
+
+            <!-- Basic Note Details Section -->
+            <section id="basic-note-details">
+
+                <div class="content-box-sm">
+
+                    <div class="container-fluid">
+                       
+                        <div class="row">
+                            
+                            <div class="col-xl-12 text-center text-sm-left">
+                                <div class="horizontal-heading">
+                                    
+                                    <h4>Notes Details</h4>
+                                    
+                                </div>
+                            </div>  
+                       
+                        </div>
+                        
+                        <div class="row">
+                            
+                            <div class="col-lg-7">
+                                
+                                <div class="row">
+                                    <div class="col-sm-5 col-12 text-center text-sm-left">
+                                        
+                                        <img id="cover-page" class="img-fluid" src="../imgs/notes-coverpages/computer-science.png">
+                                        
+                                    </div>
+                                    
+                                    <div class="col-sm-7 col-12 text-center text-sm-left">
+                                        
+                                        <div id="deatils">
+                                            
+                                            <div class="horizontal-heading">
+                                            
+                                                <h3>Computer Science</h3>
+                                            
+                                            </div>
+                                        
+                                            <h5 id="category">Science</h5>
+                                            
+                                            <p id="description">Lorem ipsum dolor sit amet, consectetur  elit. Quae, sit mollitia voluptatum ad aperiam maiores natus debitis consectetur, molestiae recusandae voluptate, nobis? Quod nisi, ad quaerat dignissimos dicta, earum! Vero!</p>
+                                        
+                                            <button id="download-btn" class="btn btn-general rblue-btn"  data-toggle="modal" data-target="#thank-you-popup">download / &#36;<span id="price">15</span></button>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="col-lg-5 table-responsive">
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-6 col-sm-6 text-right text-sm-left" id="extra-details">
+                                        
+                                        <p id="institution">Institution:</p>
+                                        
+                                        <p id="country">Country:</p>
+                                        
+                                        <p id="course-name">Course Name:</p>
+                                        
+                                        <p id="course-code">Course Code:</p>
+                                        
+                                        <p id="professor">Professor:</p>
+                                        
+                                        <p id="pages">Number of Pages:</p>
+                                        
+                                        <p id="approved-date">Approved Date:</p>
+                                        
+                                        <p id="rating">Rating:</p>
+                                        
+                                    </div>
+                                    
+                                    <div class="col-6 col-sm-6 text-sm-right" id="extra-details-value">
+                                        
+                                        <p id="institution-value">University of California</p>
+                                        
+                                        <p id="country-value">United States</p>
+                                        
+                                        <p id="course-name-value">Computer Engineering</p>
+                                        
+                                        <p id="course-code-value">248705</p>
+                                        
+                                        <p id="professor-value">Mr.Richard Brown</p>
+                                        
+                                        <p id="pages-value">277</p>
+                                        
+                                        <p id="approved-date-value">November 25 2020</p>
+                                        
+                                        <p id="rating-value" class="rating">
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="star"></span>
+                                            <span class="empty-star"></span>
+                                            <span id="no-of-reviews">100</span>
+                                            <span> Reviews</span>
+                                        </p>
+                                        
+                                    </div>
+                                    
+                                    <div class="col-xl-12 text-center text-sm-left">
+                                        
+                                        <p class="inappropriate"><span id="inappropriate-no">5</span> Users marked this note as inappropriate</p>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            
+            <section id="note-preview-reviews">
+                <div class="content-box-sm">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-5" id="note-preview">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        
+                                        <div class="horizontal-heading">
+                                            <h4>Notes Prieview</h4>
+                                        </div>
+                                        
+                                    </div>
+                                </div>   
+                                
+                                <div class="row iframe-row">
+                                    <div class="col-md-12">
+                                        <div class="iframe-wapper" id="iframe-wrapper">
+                                            <div class="iframe-wrapper-inner">
+                                                <iframe id="note-preview-pdf" src="../imgs/notes/sample.pdf">
+                                                    <p><em><strong>ERROR: </strong>An &#105;frame should be displayed here but your browser version does not support &#105;frames.</em> Please update your browser to its most recent version and try again, or access the file <a href="../imgs/notes/sample.pdf">with this link.</a></p>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                
+                            </div>
+
+                            <div class="col-md-7" id="note-reviews">
+                                <div class="horizontal-heading">
+                                    <h4>Customer Reviews</h4>
+                                </div>
+                                <div class="reviews">
+                                   
+                                    <div class="col-md-12 review">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img src="../imgs/user-images/reviewer-1.png" alt="reviewer-1.png">
+                                            </div>
+                                            <div class="col-md-11 mb-3 mt-3">
+                                                <div class="delete-icon"><a href="#"><img src="../imgs/icons/delete.png"></a></div>
+                                                <h5>Richard Brown</h5>
+                                                <p class="rating">
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                </p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto repellat aperiam, cumque velit porro quas iusto error explicabo.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 review">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img src="../imgs/user-images/reviewer-2.png" alt="reviewer-2.png">
+                                            </div>
+                                            <div class="col-md-11 mb-3 mt-3">
+                                                <div class="delete-icon"><a href="#"><img src="../imgs/icons/delete.png"></a></div>
+                                                <h5>Alice Ortiaz</h5>
+                                                <p class="rating">
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="empty-star"></span>
+                                                </p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto repellat aperiam, cumque velit porro quas iusto error explicabo.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 review">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img src="../imgs/user-images/reviewer-3.png" alt="reviewer-3.png">
+                                            </div>
+                                            <div class="col-md-11 mt-3 mb-3">
+                                                <div class="delete-icon"><a href="#"><img src="../imgs/icons/delete.png"></a></div>
+                                                <h5>Sara passmore</h5>
+                                                <p class="rating">
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="star"></span>
+                                                    <span class="empty-star"></span>
+                                                    <span class="empty-star"></span>
+                                                </p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto repellat aperiam, cumque velit porro quas iusto error explicabo.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </section>
+        <!-- Note Details Page Ends -->
+        
+        <!-- Footer -->
+        <Footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Copy right text -->
+                    <div class="col-12 col-sm-4 text-center text-sm-left">
+
+                        <p>
+                            Version : 1.1
+                        </p>
+
+                    </div>
+
+                    <div class="col-12 col-sm-8 text-center text-sm-right">
+
+                        <p>
+                            Copyright &copy; Tatvasoft All Rights Reserved.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </Footer>
+        <!-- Footer Ends -->
+
+    </div>
+
+    <!-- JQuery -->
+    <script src="../js/jquery/jquery-3.5.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Table Sorter -->
+    <script src="../js/tablesorter/jquery.tablesorter.min.js"></script>
+
+    <!-- script.js -->
+    <script src="../js/script.js"></script>
+
+
+</body>

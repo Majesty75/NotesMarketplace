@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+    <!-- Title -->
+    <title>Notes MarketPlace | Manage Countries</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../imgs/icons/favicon.ico" />
+    <!-- Google Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../css/fontawesome/all.min.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Responsive CSS -->
+	<link rel="stylesheet" href="../css/responsive.css" />
+    
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <header class="site-header sticky-header">
+            <div class="container-fluid">
+                <div class="header-wrapper">
+                    <div class="logo-wrapper">
+                        <a href="./dashboard.html" title="Site Logo">
+                            <img src="../imgs/icons/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper d-none d-md-flex">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li>
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./member-details-notes.html">member-details Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img contex-menu-toggle">
+                                        <img src="../imgs/user-images/user-img.png">
+                                        <div class="dropdown" id="user-context-menu">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                                <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                                <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="../logout.html"><button class="btn btn-general rblue-btn">Logout</button></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="../imgs/icons/bars-solid-rblue.png"></button>
+                    <!-- Mobile Navigation -->
+                    <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
+                            <ul class="menu-navigation navbar-nav">
+                                <li class="nav-item">
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./member-details-notes.html">member-details Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle nav-item">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown contex-menu-toggle">
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img">
+                                        <img src="../imgs/user-images/user-img.png">
+                                    </div>
+                                    <div class="dropdown" id="user-context-menu">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                            <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                            <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><button class="btn btn-general rblue-btn" href="#">Login</button></li>
+                            </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+        </header>
+        <!-- Header Ends -->
+
+
+        <!-- Manage Countries Page-->
+        <section id="manage-countries" class="">
+            <!-- Content Section -->
+            <section id="content-section">
+                <div class="content-box-sm">
+                    <div class="container-fluid">
+                        <!-- manage countries table section -->
+                        <section id="manage-countries-table-section">
+                            <div class="table-heading">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="horizontal-heading first-heading">
+                                            <h3>Manage Countries</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between">
+                                    <div class="col-sm-5 col-md-4">
+                                        <a href="./add-type.html"><button role="link" class="btn btn-general rblue-btn w-100 btn-add">Add Country</button></a>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="row justify-content-sm-end justify-content-around">
+                                            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                                <img class="search-icon" src="../imgs/icons/search-icon.svg" alt="search-icon">
+                                                <input id="manage-countries-table-search" type="text" class="form-control" placeholder="Search" />
+                                            </div>
+                                            <button data-table-id="#manage-countries-table" data-search-input="#manage-countries-table-search" class="btn btn-general rblue-btn search-in-table" href="">search</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive-lg">
+                                <table id="manage-countries-table" class="table tablesorter" data-sort-on-col-and-order="0,0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="srno">SR NO.</th>
+                                            <th scope="col">COUNTRY NAME</th>
+                                            <th scope="col" class="text-center">COUNTRY CODE</th>
+                                            <th scope="col">DATE ADDED</th>
+                                            <th scope="col">ADDED BY</th>
+                                            <th scope="col" class="text-center">ACTIVE</th>
+                                            <th scope="col" class="action">ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-tr-per-page="5">
+                                        <tr>
+                                            <td class="srno">1</td>
+                                            <td>India</td>
+                                            <td class="text-center">11</td>
+                                            <td>09-10-2020, 10:10</td>
+                                            <td>John Doe</td>
+                                            <td class="text-center">Yes</td>
+                                            <td class="action">
+                                                <a href=""><img src="../imgs/icons/edit.png"></a>
+                                                <a href=""><img src="../imgs/icons/delete.png"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="srno">2</td>
+                                            <td>Australia</td>
+                                            <td class="text-center">24</td>
+                                            <td>10-10-2020, 10:10</td>
+                                            <td>John Doe</td>
+                                            <td class="text-center">Yes</td>
+                                            <td class="action">
+                                                <a href=""><img src="../imgs/icons/edit.png"></a>
+                                                <a href=""><img src="../imgs/icons/delete.png"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="srno">3</td>
+                                            <td>USA</td>
+                                            <td class="text-center">04</td>
+                                            <td>11-10-2020, 10:10</td>
+                                            <td>John Doe</td>
+                                            <td class="text-center">Yes</td>
+                                            <td class="action">
+                                                <a href=""><img src="../imgs/icons/edit.png"></a>
+                                                <a href=""><img src="../imgs/icons/delete.png"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="srno">4</td>
+                                            <td>United Kingdom</td>
+                                            <td class="text-center">12</td>
+                                            <td>12-10-2020, 10:10</td>
+                                            <td>John Doe</td>
+                                            <td class="text-center">Yes</td>
+                                            <td class="action">
+                                                <a href=""><img src="../imgs/icons/edit.png"></a>
+                                                <a href=""><img src="../imgs/icons/delete.png"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="srno">5</td>
+                                            <td>Canada</td>
+                                            <td class="text-center">13</td>
+                                            <td>13-10-2020, 10:10</td>
+                                            <td>John Doe</td>
+                                            <td class="text-center">Yes</td>
+                                            <td class="action">
+                                                <a href=""><img src="../imgs/icons/edit.png"></a>
+                                                <a href=""><img src="../imgs/icons/delete.png"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Pagination -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="pagination-control" pagination-data="#manage-countries-table tbody" max-page-shown="20">
+                                        <nav aria-label="search results navigation">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item" start-page="1">
+                                                    <a class="page-link" aria-label="Previous">
+                                                        <img src="../imgs/icons/left-arrow.png">
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" end-page="1">
+                                                    <a class="page-link" aria-label="Next">
+                                                        <img src="../imgs/icons/right-arrow.png">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <!-- Content Section Ends -->
+        </section>
+        <!-- Search Notes page Ends -->
+        <!-- Footer -->
+        <Footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- COopy right text -->
+                    <div class="col-sm-4 col-12 text-sm-left text-center">
+                        <p>
+                            Version : 1.1
+                        </p>
+                    </div>
+                    <div class="col-sm-8 col-12 text-sm-right text-center">
+                        <p>
+                            Copyright &copy; Tatvasoft All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Footer>
+        <!-- Footer Ends -->
+    </div>
+    <!-- JQuery -->
+    <script src="../js/jquery/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <!-- Table Sorter -->
+    <script src="../js/tablesorter/jquery.tablesorter.min.js"></script>
+    <!-- script.js -->
+    <script src="../js/script.js"></script>
+</body>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+
+    <!-- Title -->
+    <title>Notes MarketPlace | Sold Notes</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./imgs/icons/favicon.ico" />
+
+    <!-- Google Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css" />
+
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+       
+        <!-- Header -->
+        <header class="site-header sticky-header">
+            <div class="container-fluid">
+                <div class="header-wrapper">
+                    <div class="logo-wrapper">
+                        <a href="./index.html" title="Site Logo">
+                            <img src="imgs/icons/logo.png" class="img-fluid" alt="logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper d-none d-md-flex">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li><a href="./search-notes.html">Search Notes</a></li>
+                                <li><a href="./dashboard.html">Sell Your Notes</a></li>
+                                <li><a href="./faq.html">FAQ</a></li>
+                                <li><a href="./contact-us.html">Contact Us</a></li>
+                                <li>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img contex-menu-toggle">
+                                        <img src="imgs/user-images/user-img.png" class="img-fluid">
+                                        <div class="dropdown" id="user-context-menu">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                                <a class="dropdown-item" href="./downloads.html">My Downloads</a>
+                                                <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
+                                                <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
+                                                <a class="dropdown-item" href="./change-password.html">Change Password</a>
+                                                <a class="dropdown-item" href="./logout.html">LOGOUT</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><button class="btn btn-general rblue-btn" href="#">Logout</button></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="./imgs/icons/bars-solid-rblue.png"></button>
+                    <!-- Mobile Navigation -->
+                    <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
+                            <ul class="menu-navigation navbar-nav">
+                                <li class="nav-item"><a href="./search-notes.html">Search Notes</a></li>
+                                <li class="nav-item"><a href="./dashboard.html">Sell Your Notes</a></li>
+                                <li class="nav-item"><a href="./faq.html">FAQ</a></li>
+                                <li class="nav-item"><a href="./contact-us.html">Contact Us</a></li>
+                                <li class="nav-item contex-menu-toggle dropdown" id="user-context-menu">
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img">
+                                        <img src="imgs/Clients/customer-1.png" class="img-fluid">
+                                    </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                            <a class="dropdown-item" href="./downloads.html">My Downloads</a>
+                                            <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
+                                            <a class="dropdown-item" href="./change-password.html">Change Password</a>
+                                            <a class="dropdown-item" href="./logout.html">LOGOUT</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><button class="btn btn-general rblue-btn" href="#">Login</button></li>
+                            </ul>
+                        </nav>
+                    
+                </div>
+            </div>
+        </header>
+        <!-- Header Ends -->
+
+        <!-- My Sold Notes page-->
+        <section id="sold-notes" class="">
+
+            <!-- Content Section -->
+            <section id="content-section">
+
+                <div class="content-box-sm">
+
+                    <div class="container-fluid">
+
+                        <!-- sold note table section -->
+                        <section id="sold-notes-table-section">
+
+                            <div class="row table-heading justify-content-between">
+
+                                <div class="col-sm-5">
+
+                                    <div class="horizontal-heading first-heading">
+                                        <h3>My Sold Notes</h3>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 text-right">
+                                    <div class="row justify-content-sm-end justify-content-around">
+                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                            <img class="search-icon" src="./imgs/icons/search-icon.svg" alt="search-icon">
+                                            <input id="sold-notes-table-search" type="text" class="form-control" placeholder="Search" />
+                                        </div>
+                                        <button data-table-id="#sold-notes-table" data-search-input="#sold-notes-table-search" class="btn btn-general rblue-btn search-in-table">search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive-xl">
+                                <table id="sold-notes-table" class="table tablesorter" data-sort-on-col-and-order="6,1">
+
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="srno">SR NO</th>
+                                            <th scope="col">NOTE TITLE</th>
+                                            <th scope="col">CATEGORY</th>
+                                            <th scope="col">BUYER</th>
+                                            <th scope="col">SELL TYPE</th>
+                                            <th scope="col">PRICE</th>
+                                            <th scope="col">DOWNLOADED DATE/TIME</th>
+                                            <th scope="col" colspan="2" class="action"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-tr-per-page="10">
+
+                                        <tr>
+                                            <td class="srno">1</td>
+                                            <td>Data Science</td>
+                                            <td>Science</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;250</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#">Download Note</a> 
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">2</td>
+                                            <td>Accounts</td>
+                                            <td>Commerce</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">3</td>
+                                            <td>Social Studies</td>
+                                            <td>Social</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">4</td>
+                                            <td>AI</td>
+                                            <td>IT</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;158</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">5</td>
+                                            <td>Lorem Ipsum</td>
+                                            <td>Lorem</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">6</td>
+                                            <td>Data Science</td>
+                                            <td>Science</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;250</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">7</td>
+                                            <td>Accounts</td>
+                                            <td>Commerce</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">8</td>
+                                            <td>Social Studies</td>
+                                            <td>Social</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">9</td>
+                                            <td>AI</td>
+                                            <td>IT</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;158</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">10</td>
+                                            <td>Lorem Ipsum</td>
+                                            <td>Lorem</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">11</td>
+                                            <td>Data Science</td>
+                                            <td>Science</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;250</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">12</td>
+                                            <td>Accounts</td>
+                                            <td>Commerce</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">13</td>
+                                            <td>Social Studies</td>
+                                            <td>Social</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">14</td>
+                                            <td>AI</td>
+                                            <td>IT</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;158</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">15</td>
+                                            <td>Lorem Ipsum</td>
+                                            <td>Lorem</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">16</td>
+                                            <td>Data Science</td>
+                                            <td>Science</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;250</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">17</td>
+                                            <td>Accounts</td>
+                                            <td>Commerce</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">18</td>
+                                            <td>Social Studies</td>
+                                            <td>Social</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">19</td>
+                                            <td>AI</td>
+                                            <td>IT</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Paid</td>
+                                            <td>&dollar;158</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a> </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="srno">20</td>
+                                            <td>Lorem Ipsum</td>
+                                            <td>Lorem</td>
+                                            <td>lorem@gmail.com</td>
+                                            <td>Free</td>
+                                            <td>&dollar;0</td>
+                                            <td>27 Nov 2020, 11:24:34</td><td class="action"><a href=""><img src="./imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                
+                                                <span class="dots"><img src="./imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#">Download Note</a>
+                                                            <a class="dropdown-item add-review-icon">Add Reviews/Feedback</a>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!-- Pagination -->
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <span class="pagination-control" pagination-data="#sold-notes-table tbody" max-page-shown="20">
+
+                                        <nav aria-label="search results navigation">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item" start-page="1">
+                                                    <a class="page-link" aria-label="Previous">
+                                                        <img src="./imgs/icons/left-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" end-page="1">
+                                                    <a class="page-link" aria-label="Next">
+                                                        <img src="./imgs/icons/right-arrow.png" class="img-fluid">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+                </div>
+            </section>
+            <!-- Content Section Ends -->
+        </section>
+        <!-- Search Notes page Ends -->
+
+        <!-- Footer -->
+        <Footer>
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-12 col-sm-8 text-sm-left text-center mb-3">
+                        <p>
+                            Copyright &copy; Tatvasoft All Rights Reserved.
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-sm-4 text-sm-right text-center">
+
+                        <ul>
+                            <li><a href="#"><img src="imgs/icons/facebook.png" class="img-reponsive"></a></li>
+                            <li><a href="#"><img src="imgs/icons/twitter.png" class="img-responsive"></a></li>
+                            <li><a href="#"><img src="imgs/icons/linkedin.png" class="img-responsive"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </Footer>
+        <!-- Footer Ends -->
+
+    </div>
+
+    <!-- JQuery -->
+    <script src="js/jquery/jquery-3.5.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Table Sorter -->
+    <script src="./js/tablesorter/jquery.tablesorter.min.js"></script>
+
+    <!-- script.js -->
+    <script src="js/script.js"></script>
+
+
+</body>
