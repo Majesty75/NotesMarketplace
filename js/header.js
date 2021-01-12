@@ -17,7 +17,7 @@ $(function () {
         if ($(window).scrollTop() > 20 || isMobile) {
             //show white navigation bar
             $('header').addClass('sticky-header');
-            $('.logo-wrapper img').attr('src', '../imgs/icons/logo.png');
+            $('.logo-wrapper img').attr('src', './imgs/icons/logo.png');
             $('.navigation-wrapper li button').removeClass('white-btn');
             $('.navigation-wrapper li button').addClass('rblue-btn');
             if(!$('#mobile-navigation-wrapper').is(':visible')){
@@ -30,7 +30,7 @@ $(function () {
 
             //hide white navigation bar
             $('header').removeClass('sticky-header');
-            $('.logo-wrapper img').attr('src', '../imgs/icons/top-logo.png');
+            $('.logo-wrapper img').attr('src', './imgs/icons/top-logo.png');
             $('.navigation-wrapper li button').removeClass('rblue-btn');
             $('.navigation-wrapper li button').addClass('white-btn');
             $('.menu-btn').find('img').attr('src', './imgs/icons/bars-solid-white.png');
