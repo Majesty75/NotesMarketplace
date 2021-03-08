@@ -1,16 +1,16 @@
 ## Backend Submision 1
 ### Completed:
-    #### 3.1 Login, Signup, Forgot password, Change password and Email Verification
-    #### 3.2 Save and Publish Note, Note Deatils (Yet to complete Download Button Flow for registred user.)
-    #### 3.3 User Dashboard aka Sell Your Notes is yet static(included in next submission as 3.7.1 my profile).
-      [x] Add Notes Button Works
-      [x] Buyer Request tab in statistics redirect BuyerRequests Page.
-      [x] Header and Footer works.
-      [ ] Everything Other than them is static
-    #### 3.4 Buyer Request Completed.
-    #### 4.1 When Super Admin Log in it redirect them to admin dashboard (static).
-    #### 2.2 Search Notes Completed Search and Filter works. 
-    #### 2.5 and 2.6 Contact Us and Login completed
+     3.1 Login, Signup, Forgot password, Change password and Email Verification
+     3.2 Save and Publish Note, Note Deatils (Yet to complete Download Button Flow for registred user.)
+     3.3 User Dashboard aka Sell Your Notes is yet static(included in next submission as 3.7.1 my profile).
+      -[x] Add Notes Button Works
+      -[x] Buyer Request tab in statistics redirect BuyerRequests Page.
+      -[x] Header and Footer works.
+      -[ ] Everything Other than them is static
+     3.4 Buyer Request Completed.
+     4.1 When Super Admin Log in it redirect them to admin dashboard (static).
+     2.2 Search Notes Completed Search and Filter works. 
+     2.5 and 2.6 Contact Us and Login completed
     
     
     
