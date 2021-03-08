@@ -28,7 +28,7 @@
 
 ### Crendentials Already Into System
 * superadmin@gmail.com   Password: \@Toornimda1 will be redirected to Static Admin Dashboard. 
-* subadmin@gmail.com     Password: PassWord2 : it is normal user right now so it will word as normal registered user
+* subadmin@gmail.com     Password: PassWord2 : it is normal user right now so it will work as normal registered user
 * dummymail@gmail.com    Password: Password1 : UserprofileNotCraetedUser.
 * yashgoyani101@gmail.com Password: P@sswd1 : UserprofileNotCreatedUser.
 
