@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- User Profile page-->
+<section id="user-profile" class="">
+
+    <!-- Banner Image Section -->
+    <section class="banner-img">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-md-12 text-center">
+
+                        <h3>User Profile</h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Image Ends -->
+    <!-- Form Section -->
+    <section id="form-section">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+                <form id="user-details" action="">
+                    <section id="basic-profile-detail">
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="horizontal-heading first-heading">
+                                    <h3>Basic Profile Details</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="firstname">First Name *</label>
+                                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" required>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lastname">Last Name *</label>
+                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="dob">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your date of birth">
+                                    <span class="icon-calender" hidden><img src="imgs/icons/calendar.png" alt="calender-icon" class="icon fluid-img"></span>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control" id="gender" name="gender">
+                                        <option value="" disabled selected>Select your gender</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phoneno">Phone Number</label>
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-3">
+                                            <select id="country-code" class="form-control">
+                                                <option value="+91">+91</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input type="text" name="phoneno" id="phoneno" class="form-control" placeholder="Enter your phone number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="profile-picture" class="file-picker-label">
+                                        <p>Profile Picture</p>
+                                        <div class="file-picker text-center form-control">
+                                            <img src="imgs/icons/upload.png" class="img-fluid">
+                                            <span>Upload a picture</span>
+                                        </div>
+                                    </label>
+                                    <input type="file" style="display: none" name="profile-picture" id="profile-picture">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="address-details">
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="horizontal-heading">
+                                    <h3>Address Details</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="address-l1">Address Line 1 *</label>
+                                    <input type="text" name="address-l1" id="address-l1" placeholder="Enter your address" class="form-control" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="address-l2">Address Line 2</label>
+                                    <input type="text" name="address-l2" id="address-l2" placeholder="Enter your address" class="form-control">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="city">City *</label>
+                                    <input type="text" name="city" id="city" placeholder="Enter your city" class="form-control" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label for="state">State *</label>
+                                    <input type="text" name="state" id="state" placeholder="Enter your state" class="form-control" required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="zipcode">ZipCode *</label>
+                                    <input type="text" name="zipcode" id="zipcode" placeholder="Enter your zipcode" class="form-control" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for='country'>Country *</label>
+                                    <select id="country" name="country" class="form-control">
+                                        <option value="" disabled selected>Select your country</option>
+                                        <option value="india">India</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section id="education-detail">
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="horizontal-heading">
+                                    <h3>University and College information</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="university">University</label>
+                                    <input type="text" name="univercity" id="university" placeholder="Enter your university" class="form-control">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <label for="college">College</label>
+                                    <input type="text" name="college" id="college" placeholder="Enter your college" class="form-control">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+                    <button type="submit" form="user-details" class="btn rblue-btn btn-general" name="user-profile-submit">
+                        submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Form Ends -->
+</section>
+<!-- User Profile page Ends -->

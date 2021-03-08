@@ -1,0 +1,110 @@
+﻿@model NotesMarketplace.Models.HomeModels.ListNotes
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="horizontal-heading">
+            <h4>Total <span id="no-of-results">@Model.Notes.Count</span> Notes</h4>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row search-row" id="results-row" data-tr-per-page="9">
+
+    @foreach (var Note in Model.Notes)
+    {
+        <!-- serach row 1 -->
+        <div class="col-xl-4 col-md-6">
+            <div class="search-column">
+                <div class="row cover-page">
+                    <div class="col-md-12">
+                        @if(@Note.DisplayPicture == null)
+                        {
+                            ViewBag.DP = "/Content/SystemConfig/DefaultNoteCover.png";
+                        }
+                        else
+                        {
+                            ViewBag.DP = Note.DisplayPicture;
+                        }
+                        <img class="img-fluid" src="@ViewBag.DP" alt="Cover Page for NoteID: @Note.NoteId">
+                    </div>
+                </div>
+
+                <div class="note-details">
+
+                    <div class="row">
+                        <div class="col-xl-12 note-title">
+                            <h4><a href="@Url.Action("NoteDetails","Home", new { NoteId = Note.NoteId})">@Note.Title</a></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 note-data">
+                            <div class="row">
+                                <div class="col-2 text-center">
+
+                                    <p><img src="/Content/imgs/icons/university.png" alt="university logo"></p>
+                                    <p><img src="/Content/imgs/icons/pages.png" alt="pages logo"></p>
+                                    <p><img src="/Content/imgs/icons/date.png" alt="date logo"></p>
+                                    <p><img src="/Content/imgs/icons/flag.png" alt="flag logo"></p>
+
+                                </div>
+
+                                <div class="col-10">
+
+                                    <p>@Note.Institution</p>
+                                    <p>@Note.Pages Pages</p>
+                                    <p>@Note.Approved.ToString("ddd, MMM dd yyyy")</p>
+                                    <p class="inappropriate">@Note.Reports users marked this note as inappropriate</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center rating">
+                            @for(int i=0; i < (int)Note.rating; i++)
+                            {
+                                <span class="star"></span>
+                                }
+                            @for(int i=0; i< 5-(int)Note.rating; i++)
+                            {
+                                <span class="empty-star"></span>
+                            }
+                            <span class="d-block d-sm-inline-block">@Note.Reviews.Count Reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- Pagination -->
+<div class="row">
+
+    <div class="col-md-12">
+
+        <span class="pagination-control" pagination-data="#results-row" max-page-shown="20">
+
+            <nav aria-label="search results navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" start-page="1">
+                        <a class="page-link" aria-label="Previous">
+                            <img src="/Content/imgs/icons/left-arrow.png" class="img-fluid">
+                        </a>
+                    </li>
+                    <li class="page-item" end-page="1">
+                        <a class="page-link" aria-label="Next">
+                            <img src="/Content/imgs/icons/right-arrow.png" class="img-fluid">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </span>
+
+    </div>
+
+</div>

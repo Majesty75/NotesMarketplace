@@ -1,0 +1,244 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Home page-->
+<section id="home-page" class="">
+
+    <!-- Learn More Section -->
+    <section id="learn-more" class="banner-img">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <h3>Download Free Paid Notes<br>or Sale your Books</h3>
+                        <p>
+                            Lorem ipsum has been the industry's standard dummy text ever since the<br> 1500s,
+                            when an unknown printer took galley of type.
+                        </p>
+                        <button class="btn btn-general white-btn">LEARN MORE</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Learn More Ends -->
+    <!-- About Section -->
+    <section id="about">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-xl-3 col-lg-12 text-xl-left text-center">
+
+                        <div id="about-left">
+
+                            <div class="horizontal-heading">
+                                <h3>About NotesMarketPlace</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-1 d-none d-xl-block"></div>
+                    <div class="col-xl-8 col-lg-12">
+
+                        <div class="about-right">
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus molestias est, ratione repellat voluptatum obcaecati optio tempora! Harum totam, quas illum, repudiandae excepturi assumenda, hic suscipit at deserunt nisi nulla!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse quibusdam facilis dolorum laboriosam maiores quam repudiandae officia neque.</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt aspernatur quas commodi aliquam rerum nihil voluptatem. Quos excepturi, iure repellendus, vel aliquid magnam fugiat, dolor recusandae cupiditate autem quibusdam porro.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Ends -->
+    <!-- Utility Section -->
+    <section id="utilities">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-md-12 text-center">
+
+                        <div class="horizontal-heading">
+
+                            <h3>How it Works</h3>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+
+                    <div class="col-md-6 d-flex justify-content-md-end justify-content-center pr-md-5">
+
+                        <div class="utility text-center">
+
+                            <div class="utility-icon"><img src="./Content/imgs/icons/download.png" class="img-responsive"></div>
+                            <h4>Download Free/Paid Notes</h4>
+                            <p>Get Material for your<br>Cource etc.</p>
+                            <a href="@Url.Action("SearchNotes","Home")"><button class="btn btn-general rblue-btn">Download</button></a>
+
+</div>
+                    </div>
+
+                    <div class="col-md-6 d-flex justify-content-md-start justify-content-center pl-md-5">
+
+                        <div class="utility text-center">
+
+                            <div class="utility-icon"><img src="./Content/imgs/icons/seller.png"></div>
+                            <h4>Seller</h4>
+                            <p>Upload and Download Cource and<br>Material etc.</p>
+                            @if (ViewBag.Authorized != null)
+                            {
+                                <a href="@Url.Action("DashBoard","RegisteredUser")"><button class="btn btn-general rblue-btn">Sell Book</button></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login","Authentication")"><button class="btn btn-general rblue-btn">Sell Book</button></a>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Utilities Ends -->
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-md-12 text-center">
+                        <div class="horizontal-heading">
+
+                            <h3>What our Customers are Saying</h3>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-items">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="testimonial-item">
+
+                                <div class="row">
+
+                                    <div class="col-md-12 text-center text-md-center text-xl-left">
+
+                                        <div class="client-img">
+                                            <img src="./Content/imgs/Clients/customer-1.png" class="img-responsive">
+                                        </div>
+
+                                        <div class="client-detail">
+                                            <h3>Walter Miller</h3>
+                                            <p>Founder &amp; CEO, Matrix Group</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-center text-sm-left">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quo esse veritatis obcaecati quia, numquam cum, aliquid delectus quis unde? Repellat consectetur et at sunt quas, aliquam eveniet minima dignissimos"</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="testimonial-item">
+
+                                <div class="row">
+
+                                    <div class="col-md-12 text-center text-md-center text-xl-left">
+
+                                        <div class="client-img">
+                                            <img src="./Content/imgs/Clients/customer-2.png" class="img-responsive">
+                                        </div>
+
+                                        <div class="client-detail">
+                                            <h3>jonnie Riley</h3>
+                                            <p>Employee, Curious Snacks</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-center text-sm-left">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quo esse veritatis obcaecati quia, numquam cum, aliquid delectus quis unde? Repellat consectetur et at sunt quas, aliquam eveniet minima dignissimos"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="testimonial-item">
+                                <div class="row">
+
+                                    <div class="col-md-12 text-center text-md-center text-xl-left">
+
+                                        <div class="client-img">
+                                            <img src="./Content/imgs/Clients/customer-3.png" class="img-responsive">
+                                        </div>
+
+                                        <div class="client-detail">
+                                            <h3>Amilia Luna</h3>
+                                            <p>Teacher, Saint Joseph High School</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <p class="text-center text-sm-left">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quo esse veritatis obcaecati quia, numquam cum, aliquid delectus quis unde? Repellat consectetur et at sunt quas, aliquam eveniet minima dignissimos"</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="testimonial-item">
+                                <div class="row">
+
+                                    <div class="col-md-12 text-center text-md-center text-xl-left">
+                                        <div class="client-img">
+                                            <img src="./Content/imgs/Clients/customer-4.png">
+                                        </div>
+
+                                        <div class="client-detail">
+                                            <h3>Daniel cardos</h3>
+                                            <p>Software Engineer, Infinitum Company</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-center text-sm-left">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus quo esse veritatis obcaecati quia, numquam cum, aliquid delectus quis unde? Repellat consectetur et at sunt quas, aliquam eveniet minima dignissimos"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Testimonial Ends -->
+
+</section>

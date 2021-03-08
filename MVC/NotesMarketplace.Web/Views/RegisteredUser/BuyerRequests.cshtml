@@ -1,0 +1,123 @@
+﻿@model NotesMarketplace.Models.RegisteredUserModels.BuyerRequestsModel
+@{
+    ViewBag.Title = "BuyerRequests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using NotesMarketplace.Models.RegisteredUserModels;
+<!-- Buyer Request Notes Page-->
+<section id="buyer-requests" class="">
+
+    <!-- Content Section -->
+    <section id="content-section">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <!-- sold note table section -->
+                <section id="sold-notes-table-section">
+
+                    <div class="row table-heading justify-content-between">
+
+                        <div class="col-sm-5">
+
+                            <div class="horizontal-heading first-heading">
+                                <h3>Buyer Requests</h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <div class="row justify-content-sm-end justify-content-around">
+
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                    <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                    <input id="buyer-requests-table-search" type="text" class="form-control" placeholder="Search" />
+                                </div>
+                                <button data-table-id="#buyer-requests-table" data-search-input="#buyer-requests-table-search" class="btn btn-general rblue-btn search-in-table">search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="buyer-requests-table" class="table tablesorter" data-sort-on-col-and-order="7,1">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="srno">SR NO</th>
+                                    <th scope="col">NOTE TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">BUYER</th>
+                                    <th scope="col">PHONE NO.</th>
+                                    <th scope="col">SELL TYPE</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DOWNLOADED DATE/TIME</th>
+                                    <th scope="col" class="action" colspan="2"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-tr-per-page="10">
+                                @{ int i = 0;}
+                                @foreach (BuyerRequestsModel.BuyerRequest br in Model.BRequests)
+                                {
+                                <tr>
+                                    @{i = i + 1;}
+                                    <td class="srno">@i</td>
+                                    <td><a href="@Url.Action("NoteDetails","Home",new { id = br.NoteID.ToString() })">@br.NoteTitle</a></td>
+                                    <td>@br.NoteCategory</td>
+                                    <td>@br.BuyerEmail</td>
+                                    <td>@br.BuyerPhone</td>
+                                    <td>@br.SellType</td>
+                                    <td>&dollar;@br.Price</td>
+                                    <td>27 Nov 2020, 11:24:34 @br.ReqTime.ToString("dd MMM yyyy, hh:mm:ss tt")</td>
+                                    <td class="action">
+                                        <a href="@Url.Action("NoteDetails","Home",new { id = br.NoteID.ToString() })"><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                    <td class="dots-menu-button">
+                                        <span class="dots">
+                                            <img src="/Content/imgs/icons/dots.png">
+                                            <div class="dropdown" class="dots-menu">
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="@Url.Action("AllowDownload","RegisteredUser",new { id = br.DownloadID.ToString() })">Allow Download</a>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr>    
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <span class="pagination-control" pagination-data="#buyer-requests-table tbody" max-page-shown="20">
+
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png" class="img-fluid">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png" class="img-fluid">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+    <!-- Content Section Ends -->
+</section>
+<!-- Buyer Requests page Ends -->

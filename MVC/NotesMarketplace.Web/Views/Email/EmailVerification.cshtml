@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Email/_Email.cshtml";
+}
+
+<tbody class="table-component">
+
+    <tr>
+        <td class="msg-content">
+            <p class="heading">Email Verification</p>
+
+            <p class="user">Dear @ViewBag.Name,</p>
+
+            <p>Thanks for Singing Up!</p>
+
+            <p>Simply click below for email verification.</p>
+        </td>
+    </tr>
+</tbody>
+
+<tfoot class="table-component">
+    <tr>
+        <td>
+            <a class="link-btn" href="@ViewBag.Link">VERIFY EMAIL ADDRESS</a>
+        </td>
+    </tr>
+</tfoot>
+

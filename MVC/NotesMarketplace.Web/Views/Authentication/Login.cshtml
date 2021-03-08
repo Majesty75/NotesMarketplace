@@ -1,0 +1,150 @@
+﻿@model NotesMarketplace.Models.AuthenticationModels.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_AuthenticationLayout.cshtml";
+}
+
+
+<!-- Login -->
+<section id="login" class="user-credentials-config">
+
+    <div class="content-box-center">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <!-- Logo -->
+                    <div class="top-logo">
+                        <a href="@Url.Action("Index","Home")"><img src="/Content/imgs/icons/top-logo.png" class="img-fluid" alt="Notes Marketplace logo"></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Login Box -->
+            <div class="white-box">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="heading">
+                            Login
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="sub-head">
+                            Enter your email address and Password to login
+                        </div>
+
+                        @if (ViewBag.Success != null && !ViewBag.Success)
+                        {
+                            <div class="incorrect-field" style="text-align:center">Email and/or Password is/are incorrect.</div>
+                        }
+                        else if (ViewBag.EmailVerified != null && ViewBag.EmailVerified)
+                        {
+                            <div class="success" style="text-align:center">@ViewBag.EmailVerificationMsg</div>
+                        }
+                        else if (ViewBag.EmailVerified != null && !ViewBag.EmailVerified)
+                        {
+                            <div class="incorrect-field" style="text-align:center">@ViewBag.EmailVerificationMsg</div>
+                        }
+
+                    </div>
+
+                </div>
+
+                @*<form name="login" action="">*@
+                @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "login" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+
+                                @*<label for="email">Email</label>*@
+                                @Html.LabelFor(m => m.Email)
+                                @*<input type="email" class="form-control" id="email" placeholder="Enter your email address">*@
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email address" })
+
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "incorrect-field" })
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group password">
+
+                                @*<label for="password">Password</label>*@
+                                @Html.LabelFor(m => m.Password)
+
+                                @*<a class="forgot-password" href="./forgot-password.html">Forgot Password?</a>*@
+                                @Html.ActionLink("Forgot Password?", "ForgotPassword", "Authentication", null, new { @class = "forgot-password" })
+
+                                @*<input type="password" class="form-control" id="password" placeholder="Enter your password">*@
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password" })
+
+                                <span class="show-pass"><img src="/Content/imgs/icons/eye.png" class="icon img-responsive" alt="eye-icon" toggle="#Password"></span>
+
+
+                                @*<p id="incorrect-field">The password you have entered is incorrect</p>*@
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "incorrect-field" })
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            @*<input name="remember-me" id="remember-me" type="checkbox">*@
+                            @Html.CheckBoxFor(m => m.RememberMe, new { id = "remember-me", name = "remember-me" })
+
+                            <label for="remember-me" id="remember-me-label">Remember Me</label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <button class="btn btn-general rblue-btn" name="loginup-submit">LOGIN</button>
+
+                        </div>
+
+                    </div>
+
+                }
+
+                <div class="signup-label">
+                    Don't have an account? @Html.ActionLink("Sign Up", "SignUp")
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

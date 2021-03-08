@@ -1,0 +1,277 @@
+﻿@model NotesMarketplace.Models.HomeModels.NoteModel
+@{
+    ViewBag.Title = "NoteDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Authorized != null && ViewBag.Authorized)
+{
+    <!--Contact Seller pop-up -->
+    <div class="modal fade" id="thank-you-popup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="row">
+
+                    <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+
+                    <div class="col-md-12 text-center">
+
+                        <img class="img-fluid" src="/Content/imgs/icons/check-circle-solid-rblue.png">
+
+                    </div>
+
+                    <div class="col-md-12 text-center">
+
+                        <h4>Thank you for purchasing!</h4>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <h5>Dear <span id="username">Smith</span>,</h5>
+                        <p>As this is paid notes - you need to pay the seller <span id="seller">Rahil Shah</span> offline. We will send seller an email that you want to download this note. Seller may contact you further for payment process completion.</p>
+
+                        <p>In case, you have urgency,<br>Please contact-us on<span id="contact-us-number">+12345678910</span></p>
+
+                        <p>Once he receeives payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
+
+                        <p>Have a good day.</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Note Details page-->
+<section id="note-details" class="">
+
+    <!-- Basic Note Details Section -->
+    <section id="basic-note-details">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-xl-12 text-center text-sm-left">
+                        <div class="horizontal-heading">
+
+                            <h4>Notes Details</h4>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-7">
+
+                        <div class="row">
+                            <div class="col-sm-5 col-12 text-center text-sm-left">
+
+                                @if (@Model.DisplayPicture == null)
+                                {
+                                    ViewBag.DP = "/Content/SystemConfig/DefaultNoteCover.png";
+                                }
+                                else
+                                {
+                                    ViewBag.DP = Model.DisplayPicture;
+                                }
+
+                                <img id="cover-page" class="img-fluid" src="@ViewBag.DP">
+
+                            </div>
+
+                            <div class="col-sm-7 col-12 text-center text-sm-left">
+
+                                <div id="details">
+
+                                    <div class="horizontal-heading">
+
+                                        <h3>@Model.Title</h3>
+
+                                    </div>
+
+                                    <h5 id="category">@Model.Category</h5>
+
+                                    <p id="description">@Model.Description</p>
+
+                                    @if (ViewBag.Authorized != null)
+                                    {
+                                        using (Html.BeginForm("DownloadNote", "RegisteredUser", FormMethod.Post, new { id="DownloadNoteForm"}))
+                                        {
+                                            <input type="hidden" value="@Model.NoteId" required />
+                                        }
+                                        <button id="download-btn" class="btn btn-general rblue-btn" data-toggle="modal" data-target="#thank-you-popup">download @if(@Model.Price > 0){<span id="price">| $@Model.Price</span>}</button>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Login","Authentication")"><button id="download-btn" class="btn btn-general rblue-btn">download @if(@Model.Price > 0){<span id="price">| $@Model.Price</span>}</button></a>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-5 table-responsive">
+
+                        <div class="row">
+
+                            <div class="col-6 col-sm-6 text-right text-sm-left" id="extra-details">
+
+                                <p id="institution">Institution:</p>
+
+                                <p id="country">Country:</p>
+
+                                <p id="course-name">Course Name:</p>
+
+                                <p id="course-code">Course Code:</p>
+
+                                <p id="professor">Professor:</p>
+
+                                <p id="pages">Number of Pages:</p>
+
+                                <p id="approved-date">Approved Date:</p>
+
+                                <p id="rating">Rating:</p>
+
+                            </div>
+
+                            <div class="col-6 col-sm-6 text-sm-right" id="extra-details-value">
+
+                                <p id="institution-value">@Model.Institution</p>
+
+                                <p id="country-value">@Model.Country</p>
+
+                                <p id="course-name-value">@Model.CourseName</p>
+
+                                <p id="course-code-value">@Model.CourseCode</p>
+
+                                <p id="professor-value">@Model.Professor</p>
+
+                                <p id="pages-value">@Model.Pages</p>
+
+                                <p id="approved-date-value">@Model.Approved.ToString("MMM dd, yyyy")</p>
+
+                                <p id="rating-value" class="rating">
+                                    @for (int i = 0; i < (int)Model.rating; i++)
+                                    {
+                                        <span class="star"></span>
+                                    }
+                                    @for (int i = 0; i < 5 - (int)Model.rating; i++)
+                                    {
+                                        <span class="empty-star"></span>
+                                    }
+                                    <br />
+                                    <span id="no-of-reviews">@Model.Reviews.Count</span>
+                                    <span> Reviews</span>
+                                </p>
+
+                            </div>
+
+                            <div class="col-xl-12 text-center text-sm-left">
+
+                                <p class="inappropriate"><span id="inappropriate-no">@Model.Reports</span> Users marked this note as inappropriate</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="note-preview-reviews">
+        <div class="content-box-sm">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5" id="note-preview">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="horizontal-heading">
+                                    <h4>Notes Prieview</h4>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row iframe-row">
+                            <div class="col-md-12">
+                                <div class="iframe-wapper" id="iframe-wrapper">
+                                    <div class="iframe-wrapper-inner">
+                                        @if (!String.IsNullOrEmpty(@Model.Preview))
+                                        { 
+                                            ViewBag.PreviewPath = @Model.Preview;
+                                        }else 
+                                        { 
+                                            ViewBag.PreviewPath = "/Content/SystemConfig/PreviewNotFound.pdf";
+                                        }
+                                        <iframe id="note-preview-pdf" src="@ViewBag.PreviewPath">
+                                            <p><em><strong>ERROR: </strong>An iframe should be displayed here but your browser version does not support iframes.</em> Please update your browser to its most recent version and try again, or access the file <a href="/Content/imgs/notes/sample.pdf">with this link.</a></p>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-7" id="note-reviews">
+                        <div class="horizontal-heading">
+                            <h4>Customer Reviews</h4>
+                        </div>
+                        <div class="reviews">
+                            @if(Model.Reviews.Count == 0)
+                            {
+                                <div class="col-md-12 review">
+                                    <div class="row text-center">
+                                        <h5>No Reviews</h5>
+                                    </div>
+                                </div>
+                            }
+                            @foreach (NotesMarketplace.Models.HomeModels.Review review in Model.Reviews)
+                            {
+                                <div class="col-md-12 review">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img class="ReviwerProfilePicture" src="@review.ReviwerProfilePicture" alt="Reviewer Profie Picture">
+                                        </div>
+                                        <div class="col-md-10 text-center text-md-left">
+                                            <h5>@review.BuyerName</h5>
+                                            <p class="rating">
+                                                @for (int i = 0; i < (int)review.Rating; i++)
+                                                {
+                                                    <span class="star"></span>
+                                                }
+                                                @for (int i = 0; i < 5 - (int)review.Rating; i++)
+                                                {
+                                                    <span class="empty-star"></span>
+                                                }
+                                            </p>
+                                            <p>@review.Comment</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</section>
+<!-- Note Details Page Ends -->

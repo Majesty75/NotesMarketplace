@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+
+    <!-- Title -->
+    <title>Notes MarketPlace | @ViewBag.Title</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./imgs/icons/favicon.ico" />
+
+    <!-- Style -->
+    <style>
+        .wrapper {
+            width: 100%;
+        }
+
+        .body-table {
+            border: 1px solid #333333;
+            height: 100%;
+            margin: 0;
+            padding: 30px;
+            background-color: #fff;
+            font-family: "Open Sans",sans-serif;
+            border-collapse: separate;
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            color: #6255a5;
+            font-size: 26px;
+            line-height: 30px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .msg-content p {
+            margin: 0px;
+        }
+
+        .msg-content p {
+            font-size: 16px;
+            color: #333333;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+        .msg-content p {
+            margin-bottom: 20px;
+        }
+
+        .user {
+            font-size: 18px;
+            color: #333333;
+            font-weight: 600 !important;
+            line-height: 22px;
+        }
+
+        .table-component:before {
+            content: "-";
+            color: transparent;
+            line-height: 50px;
+            padding: 0;
+        }
+
+        a.link-btn {
+            text-decoration: none !important;
+            color: #fff;
+            text-align: center;
+            border: 1px solid #6255a5;
+            background-color: #6255a5;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 22px;
+            transition: all 300ms linear;
+            line-height: 50px;
+            display: inline-block;
+            width: 538px;
+        }
+
+        .link-btn:hover {
+            background-color: #fff;
+            color: #6255a5;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Email Verification -->
+        <table id="email-verification" class="body-table" border="0" align="center">
+            <thead class="">
+                <tr>
+                    <td>
+
+                        <!-- Logo -->
+                        <img src="https://i.imgur.com/eORrD5r.png" style="margin-bottom:20px;" alt="Notes Marketplace logo">
+
+                    </td>
+                </tr>
+            </thead>
+            @RenderBody()
+        </table>
+
+    </div>
+
+</body>
+</html>

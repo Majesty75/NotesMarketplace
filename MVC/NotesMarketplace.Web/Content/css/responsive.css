@@ -1,0 +1,836 @@
+/* ================+-+-+-+-+====================
+            CSS styles for responsive designs
+    ===============+-+-+-+-+==================== */
+
+
+/* ===============================================
+                Mobile Navigation
+=============================================== */
+
+#mobile-navigation-wrapper {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    right: 0;
+    left: 0;
+    top: 100px;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+    -webkit-box-shadow: 0px 10px 30px -15px #d1d1d1;
+    box-shadow: 0px 10px 30px -15px #d1d1d1;
+    padding: 10px 40px;
+    display: none;
+}
+
+#mobile-navigation-wrapper>* {
+    width: 100%;
+}
+
+#mobile-navigation-wrapper ul li {
+    margin: 10px 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+#mobile-navigation-wrapper .menu-navigation li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+#mobile-navigation-wrapper ul.menu-navigation li .dropdown-menu {
+    margin-top: 10px;
+    width: 100%;
+    white-space: normal !important;
+}
+
+.menu-btn:focus, .menu-btn:active{
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+
+
+/* ===============================================================================================
+                                        Bootstrap Media Queries
+=================================================================================================== */
+
+/*---------------------------- Media queries for Large Desktops (1240px and higher) ----------------*/
+
+@media (min-width: 1200px) and (max-width: 1670px){
+    
+    /*  ===============================
+                    Common CSS
+        =============================== */
+    
+    /* Container */
+    .container-fluid{
+        padding: 0px 150px;
+    }
+    
+    /*  ===============================
+                    Home Page
+        =============================== */
+    
+    /* testimonial Section */
+    .testimonial-item {
+        padding: 20px;
+    }
+    
+    .testimonial-item .client-detail {
+        max-width: 67%;
+    }
+    
+    /* Member Details Admin Page */
+    #member-details .detail-attr, #member-details .detail-val {
+        font-size: 15px;
+        line-height: 18px;
+    }
+    
+    /* Serch-notes result note cover page*/
+    #results .search-row .cover-page img {
+        height: 240px;
+    }
+    
+}
+
+/*------------- Media queries for Landscape Tablet and Medium Desktops (991px to 1240px) -------------*/
+
+@media (min-width: 992px) and (max-width: 1199.5px){
+    
+    /*  ===============================
+                    Common CSS
+        =============================== */
+    
+    /* Content Boxes */
+    .content-box-sm {
+        padding: 50px 0;
+    }
+    
+    /* Container */
+    
+    .container-fluid{
+        padding: 0px 75px;
+    }
+    
+    /* Headings */
+    .horizontal-heading h3{
+        font-size: 30px;
+        line-height: 38px;
+    }
+
+    .horizontal-heading h4 {
+        font-size: 24px;
+        line-height: 28px;
+        margin: 0px;
+    }
+    
+    .banner-img {
+        height: 200px;
+        margin-top: 82px;
+    }
+    
+    .banner-img h3 {
+        font-size: 42px;
+        line-height: 46px;
+    }
+    
+    /*  ===============================
+                    Home Page
+        =============================== */
+    
+    /* Learn More Section */
+    #home #learn-more {
+        height: 480px;
+    }
+    
+    #home #learn-more h3 {
+        font-size: 34px;
+        line-height: 38px;
+    }
+    
+    
+    /* Testimonial Section */
+    .testimonial-item .client-detail {
+        display: block;
+    }    
+    
+    /*  ===============================
+                Search Notes Page    
+        =============================== */
+    #filter-notes select{
+        margin-bottom: 10px;
+    }
+
+    /* Serch-notes result note cover page*/
+    #results .search-row .cover-page img {
+        height: 240px;
+    }
+    
+    /*  ====================
+            Note Deatails
+        ==================== */
+    #note-details #note-reviews {
+        margin-top: 30px;
+    }
+    
+    /*  ======================
+            User Dashboard
+        ====================== */
+    #dashboard-items .stat {
+        height: 150px;
+    }
+    
+    #dashboard-items #stats p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    #dashboard-items .stat-val {
+        font-size: 24px;
+    }
+    
+    /* Member Details Admin Page */
+    #member-details .detail-attr, #member-details .detail-val {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+}
+
+/*------------- Media queries for  Portrait Tablets & small Desktop (991px to 1240px) ----------------*/
+
+@media (min-width: 768px) and (max-width: 991.5px){
+    
+    /*  ===============================
+                    Common CSS
+        =============================== */
+    
+    /* Content Boxes */
+    .content-box-sm {
+        padding: 40px 0;
+    }
+    
+    /* Header */
+    .site-header {
+        padding: 20px 0;
+    }
+    
+    .navigation-wrapper .main-nav .menu-navigation>li>a {
+        font-size:14px;
+        line-height: 16px;
+    }
+    
+    .navigation-wrapper .main-nav .menu-navigation>li {
+        margin: 0 5px;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 30px 0;
+    }
+    
+    /* Container */
+    .container-fluid{
+        padding: 0px 50px;
+    }
+    
+    /* Headings */
+    .horizontal-heading h3{
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .horizontal-heading h4 {
+        font-size: 22px;
+        line-height: 26px;
+        margin: 0px;
+    }
+    
+    .banner-img {
+        height: 150px;
+        margin-top: 84px;
+    }
+    
+    .banner-img h3 {
+        font-size: 40px;
+        line-height: 44px;
+    }
+    
+    /*  ===============================
+                    Home Page
+        =============================== */
+    
+    /* Learn More Section */
+    #home #learn-more {
+        height: 420px;
+    }
+    
+    #home #learn-more h3 {
+        font-size: 30px;
+        line-height: 34px;
+    }
+    
+    /* Testimonial Section */
+    .testimonial-item .client-detail {
+        display: block;
+    } 
+    
+    .utility h4 { 
+        height: 38px;
+    }
+    
+    .utility p {
+        height: 44px;
+    }
+    
+    /*  ===============================
+                Search Notes Page    
+        =============================== */
+    #filter-notes select {
+        margin-bottom: 10px;
+    }
+
+    /* Serch-notes result note cover page*/
+    #results .search-row .cover-page img {
+        height: 253px;
+    }
+    
+    /*  ====================
+            Note Deatails
+        ==================== */
+    #note-details #extra-details,
+    #note-details #extra-details-value{
+        margin-top: 20px;
+    }
+    
+    #note-details #note-reviews {
+        margin-top: 20px;
+    }
+    
+    /*  ======================
+            User Dashboard
+        ====================== */
+    
+    #dashboard-items .stat-val {
+        font-size: 20px;
+    }
+    
+    #dashboard-items .stat {
+        margin-top: 20px;
+        padding-top: 20px;
+        height: 130px;
+    }
+    #dashboard-items #earning {
+        margin-right: 1px;
+    }
+    
+    #dashboard-items #earning .stat {
+        margin-top: 0px;
+        height: 130px;
+    }
+    
+    #dashboard-items #stats p {
+        font-size: 18px;
+    }
+    
+    /* -+-+-+-+-+-+-+-+-+-+-  Admin Side +-+--+-+-+-+-+-+-+-+-+-+-+-+- */
+    #admin-form-section {
+        margin-top: 52px;
+    }
+    
+    .admin-dashboard #dashboard-items .stat {
+        height: 160px;
+    }
+    
+    /* Member Details Admin Page */
+    #member-details .detail-attr, #member-details .detail-val {
+        font-size: 14px;
+        line-height: 16px;
+    }
+}
+
+/*------------------------ Media queries for Portrait Tablet and Small Devices (767px and lower) ----------------*/
+
+@media (max-width: 767.5px){
+    
+    /*  ===============================
+                    Common CSS
+        =============================== */
+    
+    /* Content Boxes */
+    .content-box-sm {
+        padding: 30px 0;
+    }
+    
+    /* Headings */
+    .horizontal-heading h3{
+        font-size: 26px;
+        line-height: 32px;
+        text-align: center;
+    }
+
+    .horizontal-heading h4 {
+        text-align: center;
+        font-size: 20px;
+        line-height: 24px;
+        margin: 0px;
+    }
+    
+    /* Buttons */
+    .btn-general {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    .btn-add {
+        height: 40px !important;
+    }
+    
+    /* login, sign up, change-password etc submit button */
+    .user-credentials-config .rblue-btn {
+        height: 30px;
+        width:100%;
+        padding: 0;
+    }
+    
+    /* Header */
+    .site-header {
+        padding: 10px 0;
+    }
+    
+    .header-wrapper .dropdown-item {
+        font-size: 14px !important;
+        line-height: 16px !important;
+    }
+    
+    .banner-img {
+        height: 150px;
+        margin-top: 68px;
+    }
+    
+    .banner-img h3 {
+        font-size: 34px;
+        line-height: 38px;
+    }
+    
+    #mobile-navigation-wrapper {
+        top: 60px;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 20px 0;
+    }
+    
+    /* Container */
+    .container-fluid{
+        padding: 0px 20px;
+    }
+    
+    /* Form Section on all pages*/
+    #form-section .form-control {
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    
+    #form-section label, .file-picker-label p {
+        font-size: 14px;
+        line-height: 16px;    
+    }
+    
+    #content-section .table-heading .btn-general {
+        height: 40px;
+    }
+    
+    #content-section .table-heading input,  #content-section .table-heading select{
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    
+    #content-section .table-heading .search-icon{
+        top: 11px;
+    }
+    
+    textarea {
+        height: 100px !important;
+    }
+    
+    
+    
+    /*  ===============================
+        User Credential Related Pages    
+        =============================== */
+    .white-box {
+        padding: 20px;
+    }
+    
+    .top-logo img {
+        width: 70%;
+    }
+    
+    .white-box .heading {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    
+    .white-box .sub-head {
+        margin-bottom: 17px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .white-box .form-group {
+        margin-bottom: 10px;
+        min-width: 0px !important;
+    }
+    
+    .white-box label {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    /* eye icon for toggle password visibilty */
+    .show-pass {
+        top: 41px;
+    }
+    
+    /* place holder CSS */
+    form .form-control::-webkit-input-placeholder {
+        font-size: 14px;
+        line-height: 16px; 
+    }
+    form .form-control:-ms-input-placeholder {
+        font-size: 14px;
+        line-height: 16px; 
+    }
+    form .form-control::placeholder {
+        font-size: 14px;
+        line-height: 16px; 
+    }
+    
+    /* Login Page Specific */
+    .white-box #remember-me-label {
+        margin-bottom: 15px;
+        font-size: 12px;
+        line-height: 14px;
+    }
+    
+    .white-box #remember-me {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .white-box .signup-label {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    
+    /* Sign Up Page Specific */
+    #signup .white-box span.success {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 10px;
+    }
+    
+    #signup .white-box{
+        padding: 15px;
+    }
+    
+    
+    /*  ===============================
+                    Home Page
+        =============================== */
+    
+    /* Learn More Section */
+    #home #learn-more {
+        text-align: center;
+        height: 420px;
+    }
+    
+    #home #learn-more h3 {
+        font-size: 24px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
+    
+    #home #learn-more .btn-general {
+        width: 172px;
+        height: 40px;
+    }
+    
+        /* Testimonial Section */
+    .testimonial-item .client-detail {
+        display: block;
+    }  
+    
+    /*  ===============================
+                Pages With Tables
+        =============================== */
+    
+    #rejected-notes-table tr td:nth-child(4) {
+        white-space: nowrap;
+    }
+    
+    /*  ===============================
+                Search Notes Page    
+        =============================== */
+    #filter-notes select {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    input#notes-name::placeholder {
+        font-size: 15px !important;
+        line-height: 20px !important;
+    }
+
+    /* Serch-notes result note cover page*/
+    #results .search-row .cover-page img {
+        height: 300px;
+    }
+    
+    /*  ====================
+            Note Deatails
+        ==================== */
+    #note-details #extra-details,
+    #note-details #extra-details-value{
+        margin-top: 20px;
+    }
+    
+    #note-details #note-reviews {
+        margin-top: 30px;
+    }
+
+    #details .horizontal-heading h3{
+        text-align:left !important;
+    }
+    /*  ======================
+            User Dashboard
+        ====================== */
+    #dashboard-items .stat-val {
+        font-size: 20px;
+    }
+    
+    #dashboard-items .stat {
+        margin-top: 20px;
+        padding-top: 20px;
+        height: 130px;
+    }
+    
+    #dashboard-items #earning .stat {
+        margin-top: 0px;
+        height: 130px;
+    }
+    
+    #dashboard-items #stats p {
+        font-size: 18px;
+    }
+    
+    #dashboard-items #earning {
+        margin-right: 1px;
+    }
+    
+    /* -+-+-+-+-+-+-+-+-+-+-  Admin Side +-+--+-+-+-+-+-+-+-+-+-+-+-+- */
+    #admin-form-section {
+        margin-top: 52px;
+    }
+    
+    .admin-dashboard #dashboard-items .stat {
+        height: 160px;
+    }
+    
+    /* Member Details */
+    #member-details .detail-attr, #member-details .detail-val {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    #member-details .row-underline>div:first-child {
+        border: none;
+    } 
+    
+        /* Member Details Admin Page */
+    #member-details .detail-attr, #member-details .detail-val {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+
+/*------------------------ Media queries for Portrait Tablet and Small Devices (767px and lower) ----------------*/
+
+@media (max-width: 575.5px){
+    
+    /*  ===============================
+                Common CSS    
+        =============================== */
+    
+    /* Footer */
+    footer p {
+        line-height: 16px;
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+    
+    /*    Form Section for each page */
+    
+    #form-section select {
+        font-size: 11px;
+        line-height: 14px;
+    }
+    
+    #form-section .form-clantrol, #admin-form-section .form-control{
+        height: 40px;
+        font-size: 11px;
+        line-height: 14px;
+        margin-bottom: 10px;
+    }
+    
+    #form-section .icon-calender{
+        top:33px;
+        right: 23px;
+    }
+    #form-section .btn-general {
+        height: 30px;
+    }
+    
+    #form-section .btn-general {
+        width: 100%;
+    }
+    
+    /* Content Section */
+    #content-section .search-in-table {
+        width: 100%;
+        margin: 10px 15px 10px 15px;
+        height: 30px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .btn-add {
+        height: 35px !important;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /*  ===============================
+        User Credential Related Pages    
+        =============================== */
+    
+    .white-box label {
+        font-size: 11px;
+        line-height: 14px;
+    }
+    
+    .user-credentials-config .white-box input {
+        font-size: 11px;
+        line-height: 14px;
+        height: 40px;
+        min-height: 0px;
+    }
+    
+    /* place holder CSS */
+    form .form-control::-webkit-input-placeholder {
+        font-size: 11px;
+        line-height: 14px; 
+    }
+    form .form-control:-ms-input-placeholder {
+        font-size: 11px;
+        line-height: 14px; 
+    }
+    form .form-control::placeholder {
+        font-size: 11px;
+        line-height: 14px; 
+    }
+    
+    /* eye icon for toggle password visibilty */
+    .show-pass {
+        right: 8px;
+        top: 40px;
+        font-size: 15px;
+    }
+    
+    .incorrect-field {
+        font-size: 10px;
+        line-height: 14px;
+    }
+    
+    .white-box a.forgot-password {
+        font-size: 11px;
+        line-height: 14px;
+        top: 7px;
+    }
+    
+    /* Review for Downloads Page */
+    
+    .modal .modal-content{
+        margin-top: 70px;
+        padding: 20px 20px 0px 20px;
+    }
+    
+    #review-form .rate{
+        padding: 20px 0px;
+    }
+    
+    #review-form .rate > label {
+        width: 0.7em;
+    }
+    
+    
+    /*  ==================
+            Pagination
+        ================== */
+    
+    .pagination .page-item {
+        margin: 0px 5px;
+    }
+    
+    .pagination .page-item:first-of-type, 
+    .pagination .page-item:last-of-type {
+        margin: 0px 5px;
+    }
+    
+    /*  ====================
+            Note Deatails
+        ==================== */
+    #note-details #cover-page {
+        margin-bottom: 10px;
+    }
+
+    #details .horizontal-heading h3 {
+        text-align: center !important;
+    }
+
+    #note-details #extra-details p, #extra-details-value p{
+        font-size: 15px;
+        line-height: 30px;
+        color: #333333;
+    }
+    
+    #note-preview-reviews .review h5{
+        font-size: 16px;
+    }
+    
+    #note-preview-reviews .review .rating ~ p{
+        font-size: 12px;
+        line-height: 16px;
+    }
+    
+    #dashboard-items #earning {
+        border: none;
+    }
+    
+    /* Admin Side */
+    .admin-dashboard #dashboard-items .stat {
+        height: 120px;
+    }
+}

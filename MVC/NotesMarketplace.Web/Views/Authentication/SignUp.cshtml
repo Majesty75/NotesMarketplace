@@ -1,0 +1,189 @@
+﻿@model NotesMarketplace.Models.AuthenticationModels.SignUp
+@{
+    ViewBag.Title = "Sign Up";
+    Layout = "~/Views/Shared/_AuthenticationLayout.cshtml";
+}
+
+<!-- Sign Up -->
+<section id="signup" class="user-credentials-config">
+
+    <div class="content-box-center">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <!-- Logo -->
+                    <div class="top-logo">
+                        <a href="@Url.Action("Index","Home")"><img src="/Content/imgs/icons/top-logo.png" class="img-responsive" alt="Notes Marketplace logo"></a>
+</div>
+                </div>
+
+            </div>
+
+            <!-- White Center Box -->
+            <div class="white-box">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="heading">
+                            Create An Account
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="sub-head">
+                            Enter your details to signup
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        @if (ViewBag.Success != null && ViewBag.Success)
+                        {
+                            <div class="msg">
+                                <span class="success"><img src="/Content/imgs/icons/check-circle-solid.png" class="icon img-responsive"> Your account has been successfully created. Please verify your email address via mail we have sent you.</span>
+                            </div>
+                        }
+                        else if(ViewBag.Success != null)
+                        {
+                            <div class="msg">
+                                <span class="incorrect-field">User Already Exists!!&nbsp; &nbsp;Please login via Login page.</span>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+
+                @*<form name="signup" action="">*@
+                @using (Html.BeginForm("SignUp", "Authentication", FormMethod.Post, new { id = "sign-up" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+
+                                @*<label for="firstname">Firstname*</label>*@
+                                @Html.LabelFor(m => m.FirstName)
+
+                                @*<input type="text" class="form-control" id="firstname" placeholder="Enter your first name">*@
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter your firstname" })
+
+                                @Html.ValidationMessageFor(m => m.FirstName, string.Empty, new { @class = "incorrect-field" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+
+                                @*<label for="lastname">Lastname*</label>*@
+                                @Html.LabelFor(m => m.LastName)
+
+                                @*<input type="text" class="form-control" id="lastname" placeholder="Enter your last name">*@
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter your last name" })
+
+                                @Html.ValidationMessageFor(m => m.LastName, string.Empty, new { @class = "incorrect-field" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+
+                                @*<label for="email">Email*</label>*@
+                                @Html.LabelFor(m => m.Email)
+
+                                @*<input type="email" class="form-control" id="email" placeholder="Enter your email address">*@
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email address" })
+
+                                @Html.ValidationMessageFor(m => m.Email, string.Empty, new { @class = "incorrect-field" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group password">
+
+                                @*<label for="password">Password*</label>*@
+                                @Html.LabelFor(m => m.Password)
+
+                                @*<input type="password" class="form-control" id="password" placeholder="Enter your password">*@
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter your password" })
+
+                                @Html.ValidationMessageFor(m => m.Password, string.Empty, new { @class = "incorrect-field" })
+
+                                <span class="show-pass"><img src="/Content/imgs/icons/eye.png" alt="eye-icon" toggle="#Password" class="icon img-responsive"></span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="form-group password">
+
+                                @*<label for="confirm-password">Confirm Password*</label>*@
+                                @Html.LabelFor(m => m.ConfirmPassword)
+
+                                @*<input type="password" class="form-control" id="confirm-password" placeholder="Re-enter your  password">*@
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Re-enter your password" })
+
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, string.Empty, new { @class = "incorrect-field" })
+
+                                <span class="show-pass"><img src="/Content/imgs/icons/eye.png" class="icon img-responsive" alt="eye-icon" toggle="#ConfirmPassword"></span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <button class="btn btn-general rblue-btn" type="submit" name="signup-submit">Sign up</button>
+
+                        </div>
+                    </div>
+
+                    @*</form>*@
+                }
+
+                <div class="signup-label">
+                    Already have an account?
+                    @*<a href="./login.html">Log In</a>*@
+                    @Html.ActionLink("Login", "Login")
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

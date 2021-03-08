@@ -1,0 +1,442 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Dash Board page-->
+<section id="dashboard" class="">
+
+    <!-- Content Section -->
+    <section id="content-section">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <section id="dashboard-items">
+
+                    <div class="row justify-content-between">
+
+                        <div class="col-12 col-sm-6">
+
+                            <div class="horizontal-heading first-heading">
+                                <h3>Dashboard</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 text-md-right text-center">
+                            <a href="@Url.Action("AddNotes","RegisteredUser")"><button class="btn btn-general rblue-btn btn-add" role="link">Add Note</button></a>
+                        </div>
+                    </div>
+
+                    <div class="row" id="stats">
+                        <div class="col-lg-6">
+                            <div class="row" id="earning">
+                                <div class="col-sm-3 text-center">
+                                    <div class="stat-border stat">
+                                        <div><img src="/Content/imgs/icons/earning-icon.svg" alt="earning-icon"></div>
+                                        <p class="stat-val"><span>My Earning</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <div class="stat">
+                                        <div class="stat-val">100</div>
+                                        <p>No of Notes Sold</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 text-center">
+                                    <div class="stat">
+                                        <div class="stat-val">&dollar;10,00,000</div>
+                                        <p>Money Earned</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row h-100">
+                                <div class="col-sm-4 text-center">
+                                    <div class="stat stat-border">
+                                        <div class="stat-val">38</div>
+                                        <p>My Downloads</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <div class="stat stat-border">
+                                        <div class="stat-val">12</div>
+                                        <p>My Rejected<br>Notes</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 text-center">
+                                    <div class="stat stat-border">
+                                        <div class="stat-val"><a href="@Url.Action("BuyerRequests","RegisteredUser")">102</a></div>
+                                        <p>Buyer Request</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- inprogress notes section -->
+                <section id="inprogress-notes">
+
+                    <div class="row table-heading justify-content-between">
+
+                        <div class="col-sm-5">
+
+                            <div class="horizontal-heading first-heading">
+                                <h4>In Progess Notes</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <div class="row justify-content-sm-end justify-content-around">
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                    <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                    <input id="inprogress-table-search" type="text" class="form-control" placeholder="Search" />
+                                </div>
+                                <button data-table-id="#inprogress-table" data-search-input="#inprogress-table-search" class="btn btn-general rblue-btn search-in-table" href="./add-notes.html">search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive-md">
+                        <table id="inprogress-table" class="table tablesorter" data-sort-on-col-and-order="0,1">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">ADDED DATE</th>
+                                    <th scope="col">TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col" class="action">ACTION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-tr-per-page="5">
+
+                                <tr>
+                                    <td>09-10-2020</td>
+                                    <td><a href="">Data Science</a></td>
+                                    <td>Science</td>
+                                    <td>Draft</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
+                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>10-10-2020</td>
+                                    <td><a href="">Accounts</a></td>
+                                    <td>Commerce</td>
+                                    <td>In Review</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>11-10-2020</td>
+                                    <td><a href="">Social Studies</a></td>
+                                    <td>Social</td>
+                                    <td>Submitted</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>12-10-2020</td>
+                                    <td><a href="">AI</a></td>
+                                    <td>IT</td>
+                                    <td>Submitted</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>13-10-2020</td>
+                                    <td><a href="">Lorem ipsum</a></td>
+                                    <td>Lorem</td>
+                                    <td>Draft</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
+                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>09-10-2020</td>
+                                    <td><a href="">Data Science</a></td>
+                                    <td>Science</td>
+                                    <td>Draft</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
+                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>10-10-2020</td>
+                                    <td><a href="">Accounts</a></td>
+                                    <td>Commerce</td>
+                                    <td>In Review</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>11-10-2020</td>
+                                    <td><a href="">Social Studies</a></td>
+                                    <td>Social</td>
+                                    <td>Submitted</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>12-10-2020</td>
+                                    <td><a href="">AI</a></td>
+                                    <td>IT</td>
+                                    <td>Submitted</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>13-10-2020</td>
+                                    <td><a href="">Lorem ipsum</a></td>
+                                    <td>Lorem</td>
+                                    <td>Draft</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
+                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>09-10-2020</td>
+                                    <td><a href="">Data Science</a></td>
+                                    <td>Science</td>
+                                    <td>Draft</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
+                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>10-10-2020</td>
+                                    <td><a href="">Accounts</a></td>
+                                    <td>Commerce</td>
+                                    <td>In Review</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>11-10-2020</td>
+                                    <td><a href="">Social Studies</a></td>
+                                    <td>Social</td>
+                                    <td>Submitted</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>12-10-2020</td>
+                                    <td><a href="">AI</a></td>
+                                    <td>IT</td>
+                                    <td>Submitted</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>13-10-2020</td>
+                                    <td><a href="">Lorem ipsum</a></td>
+                                    <td>Lorem</td>
+                                    <td>Draft</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
+                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <span class="pagination-control" pagination-data="#inprogress-table tbody" max-page-shown="20">
+
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Published Notes Section -->
+                <section id="published-notes">
+
+                    <div class="row table-heading justify-content-between">
+
+                        <div class="col-sm-5">
+
+                            <div class="horizontal-heading first-heading">
+                                <h4>Published Notes</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <div class="row justify-content-sm-end justify-content-around">
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                    <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                    <input id="published-notes-table-search" type="text" class="form-control" placeholder="Search" />
+                                </div>
+                                <button data-table-id="#published-notes-table" data-search-input="#published-notes-table-search" class="btn btn-general rblue-btn search-in-table" href="./add-notes.html">search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive-md">
+                        <table id="published-notes-table" class="table tablesorter" data-sort-on-col-and-order="0,1">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">ADDED DATE</th>
+                                    <th scope="col">TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">SELL TYPE</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col" class="action">ACTION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-tr-per-page="5">
+
+                                <tr>
+                                    <td>9-10-2020</td>
+                                    <td><a href="">Computer Science</a></td>
+                                    <td>Science</td>
+                                    <td>Paid</td>
+                                    <td>&dollar;575</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>10-10-2020</td>
+                                    <td><a href="">Accounts</a></td>
+                                    <td>Commerce</td>
+                                    <td>Free</td>
+                                    <td>&dollar;0</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>11-10-2020</td>
+                                    <td><a href="">Social Studies</a></td>
+                                    <td>Social</td>
+                                    <td>Free</td>
+                                    <td>&dollar;0</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>12-10-2020</td>
+                                    <td><a href="">AI</a></td>
+                                    <td>IT</td>
+                                    <td>Paid</td>
+                                    <td>&dollar;3542</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>13-10-2020</td>
+                                    <td><a href="">Lorem ipsum</a></td>
+                                    <td>Lorem</td>
+                                    <td>Free</td>
+                                    <td>&dollar;0</td>
+                                    <td class="action">
+                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <span class="pagination-control" pagination-data="#published-notes-table tbody" max-page-shown="20">
+
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+    <!-- Content Section Ends -->
+</section>
+<!-- Search Notes page Ends -->

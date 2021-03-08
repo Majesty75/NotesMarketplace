@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "~/Views/Email/_Email.cshtml";
+}
+
+<tbody class="table-component">
+
+    <tr>
+        <td class="msg-content">
+            <p class="user">Hello,</p>
+
+            <p>@ViewBag.Comment</p>
+
+            <p>Regards,<br/>@ViewBag.Name<br/>@ViewBag.Email</p>
+        </td>
+    </tr>
+</tbody>
+

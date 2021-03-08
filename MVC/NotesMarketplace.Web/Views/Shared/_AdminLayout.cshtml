@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
+
+    <!-- Title -->
+    <title>Notes MarketPlace | Admin Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/Content/imgs/icons/favicon.ico" />
+
+    <!-- Title -->
+    <title>Notes Marketplace | @ViewBag.Title</title>
+
+    <!-- Google Open Sans Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+
+    <!-- Style Bundle -->
+    @Styles.Render("~/bundles/CSSDependencies")
+
+</head>
+
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header class="site-header sticky-header">
+            <div class="container-fluid">
+                <div class="header-wrapper">
+                    <div class="logo-wrapper">
+                        <a href="./dashboard.html" title="Site Logo">
+                            <img src="../imgs/icons/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper d-none d-md-flex">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li class="selected">
+                                    <a href="./dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Notes</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                            <a class="dropdown-item" href="./published-notes.html">Published Notes</a>
+                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="./members.html">Members</a></li>
+                                <li class="contex-menu-toggle">
+                                    <a>Reports</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="contex-menu-toggle">
+                                    <a>Settings</a>
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="./manage-system-config.html">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- User Profile Picture -->
+                                    <div class="user-img contex-menu-toggle">
+                                        <img src="../imgs/user-images/user-img.png">
+                                        <div class="dropdown" id="user-context-menu">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                                <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                                <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("Logout","Authentication")"><button class="btn btn-general rblue-btn">Logout</button></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="../imgs/icons/bars-solid-rblue.png"></button>
+                    <!-- Mobile Navigation -->
+                    <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
+                        <ul class="menu-navigation navbar-nav">
+                            <li class="nav-item">
+                                <a href="./dashboard.html">Dashboard</a>
+                            </li>
+                            <li class="contex-menu-toggle nav-item">
+                                <a>Notes</a>
+                                <div class="dropdown">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+                                        <a class="dropdown-item" href="./published-notes.html">Published Notes</a>
+                                        <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+                                        <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a href="./members.html">Members</a></li>
+                            <li class="contex-menu-toggle nav-item">
+                                <a>Reports</a>
+                                <div class="dropdown">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="contex-menu-toggle nav-item">
+                                <a>Settings</a>
+                                <div class="dropdown">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="./manage-system-config.html">Manage System Configuration</a>
+                                        <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
+                                        <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+                                        <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
+                                        <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown contex-menu-toggle">
+                                <!-- User Profile Picture -->
+                                <div class="user-img">
+                                    <img src="../imgs/user-images/user-img.png">
+                                </div>
+                                <div class="dropdown" id="user-context-menu">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
+                                        <a class="dropdown-item" href="../change-password.html">Change Password</a>
+                                        <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a href="@Url.Action("Logout","Authentication")"><button class="btn btn-general rblue-btn" href="#">Logout</button></a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </header>
+        <!-- Header Ends -->
+
+        @RenderBody()
+
+        <!-- Footer -->
+        <Footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Copy right text -->
+                    <div class="col-12 col-sm-4 text-center text-sm-left">
+
+                        <p>
+                            Version : 1.1
+                        </p>
+
+                    </div>
+
+                    <div class="col-12 col-sm-8 text-center text-sm-right">
+
+                        <p>
+                            Copyright &copy; Tatvasoft All Rights Reserved.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </Footer>
+        <!-- Footer Ends -->
+
+    </div>
+
+
+    @Scripts.Render("~/bundles/JSDependecies")
+    @Scripts.Render("~/bundles/JSValidate")
+</body>
+
+</html>

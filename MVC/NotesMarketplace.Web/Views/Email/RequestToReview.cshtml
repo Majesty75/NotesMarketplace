@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "RequestToReview";
+    Layout = "~/Views/Email/_Email.cshtml";
+}
+
+<tbody class="table-component">
+
+    <tr>
+        <td class="msg-content">
+            <p class="user">Hello Admins,</p>
+
+            <p>
+                We want to inform you that, @ViewBag.SellerName sent his note @ViewBag.NoteName
+                 for review. Please look at the notes and take required actions.
+            </p>
+
+            <p>
+                Regards,<br />
+                Notes Marketplace
+            </p>
+        </td>
+    </tr>
+</tbody>
+
+<tfoot class="table-component">
+    <tr>
+        <td>
+            <a class="link-btn" href="">Notes Market Place</a>
+        </td>
+    </tr>
+</tfoot>
+
+
+
