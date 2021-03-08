@@ -21,15 +21,15 @@
 
 - Registred User (Userole ID: 3) : User which has his UserProfile created and can access all of the above mentioned completed pages.
 
--UserProfileNotCreated (Userole ID: 4) : New user made with sign up will not have any option cause he will be redirected to user profile if he access any other pages except anonymous pages.
-  there is no backend for user profile in this submission. so to make user normal change role ID to 3 in database.
+- UserProfileNotCreated (Userole ID: 4) : New user made with sign up will not have any option cause he will be redirected to user profile if he access any other pages except anonymous pages.
+  *there is no backend for user profile in this submission. so to make user normal change role ID to 3 in database.*
   
--Anonymous Users : Can Access Index (Home), Contact Us, Search Notes, FAQ Pages.
+- Anonymous Users : Can Access Index (Home), Contact Us, Search Notes, FAQ Pages.
 
 ### Crendentials Already Into System
-*superadmin@gmail.com   Password: \@Toornimda1 will be redirected to Static Admin Dashboard. 
-*subadmin@gmail.com     Password: PassWord2 : it is normal user right now so it will word as normal registered user
-*dummymail@gmail.com    Password: Password1 : UserprofileNotCraetedUser.
-*yashgoyani101@gmail.com Password: P@sswd1 : UserprofileNotCreatedUser.
+* superadmin@gmail.com   Password: \@Toornimda1 will be redirected to Static Admin Dashboard. 
+* subadmin@gmail.com     Password: PassWord2 : it is normal user right now so it will word as normal registered user
+* dummymail@gmail.com    Password: Password1 : UserprofileNotCraetedUser.
+* yashgoyani101@gmail.com Password: P@sswd1 : UserprofileNotCreatedUser.
 
 This Are Passwords changed using DB, passwords on signup requires to be according to SRS. 
