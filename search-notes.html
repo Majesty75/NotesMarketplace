@@ -20,9 +20,6 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
-    
-    
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css" />
 
@@ -52,13 +49,13 @@
                                 <li><a href="./dashboard.html">Sell Your Notes</a></li>
                                 <li><a href="./faq.html">FAQ</a></li>
                                 <li><a href="./contact-us.html">Contact Us</a></li>
-                                <li>
+                                <li hidden>
                                     <!-- User Profile Picture -->
                                     <div class="user-img contex-menu-toggle">
                                         <img src="imgs/user-images/user-img.png" class="img-fluid">
                                         <div class="dropdown" id="user-context-menu">
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                                <a class="dropdown-item" href="./user-profile.html">My Profile</a>
                                                 <a class="dropdown-item" href="./downloads.html">My Downloads</a>
                                                 <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
                                                 <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
@@ -68,7 +65,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><button class="btn btn-general rblue-btn" href="#">Logout</button></li>
+                                <li><button class="btn btn-general rblue-btn" href="#">Login</button></li>
                             </ul>
                         </nav>
                     </div>
@@ -87,7 +84,7 @@
                                         <img src="imgs/Clients/customer-1.png" class="img-fluid">
                                     </div>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                            <a class="dropdown-item" href="./user-profile.html">My Profile</a>
                                             <a class="dropdown-item" href="./downloads.html">My Downloads</a>
                                             <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
                                             <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
@@ -161,8 +158,8 @@
                                             <div class="form-group">
                                                 <select name="type" id="type" class="form-control">
                                                     <option value="none" disabled selected>Select type</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
+                                                    <option value="">Hand Written</option>
+                                                    <option value="">Novel</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -170,8 +167,8 @@
                                             <div class="form-group">
                                                 <select name="category" id="category" class="form-control">
                                                     <option value="none" disabled selected>Select category</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
+                                                    <option value="">CS</option>
+                                                    <option value="">IT</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -179,8 +176,8 @@
                                             <div class="form-group">
                                                 <select name="university" id="university" class="form-control">
                                                     <option value="none" disabled selected>Select university</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
+                                                    <option value="">IIT Bombay</option>
+                                                    <option value="">Oxford University</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -188,8 +185,8 @@
                                             <div class="form-group">
                                                 <select name="course" id="course" class="form-control">
                                                     <option value="none" disabled selected disabled selected>Select course</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
+                                                    <option value="">Information Security</option>
+                                                    <option value="">Machine Learning</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -197,8 +194,8 @@
                                             <div class="form-group">
                                                 <select name="" id="country" class="form-control">
                                                     <option value="none" disabled selected>Select country</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
+                                                    <option value="">India</option>
+                                                    <option value="">UK</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -206,8 +203,11 @@
                                             <div class="form-group">
                                                 <select name="rating" id="rating" class="form-control">
                                                     <option value="none" disabled selected>Select rating</option>
-                                                    <option value=""></option>
-                                                    <option value=""></option>
+                                                    <option value="">5</option>
+                                                    <option value="">4</option>
+                                                    <option value="">3</option>
+                                                    <option value="">2</option>
+                                                    <option value="">1</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -244,7 +244,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Computer Operating System - Final Exam Book With Paper Solution </h4>
+                                                <a href="./note-details.html"><h4>Computer Operating System - Final Exam Book With Paper Solution </h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -297,7 +297,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Computer Science</h4>
+                                                <a href="./note-details.html"><h4>Computer Science</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -349,7 +349,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Basic Computer Engineering Tech India Series</h4>
+                                                <a href="./note-details.html"><h4>Basic Computer Engineering Tech India Series</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -389,7 +389,7 @@
                                     </div>
                                 </div>
                             
-                            <!-- serach row 2 -->
+                                <!-- serach row 2 -->
                                 <div class="col-xl-4 col-md-6">
                                     <div class="search-column">
                                         <div class="row cover-page">
@@ -402,7 +402,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Computer Science Illuminated - Seventh Edition</h4>
+                                                <a href="./note-details.html"><h4>Computer Science Illuminated - Seventh Edition</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -455,7 +455,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>The Principal of Computer Hardware - Oxford</h4>
+                                                <a href="./note-details.html"><h4>The Principal of Computer Hardware - Oxford</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -507,7 +507,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>The Computer Book</h4>
+                                                <a href="./note-details.html"><h4>The Computer Book</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -559,7 +559,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Computer Operating System - Final Exam Book With Paper Solution </h4>
+                                                <a href="./note-details.html"><h4>Computer Operating System - Final Exam Book With Paper Solution </h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -612,7 +612,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Computer Science</h4>
+                                                <a href="./note-details.html"><h4>Computer Science</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -664,7 +664,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Basic Computer Engineering Tech India Series</h4>
+                                                <a href="./note-details.html"><h4>Basic Computer Engineering Tech India Series</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -704,7 +704,7 @@
                                     </div>
                                 </div>
                             
-                            <!-- serach row 2 -->
+                                <!-- serach row 3 -->
                                 <div class="col-xl-4 col-md-6">
                                     <div class="search-column">
                                         <div class="row cover-page">
@@ -717,7 +717,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>Computer Science Illuminated - Seventh Edition</h4>
+                                                <a href="./note-details.html"><h4>Computer Science Illuminated - Seventh Edition</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -770,7 +770,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>The Principal of Computer Hardware - Oxford</h4>
+                                                <a href="./note-details.html"><h4>The Principal of Computer Hardware - Oxford</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -822,7 +822,7 @@
                                         
                                         <div class="row">
                                             <div class="col-xl-12 note-title">
-                                                <h4>The Computer Book</h4>
+                                                <a href="./note-details.html"><h4>The Computer Book</h4></a>
                                             </div>
                                         </div>
                                         <div class="row">

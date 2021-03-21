@@ -1421,7 +1421,10 @@ label[for="note-preview"] .file-picker{
 #results .search-row .cover-page img{
     -o-object-fit: cover;
     object-fit: cover;
+    -o-object-position: top;
+    object-position: top;
     width: 100%;
+    max-height: 200px;
 }
 
 #results .note-title {
@@ -1431,6 +1434,16 @@ label[for="note-preview"] .file-picker{
     line-height: 26px;
     overflow: hidden;
 }
+
+#results .note-title a {
+    text-decoration: none;
+    color: #6255a5;
+}
+
+#results .note-title a:hover {
+    text-decoration: none;
+}
+
 /*
 
 #results .note-data p .note-data-icon {

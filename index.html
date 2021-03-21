@@ -20,9 +20,6 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 
-    
-    
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css" />
     
@@ -53,13 +50,13 @@
                                 <li><a href="./dashboard.html">Sell Your Notes</a></li>
                                 <li><a href="./faq.html">FAQ</a></li>
                                 <li><a href="./contact-us.html">Contact Us</a></li>
-                                <li>
+                                <li hidden>
                                     <!-- User Profile Picture -->
                                     <div class="user-img contex-menu-toggle">
                                         <img src="imgs/Clients/customer-1.png" class="img-fluid">
                                         <div class="dropdown" id="user-context-menu">
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="./dashboard.html">My Profile</a>
+                                                <a class="dropdown-item" href="./user-profile.html">My Profile</a>
                                                 <a class="dropdown-item" href="./downloads.html">My Downloads</a>
                                                 <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
                                                 <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
@@ -69,34 +66,34 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><button class="btn btn-general white-btn" href="#">Login</button></li>
+                                <li><a href="./login.html"><button class="btn btn-general white-btn" href="#">Login</button></a></li>
                             </ul>
                         </nav>
                     </div>
                     <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="./imgs/icons/bars-solid-rblue.png"></button>
                     <!-- Mobile Navigation -->
                     <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
-                            <ul class="menu-navigation navbar-nav">
-                                <li class="nav-item"><a href="./search-notes.html">Search Notes</a></li>
-                                <li class="nav-item"><a href="./dashboard.html">Sell Your Notes</a></li>
-                                <li class="nav-item"><a href="./faq.html">FAQ</a></li>
-                                <li class="nav-item"><a href="./contact-us.html">Contact Us</a></li>
-                                <li class="nav-item contex-menu-toggle dropdown" id="user-context-menu" hidden>
-                                    <!-- User Profile Picture -->
-                                    <div class="user-img">
-                                        <img src="imgs/Clients/customer-1.png" class="img-fluid">
-                                    </div>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="./dashboard.html">My Profile</a>
-                                            <a class="dropdown-item" href="./downloads.html">My Downloads</a>
-                                            <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
-                                            <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
-                                            <a class="dropdown-item" href="./change-password.html">Change Password</a>
-                                            <a class="dropdown-item" href="./logout.html">LOGOUT</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item"><button class="btn btn-general rblue-btn" href="#">Login</button></li>
-                            </ul>
+                        <ul class="menu-navigation navbar-nav">
+                            <li class="nav-item"><a href="./search-notes.html">Search Notes</a></li>
+                            <li class="nav-item"><a href="./dashboard.html">Sell Your Notes</a></li>
+                            <li class="nav-item"><a href="./faq.html">FAQ</a></li>
+                            <li class="nav-item"><a href="./contact-us.html">Contact Us</a></li>
+                            <li class="nav-item contex-menu-toggle dropdown" id="user-context-menu" hidden>
+                                <!-- User Profile Picture -->
+                                <div class="user-img">
+                                    <img src="imgs/Clients/customer-1.png" class="img-fluid">
+                                </div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="./user-profile.html">My Profile</a>
+                                        <a class="dropdown-item" href="./downloads.html">My Downloads</a>
+                                        <a class="dropdown-item" href="./sold-notes.html">My Sold Notes</a>
+                                        <a class="dropdown-item" href="./rejected-notes.html">My Rejected Notes</a>
+                                        <a class="dropdown-item" href="./change-password.html">Change Password</a>
+                                        <a class="dropdown-item" href="./logout.html">LOGOUT</a>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a href="./login.html"><button class="btn btn-general rblue-btn" href="#">Login</button></a></li>
+                        </ul>
                     </nav>
                     
                 </div>
@@ -121,7 +118,7 @@
                                 <h3>Download Free Paid Notes<br>or Sale your Books</h3>
                                 <p>Lorem ipsum has been the industry's standard dummy text ever since the<br> 1500s,
                                     when an unknown printer took galley of type.</p>
-                                <button class="btn btn-general white-btn">LEARN MORE</button>
+                                <a href="./faq.html"><button class="btn btn-general white-btn">LEARN MORE</button></a>
 
                             </div>
                         </div>
@@ -194,7 +191,7 @@
                                     <div class="utility-icon"><img src="./imgs/icons/download.png" class="img-responsive"></div>
                                     <h4>Download Free/Paid Notes</h4>
                                     <p>Get Material for your<br>Cource etc.</p>
-                                    <button class="btn btn-general rblue-btn">Download</button>
+                                    <a href="./search-notes.html"><button class="btn btn-general rblue-btn">Download</button></a>
 
                                 </div>
                             </div>
@@ -206,7 +203,7 @@
                                     <div class="utility-icon"><img src="./imgs/icons/seller.png"></div>
                                     <h4>Seller</h4>
                                     <p>Upload and Download Cource and<br>Material etc.</p>
-                                    <button class="btn btn-general rblue-btn">Sell Book</button>
+                                    <a href="./login.html"><button class="btn btn-general rblue-btn">Sell Book</button></a>
 
                                 </div>
                             </div>
@@ -369,9 +366,6 @@
 
     <!-- Bootstrap JS -->
     <script src="js/bootstrap/bootstrap.min.js"></script>
-
-    
-    <script src="js/fontawesome/all.min.js"></script>
 
     <!-- script.js -->
     <script src="js/script.js"></script>
