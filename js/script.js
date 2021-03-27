@@ -46,7 +46,6 @@ $(function() {
         
         if(!target.is(':visible')){
             //hide all other contex menus
-            console.log('I hate ASP.NET');
             $('.dropdown-menu').slideUp();
         }
         target.slideToggle();
