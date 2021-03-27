@@ -13,6 +13,7 @@ using NotesMarketplace.Models.MailModels;
 using NotesMarketplace.Web.Mailer;
 using NotesMarketplace.Data.SystemConfigDB;
 
+
 namespace NotesMarketplace.Web.Controllers
 {
     public class RegisteredUserController : Controller
@@ -24,7 +25,7 @@ namespace NotesMarketplace.Web.Controllers
             if (Session["UserID"] == null)
                 return RedirectToAction("Login", "Authentication");
 
-            ViewBag.Title = "DashBoard";
+            ViewBag.Title = "Dashboard";
             ViewBag.Authorized = true;
             return View();
         }
@@ -37,9 +38,64 @@ namespace NotesMarketplace.Web.Controllers
             if (Session["UserID"] == null)
                 return RedirectToAction("Login", "Authentication");
 
+            UserProfileModel userProfile = UserRepository.GetUserData(Convert.ToInt32(User.Identity.Name));
+
+            ViewBag.Genders = DropdownItems.Genders();
+            ViewBag.CountryCodes = DropdownItems.CountryCodes();
+            ViewBag.Countries = NotesFilters.Countries();
+            ViewBag.LoadValidationScript = true;
             ViewBag.Title = "UserProfile";
             ViewBag.Authorized = true;
-            return View();
+            return View(userProfile);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "UserProfileNotCreated, NormalUser,SuperAdmin,SubAdmin")]
+        public ActionResult UserProfile(UserProfileModel up)
+        {
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login", "Authentication");
+
+            int UserID = Convert.ToInt32(User.Identity.Name);
+            if (ModelState.IsValid) {
+
+                DateTime Birthdate = up.DOB == null ? DateTime.MinValue : (System.DateTime)up.DOB; 
+
+                if (up.ProfilePictureFile != null && !MimeMapping.GetMimeMapping(up.ProfilePictureFile.FileName).Contains("image"))
+                {
+                    ModelState.AddModelError("ProfilePictureFile", "Only Images Are Allowed");
+                    up.ProfilePicture = UserRepository.GetUserData(Convert.ToInt32(User.Identity.Name)).ProfilePicture;
+                }   
+                else if (up.DOB != null &&  (DateTime.Compare(Birthdate,DateTime.Now.AddYears(-130)) < 0 || DateTime.Compare(Birthdate, DateTime.Now) > 0))
+                {
+                    ModelState.AddModelError("DOB", "Please Enter Valid Date");
+                    up.ProfilePicture = UserRepository.GetUserData(Convert.ToInt32(User.Identity.Name)).ProfilePicture;
+                }
+                else
+                {
+                    UserProfileModel updated = UserRepository.addUserProfile(up, UserID, Server.MapPath(@"~/"));
+
+                    if (updated != null)
+                    {
+                        ViewBag.Message = "User Profile Updated";
+                        up = updated;
+                        return RedirectToAction("Login", "Authentication",new { ReturnURL = @"/RegisteredUser/UserProfile" });
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Something went wrong please try again";
+                    }
+                }
+            }
+
+
+            ViewBag.Genders = DropdownItems.Genders();
+            ViewBag.CountryCodes = DropdownItems.CountryCodes();
+            ViewBag.Countries = NotesFilters.Countries();
+            ViewBag.LoadValidationScript = true;
+            ViewBag.Title = "UserProfile";
+            ViewBag.Authorized = true;
+            return View(up);
         }
 
         [HttpGet]
@@ -51,7 +107,7 @@ namespace NotesMarketplace.Web.Controllers
 
             ViewBag.Title = "AddNotes";
             ViewBag.Authorized = true;
-
+            ViewBag.LoadValidationScript = true;
             SearchNotesModel FilterData = new SearchNotesModel();
 
             FilterData.Type = NotesFilters.Types();
@@ -111,7 +167,7 @@ namespace NotesMarketplace.Web.Controllers
 
             ViewBag.Title = "AddNotes";
             ViewBag.Authorized = true;
-
+            ViewBag.LoadValidationScript = true;
             string UID = User.Identity.Name;
 
             int result = NotesRepository.AddNote(Nm, Convert.ToInt32(UID), Server.MapPath("~"));
@@ -164,6 +220,8 @@ namespace NotesMarketplace.Web.Controllers
                     Price = (int)d.PurchasedPrice
                 });
             }
+            ViewBag.Authorized = true;
+            ViewBag.Title = "BuyerRequests";
             return View(br);
         }
 

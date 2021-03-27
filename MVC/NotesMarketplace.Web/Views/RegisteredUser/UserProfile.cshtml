@@ -1,4 +1,4 @@
-﻿
+﻿@model NotesMarketplace.Models.RegisteredUserModels.UserProfileModel
 @{
     ViewBag.Title = "UserProfile";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -32,222 +32,308 @@
         <div class="content-box-sm">
 
             <div class="container-fluid">
-                <form id="user-details" action="">
-                    <section id="basic-profile-detail">
-                        <div class="row">
 
-                            <div class="col-md-12">
+                    @using (Html.BeginForm("UserProfile", "RegisteredUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                                <div class="horizontal-heading first-heading">
-                                    <h3>Basic Profile Details</h3>
-                                </div>
-                            </div>
-                        </div>
+                        @*<form id="user-details" action="">*@
+                        <section id="basic-profile-detail">
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-12">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <label for="firstname">First Name *</label>
-                                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" required>
-
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="lastname">Last Name *</label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" required>
+                                    <div class="horizontal-heading first-heading">
+                                        <h3>Basic Profile Details</h3>
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
+                                        @*<label for="firstname">First Name *</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name" required>*@
+                                        @Html.LabelFor(m => m.User.FirstName)
+                                        @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control", @readonly = true})
 
-                                    <label for="dob">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your date of birth">
-                                    <span class="icon-calender" hidden><img src="imgs/icons/calendar.png" alt="calender-icon" class="icon fluid-img"></span>
+                                    </div>
 
                                 </div>
-                            </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                        </div>
+                                        @*<label for="lastname">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name" required>*@
 
-                        <div class="row">
+                                        @Html.LabelFor(m => m.User.LastName)
+                                        @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control", @readonly = true })
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="gender">Gender</label>
-                                    <select class="form-control" id="gender" name="gender">
-                                        <option value="" disabled selected>Select your gender</option>
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                    </div>
                                 </div>
+
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="phoneno">Phone Number</label>
-                                    <div class="row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <select id="country-code" class="form-control">
-                                                <option value="+91">+91</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="text" name="phoneno" id="phoneno" class="form-control" placeholder="Enter your phone number">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="email">Email *</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>*@
+
+                                        @Html.LabelFor(m => m.User.Email)
+                                        @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", @readonly = true })
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="dob">Date of Birth</label>
+        <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter your date of birth">*@
+
+                                        @Html.LabelFor(m => m.DOB)
+                                        @Html.ValidationMessageFor(m => m.DOB, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.EditorFor(m => m.DOB, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your date of birth" } })
+                                        <span class="icon-calender" hidden><img src="/Content/imgs/icons/calendar.png" alt="calender-icon" class="icon fluid-img"></span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender">
+            <option value="" disabled selected>Select your gender</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+        </select>*@
+
+                                        @Html.LabelFor(m => m.Gender)
+                                        @Html.ValidationMessageFor(m => m.Gender, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Genders, "Key", "Value"), "Select your Gender", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="PhoneNo">
+                                            Phone Number
+                                            @Html.ValidationMessageFor(m => m.PhoneNo, String.Empty, new { @class = "incorrect-field" })
+                                            @Html.ValidationMessageFor(m => m.CountryCode, String.Empty, new { @class = "incorrect-field" })
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-3">
+
+                                                @*<select id="country-code" class="form-control">
+            <option value="+91">+91</option>
+        </select>*@
+
+                                                
+                                                @Html.DropDownListFor(m => m.CountryCode, new SelectList(ViewBag.CountryCodes, "Key", "Value"),"",new { @class = "form-control" })
+
+                                            </div>
+                                            <div class="col-md-8 col-lg-9">
+
+                                                @*<input type="text" name="phoneno" id="phoneno" class="form-control" placeholder="Enter your phone number">*@
+
+                                                
+                                                @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", placeholder = "Enter your phone number" })
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="profile-picture" class="file-picker-label">
-                                        <p>Profile Picture</p>
-                                        <div class="file-picker text-center form-control">
-                                            <img src="imgs/icons/upload.png" class="img-fluid">
-                                            <span>Upload a picture</span>
-                                        </div>
-                                    </label>
-                                    <input type="file" style="display: none" name="profile-picture" id="profile-picture">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <label for="ProfilePictureFile" class="file-picker-label">
+
+                                            <p>Profile Picture @Html.ValidationMessageFor(m => m.ProfilePictureFile, String.Empty, new { @class = "incorrect-field" })</p>
+                                            <div class="file-picker text-center form-control">
+                                                @if (Model.ProfilePicture == null)
+                                                {
+                                                    <img src="/Content/imgs/icons/upload.png" class="img-fluid" id="profile-picture">
+                                                    <span id="files-selected">Upload a picture</span>
+                                                }
+                                                else
+                                                {
+                                                    <img src="@Session["UserProfile"]" class="img-fluid" id="profile-picture">
+                                                    <span id="files-selected">Upload new Profile Picture</span>
+                                                }
+
+                                            </div>
+                                        </label>
+                                        @Html.TextBoxFor(m => m.ProfilePictureFile, new { @type = "file", @data_change = "#profile-picture", @data_isImage = true, @accept="image/*" })
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section id="address-details">
+                        <section id="address-details">
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-md-12">
+                                <div class="col-md-12">
 
-                                <div class="horizontal-heading">
-                                    <h3>Address Details</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <label for="address-l1">Address Line 1 *</label>
-                                    <input type="text" name="address-l1" id="address-l1" placeholder="Enter your address" class="form-control" required>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <label for="address-l2">Address Line 2</label>
-                                    <input type="text" name="address-l2" id="address-l2" placeholder="Enter your address" class="form-control">
-
+                                    <div class="horizontal-heading">
+                                        <h3>Address Details</h3>
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
+                                        @*<label for="address-l1">Address Line 1 *</label>
+        <input type="text" name="address-l1" id="address-l1" placeholder="Enter your address" class="form-control" required>*@
 
-                                    <label for="city">City *</label>
-                                    <input type="text" name="city" id="city" placeholder="Enter your city" class="form-control" required>
+                                        @Html.LabelFor(m => m.AddressLine1)
+                                        @Html.ValidationMessageFor(m => m.AddressLine1, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control", placeholder = "Enter your address" })
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                                <div class="form-group">
+                                        @*<label for="address-l2">Address Line 2</label>
+        <input type="text" name="address-l2" id="address-l2" placeholder="Enter your address" class="form-control">*@
+                                        @Html.LabelFor(m => m.AddressLine2)
+                                        @Html.ValidationMessageFor(m => m.AddressLine2, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control", placeholder = "Enter your address" })
 
-                                    <label for="state">State *</label>
-                                    <input type="text" name="state" id="state" placeholder="Enter your state" class="form-control" required>
-
+                                    </div>
                                 </div>
 
                             </div>
 
-                        </div>
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
+                                        @*<label for="city">City *</label>
+        <input type="text" name="city" id="city" placeholder="Enter your city" class="form-control" required>*@
+                                        @Html.LabelFor(m => m.City)
+                                        @Html.ValidationMessageFor(m => m.City, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Enter your city" })
 
-                                    <label for="zipcode">ZipCode *</label>
-                                    <input type="text" name="zipcode" id="zipcode" placeholder="Enter your zipcode" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+
+                                        @*<label for="state">State *</label>
+        <input type="text" name="state" id="state" placeholder="Enter your state" class="form-control" required>*@
+
+                                        @Html.LabelFor(m => m.State)
+                                        @Html.ValidationMessageFor(m => m.State, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", placeholder = "Enter your state name" })
+
+                                    </div>
 
                                 </div>
+
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for='country'>Country *</label>
-                                    <select id="country" name="country" class="form-control">
-                                        <option value="" disabled selected>Select your country</option>
-                                        <option value="india">India</option>
-                                    </select>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="zipcode">ZipCode *</label>
+        <input type="text" name="zipcode" id="zipcode" placeholder="Enter your zipcode" class="form-control" required>*@
+
+                                        @Html.LabelFor(m => m.ZipCode)
+                                        @Html.ValidationMessageFor(m => m.ZipCode, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", placeholder = "Enter your Zip Code" })
+
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                    </section>
+                                        @*<label for='country'>Country *</label>
+        <select id="country" name="country" class="form-control">
+            <option value="" disabled selected>Select your country</option>
+            <option value="india">India</option>
+        </select>*@
 
-                    <section id="education-detail">
+                                        @Html.LabelFor(m => m.Country)
+                                        @Html.ValidationMessageFor(m => m.Country, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.Countries, "Key", "Value"), "Select your Country", new { @class = "form-control" })
 
-                        <div class="row">
-
-                            <div class="col-md-12">
-
-                                <div class="horizontal-heading">
-                                    <h3>University and College information</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <label for="university">University</label>
-                                    <input type="text" name="univercity" id="university" placeholder="Enter your university" class="form-control">
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <label for="college">College</label>
-                                    <input type="text" name="college" id="college" placeholder="Enter your college" class="form-control">
-
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+                        </section>
 
-                    </section>
-                    <button type="submit" form="user-details" class="btn rblue-btn btn-general" name="user-profile-submit">
-                        submit
-                    </button>
-                </form>
-            </div>
+                        <section id="education-detail">
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="horizontal-heading">
+                                        <h3>University and College information</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="university">University</label>
+        <input type="text" name="univercity" id="university" placeholder="Enter your university" class="form-control">*@
+
+                                        @Html.LabelFor(m => m.University)
+                                        @Html.ValidationMessageFor(m => m.University, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.University, new { @class = "form-control", placeholder = "Enter your university name" })
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="college">College</label>
+        <input type="text" name="college" id="college" placeholder="Enter your college" class="form-control">*@
+
+                                        @Html.LabelFor(m => m.College)
+                                        @Html.ValidationMessageFor(m => m.College, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.College, new { @class = "form-control", placeholder = "Enter your college name" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+                        <button type="submit" class="btn rblue-btn btn-general" name="user-profile-submit">
+                            submit
+                        </button>
+                    @*</form>*@
+                    }
+                </div>
         </div>
     </section>
     <!-- Form Ends -->

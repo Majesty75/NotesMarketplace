@@ -66,7 +66,7 @@ namespace NotesMarketplace.Data.NoteDB
                             CourseName = n.Course,
                             Professor = n.Professor,
                             Pages = n.NumberOfPages,
-                            Approved = (System.DateTime)n.PublishedDate,
+                            Approved = n.PublishedDate != null ? (System.DateTime)n.PublishedDate : System.DateTime.MinValue,
                             rating = n.NotesReviews.Count != 0 ? (int)n.NotesReviews.Average(r => r.Rating) : 0,
                             Reports = n.NotesReports.Count,
                             Reviews = GetReviews(n.NoteID),
@@ -100,11 +100,12 @@ namespace NotesMarketplace.Data.NoteDB
                     CourseName = note.Course,
                     Professor = note.Professor,
                     Pages = note.NumberOfPages,
-                    Approved = (System.DateTime)note.PublishedDate,
+                    Approved = note.PublishedDate != null ? (System.DateTime)note.PublishedDate : System.DateTime.MinValue,
                     rating = note.NotesReviews.Count != 0 ? (int)note.NotesReviews.Average(r => r.Rating) : 0,
                     Reports = note.NotesReports.Count,
                     Reviews = GetReviews(note.NoteID),
-                    Preview = note.Preview
+                    Preview = note.Preview,
+                    SellerID = note.SellerID
                 };
                 return Nm;
             }
@@ -135,6 +136,8 @@ namespace NotesMarketplace.Data.NoteDB
             }
         }
 
+
+        //Adds New Note to Database
         public static int AddNote(NoteModel Nm, int UID, string AppRoot)
         {
 
@@ -147,7 +150,7 @@ namespace NotesMarketplace.Data.NoteDB
                     NoteType = context.NoteTypes.FirstOrDefault(n => n.TypeName == Nm.Type).TypeID,
                     NoteDescription = Nm.Description,
                     DisplayPicture = Nm.DisplayPicture,
-                    Price = Nm.Price,
+                    Price = Nm.SellFor ? Nm.Price : 0,
                     University = Nm.Institution,
                     Country = context.Countries.FirstOrDefault(c => c.CountryName == Nm.Country).CountryID,
                     CourseCode = Nm.CourseCode,
@@ -205,8 +208,8 @@ namespace NotesMarketplace.Data.NoteDB
                 {
                     if (file != null)
                     {
-                        file.SaveAs(Serverpath + "Attachment-" + i.ToString() + ".pdf");
-                        filenames += "Attachment-" + i.ToString() + "$pdf;";
+                        file.SaveAs(Serverpath + "Attachment-" + note.NoteID + "-" + i.ToString() + ".pdf");
+                        filenames += "Attachment-" + note.NoteID + "-" + i.ToString() + ".pdf;";
                         i++;
                     }
                 }

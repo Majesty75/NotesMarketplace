@@ -517,7 +517,12 @@
         font-size: 14px;
         line-height: 16px; 
     }
-    
+
+    #form-section .form-control, #admin-form-section .form-control {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
     /* Login Page Specific */
     .white-box #remember-me-label {
         margin-bottom: 15px;
@@ -688,9 +693,9 @@
         line-height: 14px;
     }
     
-    #form-section .form-clantrol, #admin-form-section .form-control{
+    #form-section .form-control, #admin-form-section .form-control{
         height: 40px;
-        font-size: 11px;
+        font-size: 12px;
         line-height: 14px;
         margin-bottom: 10px;
     }
@@ -740,15 +745,15 @@
     
     /* place holder CSS */
     form .form-control::-webkit-input-placeholder {
-        font-size: 11px;
+        font-size: 12px;
         line-height: 14px; 
     }
     form .form-control:-ms-input-placeholder {
-        font-size: 11px;
+        font-size: 12px;
         line-height: 14px; 
     }
     form .form-control::placeholder {
-        font-size: 11px;
+        font-size: 12px;
         line-height: 14px; 
     }
     

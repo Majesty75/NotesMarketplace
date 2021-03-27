@@ -1,0 +1,43 @@
+﻿<!--Contact Seller pop-up -->
+<div class="modal fade" id="thank-you-popup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modal-content">
+            <div class="row">
+
+                <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+
+                <div class="col-md-12 text-center">
+
+                    <img class="img-fluid" src="/Content/imgs/icons/check-circle-solid-rblue.png">
+
+                </div>
+
+                <div class="col-md-12 text-center">
+
+                    <h4>Thank you for purchasing!</h4>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <h5>Dear <span id="username">@Session["FullName"]</span>,</h5>
+                    <p>As this is paid notes - you need to pay the seller <b><span id="seller">@ViewBag.Seller</span></b> offline. We will send seller an email that you want to download this note. Seller may contact you further for payment process completion.</p>
+
+                    <p>In case, you have urgency,<br>Please contact-us on <span id="contact-us-number"><b>@ViewBag.SupportContact</b></span></p>
+
+                    <p>Once he receives payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
+
+                    <p>Have a good day.</p>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    window.onload = (event) => { $('#thank-you-popup').modal('show') };
+
+</script>

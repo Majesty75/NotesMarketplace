@@ -188,13 +188,13 @@
           <Property Name="PhoneNo" Type="nvarchar" MaxLength="15" />
           <Property Name="ProfilePicture" Type="nvarchar" MaxLength="500" />
           <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
           <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Country" Type="int" Nullable="false" />
-          <Property Name="University" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="College" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="University" Type="nvarchar" MaxLength="100" />
+          <Property Name="College" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
@@ -738,13 +738,13 @@
           <Property Name="PhoneNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Country" Type="Int32" Nullable="false" />
-          <Property Name="University" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="College" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="University" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="College" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />

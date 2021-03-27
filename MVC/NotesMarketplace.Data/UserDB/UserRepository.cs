@@ -6,6 +6,7 @@ using NotesMarketplace.Models.RegisteredUserModels;
 using NotesMarketplace.Models.AuthenticationModels;
 using System.Data.Entity;
 using System.Text;
+using System.IO;
 
 namespace NotesMarketplace.Data.UserDB
 {
@@ -61,11 +62,132 @@ namespace NotesMarketplace.Data.UserDB
             }
         }
 
+
+        /* return value : meaning 
+         * -1 : Failed
+         * 1 : Successfully created or changed
+         */
+        public static UserProfileModel addUserProfile(UserProfileModel up, int UserID, string AppRoot)
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                //if contry or gender info not match with DB return failed.
+                Nullable<int> GenderID = null;
+                bool IsValidCountryCode = false;
+                int CountryID = 0;
+
+                if (up.Gender != null)
+                {
+                    var Gender = context.ReferenceDatas.FirstOrDefault(r => r.RefCategory == "gender" && r.DataKey == up.Gender);
+                    if (Gender != null)
+                        GenderID = Gender.DataID;
+                    else
+                        GenderID = 0;
+                }
+
+                var Country = context.Countries.FirstOrDefault(c => c.CountryName == up.Country);
+
+                CountryID = Country != null ? Country.CountryID : 0;
+
+                if (up.CountryCode != null)
+                {
+                    IsValidCountryCode = context.Countries.Any(c => c.CountryCode == up.CountryCode);
+                }
+                else
+                {
+                    IsValidCountryCode = true;
+                }
+
+                if (!IsValidCountryCode || CountryID == 0 || GenderID == 0)
+                    return null;
+
+                UserProfile UpInDB = context.UserProfiles.FirstOrDefault(u => u.UserID == UserID);
+                
+
+
+                if (up.ProfilePictureFile != null)
+                {
+                    string UserDir = AppRoot + "\\Members\\" + UserID + "\\";
+                    string FileExtenstion = Path.GetExtension(up.ProfilePictureFile.FileName).Replace('.','$');
+                    Directory.CreateDirectory(UserDir);
+                    up.ProfilePicture = @"/Assets/" + UserID + @"/UserProfile-" + UserID + FileExtenstion;
+
+                    var files = Directory.GetFiles(UserDir, @"UserProfile-" + UserID + ".*");
+                    if (files.Length > 0)
+                    {
+                        System.IO.File.Delete(files[0]);
+                    }
+
+                    up.ProfilePictureFile.SaveAs(UserDir + @"/UserProfile-" + UserID + Path.GetExtension(up.ProfilePictureFile.FileName));
+
+                }
+
+                //if user profilie does not exists create new one
+                if (UpInDB == null)
+                {
+                    UserProfile NewUser = new UserProfile()
+                    {
+                        UserID = UserID,
+                        DOB = up.DOB,
+                        Gender = GenderID,
+                        CountryCode = up.CountryCode,
+                        PhoneNo = up.PhoneNo,
+                        ProfilePicture = up.ProfilePicture,
+                        AddressLine1 = up.AddressLine1,
+                        AddressLine2 = up.AddressLine2,
+                        City = up.AddressLine2,
+                        State = up.State,
+                        ZipCode = up.ZipCode,
+                        Country = CountryID,
+                        University = up.University,
+                        College = up.College,
+                        CreatedBy = UserID,
+                        CreatedDate = System.DateTime.Now,
+                        ModifiedBy = UserID,
+                        ModifiedDate = System.DateTime.Now
+                    };
+
+                    context.Users.FirstOrDefault(u => u.UserID == UserID).RoleID = 3;
+                    context.UserProfiles.Add(NewUser);
+                    UpInDB = NewUser;
+                }
+
+                //if user profile exists enter new data
+                else
+                {
+                    UpInDB.DOB = up.DOB;
+                    UpInDB.Gender = GenderID;
+                    UpInDB.CountryCode = up.CountryCode;
+                    UpInDB.PhoneNo = up.PhoneNo;
+                    UpInDB.ProfilePicture = up.ProfilePictureFile == null ? UpInDB.ProfilePicture : up.ProfilePicture;
+                    UpInDB.AddressLine1 = up.AddressLine1;
+                    UpInDB.AddressLine2 = up.AddressLine2;
+                    UpInDB.City = up.AddressLine2;
+                    UpInDB.State = up.State;
+                    UpInDB.ZipCode = up.ZipCode;
+                    UpInDB.Country = CountryID;
+                    UpInDB.University = up.University;
+                    UpInDB.College = up.College;
+                    UpInDB.ModifiedBy = UserID;
+                    UpInDB.ModifiedDate = System.DateTime.Now;
+                }
+
+                up.ProfilePicture = UpInDB.ProfilePicture;
+                context.SaveChanges();
+                return up;
+            }
+        }
+
         public static UserProfileModel GetUserData(int UID)
         {
             using(NotesMarketPlaceEntities context = new NotesMarketPlaceEntities()) {
 
-                User user = context.Users.FirstOrDefault(u => u.UserID == UID && u.IsActive);
+                User user = context.Users.FirstOrDefault(u => u.UserID == UID);
+
+                if(user == null)
+                {
+                    return null;
+                }
 
                 //get user sign data into model
                 UserModel userModel = new UserModel()
@@ -87,7 +209,7 @@ namespace NotesMarketplace.Data.UserDB
                 UserProfileModel upModel = new UserProfileModel() {
                     UserID = up.UserID,
                     DOB = up.DOB,
-                    Gender = context.ReferenceDatas.FirstOrDefault(r => r.DataID == up.Gender).DataValue,
+                    Gender = up.Gender != null ? context.ReferenceDatas.FirstOrDefault(r => r.DataID == up.Gender).DataKey : null,
                     SecondaryEmailAddress = up.SecondaryEmailAddress,
                     CountryCode = up.CountryCode,
                     PhoneNo = up.PhoneNo,

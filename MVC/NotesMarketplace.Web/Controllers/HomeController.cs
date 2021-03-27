@@ -7,6 +7,8 @@ using NotesMarketplace.Data.SystemConfigDB;
 using NotesMarketplace.Models.SystemConfigModels;
 using NotesMarketplace.Models.MailModels;
 using System;
+using System.Collections.Generic;
+using NotesMarketplace.Models.RegisteredUserModels;
 
 namespace NotesMarketplace.Web.Controllers
 {
@@ -44,6 +46,7 @@ namespace NotesMarketplace.Web.Controllers
         {
             if (Request.IsAuthenticated && Session["UserID"] == null)
                 return RedirectToAction("Login", "Authentication");
+
             else if (Request.IsAuthenticated)
             {
                 ViewBag.Authorized = true;
@@ -135,11 +138,65 @@ namespace NotesMarketplace.Web.Controllers
         {
             if(String.IsNullOrEmpty(NoteId))
                 return new HttpNotFoundResult();
+
             if (Request.IsAuthenticated)
+            {
+                if (Session["UserID"] == null)
+                    return RedirectToAction("Login","Authentication");
                 ViewBag.Authorized = true;
+            }
+
             NoteModel Nm = NotesRepository.GetNoteDetailsById(Convert.ToInt32(NoteId));
+
+            List<string> ReviewerList = new List<string>(); 
+
+            foreach (Review r in Nm.Reviews)
+            {
+                ReviewerList.Add(r.ReviwerProfilePicture);
+            }
+
+
+            /* We will use this list in content controller to give anonymous users, access to those user profiles
+             * which are included in notes reviews.
+             */
+
+            Session["ReviewerList"] = ReviewerList;
+
+            //Adding Full Name of Seller and contact number of support for popup model
+
+            SystemConfigModel SupportContact = SystemConfigData.GetSystemConfigData("SupportContact");
+            if(SupportContact != null)
+            {
+                ViewBag.SupportContact = SupportContact.DataValue;
+            }
+            else
+            {
+                ViewBag.SupportContact = "Not Available";
+            }
+
+            //Full Name of Seller
+            UserProfileModel Seller  = UserRepository.GetUserData(Nm.SellerID); 
+            if(Seller != null) {
+                ViewBag.Seller = Seller.User.FirstName + " " + Seller.User.LastName;
+            }
+            else
+            {
+                ViewBag.Seller = "Anonymous User";
+            }
+
+            //TempData passed by GetNoteAttachments method to confirm buyer request submission
+            if(TempData.ContainsKey("BuyerRequestSubmitted") && (bool)TempData["BuyerRequestSubmitted"])
+            {
+                ViewBag.BuyerRequestSubmitted = true;
+            }
+
+
             if (Nm != null)
+            {
+                ViewBag.Title = "NotesDetails";
                 return View(Nm);
+            }
+
             return new HttpNotFoundResult();
         }
 

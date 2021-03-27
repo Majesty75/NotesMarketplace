@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\NotesMarketplaceDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\NotesMarketplaceDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

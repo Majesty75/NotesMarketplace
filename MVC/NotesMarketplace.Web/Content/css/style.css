@@ -100,6 +100,10 @@ section {
     transition: all 300ms linear;
 }
 
+.btn-general:active {
+    box-shadow: none !important;
+}
+
 .rblue-btn {
     background-color: #6255a5;
     border: 2px solid #6255a5;
@@ -365,7 +369,6 @@ footer ul li img {
 */
 
 .modal .modal-content{
-    margin-top: 150px;
     padding: 50px 50px 0px 40px;
 }
 
@@ -1085,18 +1088,22 @@ p {
     height: 1.3em !important;
 }
 
+#form-section #profile-picture {
+    height: 50px;
+    width: 50px;
+    object-fit: fill;
+    border-radius: 2px;
+}
 /* 
 
 =========================== Contact Us Page =====================
 
 */
-
 /* 
 
 =========================== Add Notes Page =====================
 
 */
-
 #form-section .btn-general {
     width: 150px;
     height: 50px;
@@ -1153,6 +1160,12 @@ label[for="note-preview"] .file-picker{
     height: 147px !important;
     margin-bottom: 0px !important;
     padding-top: 30px;
+}
+
+#note-cover{
+    height: 48px;
+    width:48px;
+    object-fit: fill;
 }
 
 /* 
@@ -1224,14 +1237,22 @@ label[for="note-preview"] .file-picker{
 }
 
 #note-details #cover-page {
-/*
-    max-height: 300px;
-    max-width: 240px;
-*/
+
+    height: 300px;
+    width: 240px;
+    object-fit: cover;   
+    border: 1px solid #d1d1d1;
+}
+
+#note-details #download-btn {
+    text-decoration: none !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items:center;
 }
 
 #note-details #deatils {
-/*    padding: 0 10px;*/
+    /*    padding: 0 10px;*/
 }
 
 #note-details #category {
@@ -1629,27 +1650,16 @@ label[for="note-preview"] .file-picker{
 
 */
 
+#buyer-requests .btn-general {
+    height: 50px;
+}
+
 /* 
 
 =========================== My Rejected Notes Page =====================
 
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* -+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-  Admin Side -+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+- */
-
 /*
 
 ========================== Common CSS =================

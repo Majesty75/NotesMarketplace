@@ -4,45 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (ViewBag.Authorized != null && ViewBag.Authorized)
+@if (ViewBag.BuyerRequestSubmitted != null && ViewBag.BuyerRequestSubmitted)
 {
-    <!--Contact Seller pop-up -->
-    <div class="modal fade" id="thank-you-popup" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="row">
-
-                    <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
-
-                    <div class="col-md-12 text-center">
-
-                        <img class="img-fluid" src="/Content/imgs/icons/check-circle-solid-rblue.png">
-
-                    </div>
-
-                    <div class="col-md-12 text-center">
-
-                        <h4>Thank you for purchasing!</h4>
-
-                    </div>
-
-                    <div class="col-md-12">
-
-                        <h5>Dear <span id="username">Smith</span>,</h5>
-                        <p>As this is paid notes - you need to pay the seller <span id="seller">Rahil Shah</span> offline. We will send seller an email that you want to download this note. Seller may contact you further for payment process completion.</p>
-
-                        <p>In case, you have urgency,<br>Please contact-us on<span id="contact-us-number">+12345678910</span></p>
-
-                        <p>Once he receeives payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
-
-                        <p>Have a good day.</p>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    Html.RenderPartial("~/Views/RegisteredUser/_BuyNotesPopupModel.cshtml");
 }
 
 <!-- Note Details page-->
@@ -100,20 +64,16 @@
                                     <h5 id="category">@Model.Category</h5>
 
                                     <p id="description">@Model.Description</p>
-
-                                    @if (ViewBag.Authorized != null)
+                                    @*using (Html.BeginForm("DownloadNote", "RegisteredUser", FormMethod.Post, new { id="DownloadNoteForm"}))
                                     {
-                                        using (Html.BeginForm("DownloadNote", "RegisteredUser", FormMethod.Post, new { id="DownloadNoteForm"}))
-                                        {
-                                            <input type="hidden" value="@Model.NoteId" required />
-                                        }
-                                        <button id="download-btn" class="btn btn-general rblue-btn" data-toggle="modal" data-target="#thank-you-popup">download @if(@Model.Price > 0){<span id="price">| $@Model.Price</span>}</button>
-                                    }
-                                    else
-                                    {
-                                        <a href="@Url.Action("Login","Authentication")"><button id="download-btn" class="btn btn-general rblue-btn">download @if(@Model.Price > 0){<span id="price">| $@Model.Price</span>}</button></a>
-                                    }
+                                        <input type="hidden" value="@Model.NoteId" required />
+                                    }*@
 
+                                    @*@Html.ActionLink("download " + (Model.Price > 0 ? "| $" + Model.Price : ""), "Notes", "Assets", new { NoteId = 1 }, new { @class = "btn btn-general rblue-btn", id = "download-btn" })*@
+                                    @{ 
+                                        string DownButtonText = Model.Price > 0 ? "| $" + @Model.Price : String.Empty;
+                                        <a href="/Assets/Notes/@Model.NoteId" class="btn btn-general rblue-btn" , id="download-btn">download @DownButtonText</a>
+                                    }
                                 </div>
 
                             </div>
@@ -214,7 +174,7 @@
                                     <div class="iframe-wrapper-inner">
                                         @if (!String.IsNullOrEmpty(@Model.Preview))
                                         { 
-                                            ViewBag.PreviewPath = @Model.Preview;
+                                            ViewBag.PreviewPath = "/Content/" + @Model.Preview;
                                         }else 
                                         { 
                                             ViewBag.PreviewPath = "/Content/SystemConfig/PreviewNotFound.pdf";

@@ -94,11 +94,11 @@
                                         <p>Display Picture @Html.ValidationMessageFor(m => m.NotesCoverPage, String.Empty, new { @class = "incorrect-field" })</p>
                                         
                                         <div class="file-picker text-center form-control">
-                                            <img src="/Content/imgs/icons/upload.png" class="img-fluid">
+                                            <img src="/Content/imgs/icons/upload.png" class="img-fluid" id="note-cover">
                                             <span>Upload a picture</span>
                                         </div>
                                     </label>                                    
-                                    @Html.TextBoxFor(m => m.NotesCoverPage, new { @type = "file" })
+                                    @Html.TextBoxFor(m => m.NotesCoverPage, new { @type = "file", @data_change = "#note-cover", @data_isimage = true, @accept = "image/*" })
 
 
                                 </div>
@@ -110,10 +110,10 @@
                                         <p>Upload Notes * @Html.ValidationMessageFor(m => m.NotesFiles, String.Empty, new { @class = "incorrect-field" })</p>
                                         <div class="file-picker text-center form-control">
                                             <img src="/Content/imgs/icons/upload-note.svg" class="img-fluid">
-                                            <span>Upload your notes</span>
+                                            <span id="files-selected-1">Upload your notes</span>
                                         </div>
                                     </label>
-                                    @Html.TextBoxFor(m => m.NotesFiles, new { @type = "file", @multiple = "multiple" })
+                                    @Html.TextBoxFor(m => m.NotesFiles, new { @type = "file", @multiple = "multiple", @data_change = "#files-selected-1", @accept = "application/pdf" })
                                     
                                 </div>
                             </div>
@@ -341,13 +341,13 @@
                                         
                                         <div class="file-picker text-center form-control">
                                             <img src="/Content/imgs/icons/upload.png" class="img-fluid">
-                                            <span>Upload a file</span>
+                                            <span id="files-selected-2">Upload a file</span>
                                         </div>
                                     </label>
 
                                     @*<input type="file" name="note-preview" id="note-preview">*@
 
-                                    @Html.TextBoxFor(m => m.PreviewFile, new { @type = "file" })
+                                    @Html.TextBoxFor(m => m.PreviewFile, new { @type = "file", @data_change = "#files-selected-2", @accept = "application/pdf" })
 
                                 </div>
                             </div>

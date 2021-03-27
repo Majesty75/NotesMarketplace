@@ -19,6 +19,8 @@ namespace NotesMarketplace.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            string ReturnURL = HttpContext.Request.QueryString["ReturnUrl"];
+
             //If already login redirect to user dashboard
             if (Request.IsAuthenticated)
             {
@@ -35,6 +37,14 @@ namespace NotesMarketplace.Web.Controllers
 
                 Session["Email"] = userProfile.User.Email;
 
+                //Redirect to page from where they were redirected to login to authencate user
+
+                if (ReturnURL != null && Url.IsLocalUrl(ReturnURL))
+                {
+                    return Redirect(ReturnURL);
+                }
+
+
                 //Check if Admin
                 string[] roles = new NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
                 if (roles.Contains("SuperAdmin") | roles.Contains("SubAdmin"))
@@ -42,9 +52,15 @@ namespace NotesMarketplace.Web.Controllers
 
                 return RedirectToAction("Dashboard", "RegisteredUser");
             }
+
             if (TempData["EmailVerified"] != null) {
                 ViewBag.EmailVerificationMsg = TempData["EmailVerifiedMsg"].ToString();
                 ViewBag.EmailVerified = (bool)TempData["EmailVerified"];
+            }
+
+            if (ReturnURL != null)
+            {
+                ViewBag.ReturnURL = ReturnURL;
             }
 
             return View();
@@ -58,6 +74,7 @@ namespace NotesMarketplace.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                /* authenticate user return 0 when it finds wrong credentials and UserID when it's successfully authenticate user */
                 int AuthResult = UserRepository.AuthenticateUser(Client);
                 if (AuthResult != 0)
                 {
@@ -93,6 +110,13 @@ namespace NotesMarketplace.Web.Controllers
                         Session["FullName"] = userProfile.User.FirstName + " " + userProfile.User.LastName;
 
                         Session["Email"] = userProfile.User.Email;
+
+                        string ReturnURL = HttpContext.Request.QueryString["ReturnUrl"];
+
+                        if (ReturnURL != null && Url.IsLocalUrl(ReturnURL))
+                        {
+                            return Redirect(ReturnURL);
+                        }
 
                         //Check if Admin
                         string[] roles = new NotesMarketPlaceRoleManager().GetRolesForUser(AuthResult.ToString());
@@ -274,6 +298,7 @@ namespace NotesMarketplace.Web.Controllers
         {
             //clear authcookie param and redirect to login
             FormsAuthentication.SignOut();
+            Session.Clear();
             return RedirectToAction("Login");
         }
     }

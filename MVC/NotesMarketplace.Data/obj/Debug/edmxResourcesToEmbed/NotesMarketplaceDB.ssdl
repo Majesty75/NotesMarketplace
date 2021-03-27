@@ -183,13 +183,13 @@
     <Property Name="PhoneNo" Type="nvarchar" MaxLength="15" />
     <Property Name="ProfilePicture" Type="nvarchar" MaxLength="500" />
     <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
     <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ZipCode" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Country" Type="int" Nullable="false" />
-    <Property Name="University" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="College" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="University" Type="nvarchar" MaxLength="100" />
+    <Property Name="College" Type="nvarchar" MaxLength="100" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />

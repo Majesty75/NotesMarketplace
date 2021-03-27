@@ -178,6 +178,9 @@ $(function() {
 
         $(this).on('click', function() {
 
+            if (tableBody.find('.no-results').length > 0)
+                return
+
             var resultsFound = false;
             //search text
             var text = $($(this).attr('data-search-input')).val();
@@ -200,14 +203,17 @@ $(function() {
             });
 
             if(!resultsFound) {
-                var colSpan = tableBody.find('tr:first').children().length;
-                tableBody.append('<tr class="no-results"><td class="text-center" colspan="'+colSpan+'">No Record Found</td></tr>');
-                setTimeout(function() {
+                //var colSpan = tableBody.find('tr:first').children().length;
+                var colSpan = 100;
+                tableBody.append('<tr class="no-results"><td class="text-center" colspan="'+colSpan+'">No Records Found</td></tr>');
+                setTimeout(function () {
 
-                    tableBody.find('.no-results').remove();
+                    if (tableBody.children.length > 1) {
+                        tableBody.find('.no-results').remove();
 
-                    //trigger click on first page to show initial page
-                    $('.pagination-control[pagination-data="'+tableBodyString+'"]').find('.page-no:first').trigger('click');
+                        //trigger click on first page to show initial page
+                        $('.pagination-control[pagination-data="'+ tableBodyString + '"]').find('.page-no:first').trigger('click');
+                    }
 
                 },3000);
             }
@@ -334,3 +340,57 @@ function submitForm() {
 function showError() {
     alert("Something went wrong!!, please try different parameters");
 }
+
+
+/*  =====================================
+  Change Profile Picture when user selects new one
+    ===================================== */
+
+$(function () {
+
+    $('input[data-change]').change(event, function () {
+        var inputEle = $(this);
+        if (this.files && this.files[0]) {
+            //if it's image load new picture to show on UI
+            if (inputEle.attr('data-isimage') != null) {
+
+                //console.log(this.files[0]);
+                if (this.files[0]['type'].includes('image')) {
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $(inputEle.attr('data-change')).attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                    $(inputEle.attr('data-change')).next().text(this.files[0].name);
+                    //console.log($(inputEle.attr('data-change')).next(), this.files[0].name);
+                }
+                else {
+                    $(inputEle.attr('data-change')).next().text("Invalid File Type");
+                }
+            }
+
+            //else if it's note attachment show file names
+            else {
+                //show count or file name in this span ele
+                var spanEle = $(inputEle.attr('data-change'));
+                if (this.files[0]['type'] == "application/pdf") {
+                    //if only one file show it's name
+                    if (this.files.length == 1) {
+                        spanEle.text(this.files[0].name);
+                    }
+
+                    //if multiple files show count
+                    else {
+                        spanEle.text(this.files.length + " files selected.");
+                    }
+                }
+                else {
+                    spanEle.text("Invalid File Type");
+                }
+            }
+        }
+    }); 
+
+});

@@ -65,3 +65,19 @@ C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\T
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Models\bin\EntityFramework.SqlServer.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Models\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Models\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\NotesMarketplace.Models.dll.config
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\NotesMarketplace.Models.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\NotesMarketplace.Models.pdb
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\EntityFramework.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\obj\Debug\NotesMarketplace.Models.csprojAssemblyReference.cache
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\obj\Debug\NotesMarketplace.Models.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\obj\Debug\NotesMarketplace.Models.csproj.CopyComplete
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\obj\Debug\NotesMarketplace.Models.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\obj\Debug\NotesMarketplace.Models.pdb
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\Newtonsoft.Json.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Models\bin\Newtonsoft.Json.xml

@@ -26,9 +26,16 @@ namespace NotesMarketplace.Web
             );
 
             routes.MapRoute(
-                name: "RestrictedAccess",
-                url: "Assets/{MemberId}/{*Path}",
-                defaults: new { Controller = "Content", Action = "GetRestictedData" }
+                name: "DownloadNote",
+                url: "Assets/Notes/{NoteID}",
+                defaults: new { Controller = "Content", Action = "GetNotesAttachments" }
+            );
+
+            routes.MapRoute(
+                name: "GetUserProfile",
+                url: "Assets/{MemberId}/{UserProfile}",
+                defaults: new { Controller = "Content", Action = "GetProfilePicture" },
+                new { Path = @"^(.*)?$" }
             );
 
             routes.MapRoute(

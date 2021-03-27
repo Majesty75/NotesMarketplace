@@ -48,3 +48,22 @@ C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\T
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\EntityFramework.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\EntityFramework.SqlServer.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Data.dll.config
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Data.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Data.pdb
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Models.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Models.pdb
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Models.dll.config
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csprojAssemblyReference.cache
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csproj.CopyComplete
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.pdb
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Newtonsoft.Json.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Newtonsoft.Json.xml

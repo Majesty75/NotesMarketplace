@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "BuyerRequest";
+    Layout = "~/Views/Email/_Email.cshtml";
+}
+
+<tbody class="table-component">
+
+    <tr>
+        <td class="msg-content">
+            <p class="user">Hello, @ViewBag.SellerName</p>
+
+            <p>
+                We would like to inform you that, @ViewBag.BuyerName wants to purchase your notes.
+                Please see Buyer Requests tab and allow download access to Buyer if you have received the payment from buyer.
+            </p>
+
+            <p>
+                Regards,<br />
+                Notes Marketplace
+            </p>
+        </td>
+    </tr>
+</tbody>
+
+<tfoot class="table-component">
+    <tr>
+        <td>
+            <a class="link-btn" href="https://localhost:44374/RegisteredUser/BuyerRequests">Notes Market Place</a>
+        </td>
+    </tr>
+</tfoot>
+
+

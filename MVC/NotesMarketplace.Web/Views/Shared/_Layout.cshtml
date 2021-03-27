@@ -9,7 +9,7 @@
 <head>
     <!-- Meta Tags -->
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no" />
 
     <!-- Favicon -->
@@ -61,9 +61,9 @@
                                     @*<a href="./search-notes.html">Search Notes</a>*@
                                     @Html.ActionLink("Search Notes", "SearchNotes", "Home")
                                 </li>
-                                <li class="@isActive("DashBoard")">
+                                <li class="@isActive("Dashboard")">
                                     @*<a href="./dashboard.html">Sell Your Notes</a>*@
-                                    @Html.ActionLink("Sell Your Notes", "DashBoard", "RegisteredUser")
+                                    @Html.ActionLink("Sell Your Notes", "Dashboard", "RegisteredUser")
                                 </li>
                                 <li class="@isActive("Faq")">
                                     @*<a href="./faq.html">FAQ</a>*@
@@ -119,9 +119,9 @@
                                 @*<a href="./search-notes.html">Search Notes</a>*@
                                 @Html.ActionLink("Search Notes", "SearchNotes", "Home")
                             </li>
-                            <li class="nav-item @isActive("DashBoard")">
+                            <li class="nav-item @isActive("Dashboard")">
                                 @*<a href="./dashboard.html">Sell Your Notes</a>*@
-                                @Html.ActionLink("Sell Your Notes", "DashBoard", "RegisteredUser")
+                                @Html.ActionLink("Sell Your Notes", "Dashboard", "RegisteredUser")
                             </li>
                             <li class="nav-item @isActive("Faq")">
                                 @*<a href="./faq.html">FAQ</a>*@
@@ -204,7 +204,7 @@
     </div>
 
     @Scripts.Render("~/bundles/JSDependecies")
-    @if (ViewBag.Title == "AddNotes")
+    @if (ViewBag.LoadValidationScript != null)
     {
         @Scripts.Render("~/bundles/JSValidate")
     }
@@ -218,7 +218,9 @@
     }
     @if (ViewBag.Message != null)
     {
-        <script>alert("@ViewBag.Message")</script>
+        <script>
+            window.onload = (event) => { alert("@ViewBag.Message") };
+        </script>
     }
 </body>
 </html>

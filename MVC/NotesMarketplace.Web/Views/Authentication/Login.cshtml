@@ -62,7 +62,7 @@
                 </div>
 
                 @*<form name="login" action="">*@
-                @using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { id = "login" }))
+                @using (Html.BeginForm("Login", "Authentication", ViewBag.ReturnURL != null ? new { ReturnUrl = ViewBag.ReturnURL } : null , FormMethod.Post, new { id = "login" }))
                 {
                     @Html.AntiForgeryToken()
 

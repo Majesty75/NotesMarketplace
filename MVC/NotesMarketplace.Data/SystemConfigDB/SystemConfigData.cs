@@ -8,7 +8,7 @@ namespace NotesMarketplace.Data.SystemConfigDB
         {
             using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
             {
-                SystemConfiguration sc = context.SystemConfigurations.FirstOrDefault(s => s.ConfigKey == DataKey);
+                SystemConfiguration sc = context.SystemConfigurations.FirstOrDefault(s => s.ConfigKey == DataKey && s.IsActive);
                 if (sc != null)
                 {
                     return new SystemConfigModel()
