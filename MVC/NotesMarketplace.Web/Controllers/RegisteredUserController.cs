@@ -23,11 +23,27 @@ namespace NotesMarketplace.Web.Controllers
         public ActionResult Dashboard()
         {
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/Dashboard" });
+
+            int UserID = Convert.ToInt32(User.Identity.Name);
+
+            var Stats = DownloadRepository.GetUserStats(UserID);
+
+            DashboardModel DM = new DashboardModel()
+            {
+                NotesSold = Stats.Item1,
+                MoneyEarned = Stats.Item2,
+                Downloads = Stats.Item3,
+                Rejecteds = Stats.Item4,
+                BuyerRequests = Stats.Item5,
+
+                InProgressNotes = NotesRepository.GetInProgressNotes(UserID),
+                PublishedNotes = NotesRepository.GetPublishedNotes(UserID)
+            };
 
             ViewBag.Title = "Dashboard";
             ViewBag.Authorized = true;
-            return View();
+            return View(DM);
         }
 
 
@@ -36,7 +52,7 @@ namespace NotesMarketplace.Web.Controllers
         public ActionResult UserProfile()
         {
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/UserProfile" });
 
             UserProfileModel userProfile = UserRepository.GetUserData(Convert.ToInt32(User.Identity.Name));
 
@@ -50,11 +66,12 @@ namespace NotesMarketplace.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "UserProfileNotCreated, NormalUser,SuperAdmin,SubAdmin")]
         public ActionResult UserProfile(UserProfileModel up)
         {
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/UserProfile" });
 
             int UserID = Convert.ToInt32(User.Identity.Name);
             if (ModelState.IsValid) {
@@ -103,7 +120,7 @@ namespace NotesMarketplace.Web.Controllers
         public ActionResult AddNotes()
         {
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/AddNotes" });
 
             ViewBag.Title = "AddNotes";
             ViewBag.Authorized = true;
@@ -125,7 +142,7 @@ namespace NotesMarketplace.Web.Controllers
         {
 
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/AddNotes" });
 
             SearchNotesModel FilterData = new SearchNotesModel();
 
@@ -140,6 +157,7 @@ namespace NotesMarketplace.Web.Controllers
             {
                 ModelState.AddModelError("PreviewFile", "Only PDF files that are under 30MBs are allowed.");
             }
+
 
             foreach (HttpPostedFileBase file in Nm.NotesFiles)
                 if(file == null)
@@ -186,11 +204,12 @@ namespace NotesMarketplace.Web.Controllers
                     EmailSubject = Session["FullName"].ToString() + " sent his note for review.",
                     EmailBody = this.getHTMLViewAsString("~/Views/Email/RequestToReview.cshtml")
                 });
-                ViewBag.Message = "Note has been submitted for review, we will send you mail when it gets approved.";
+                TempData["Message"] = "Note has been submitted for review, we will send you mail when it gets approved.";
             }
             else
-                ViewBag.Message = "Note has been successfully saved in Drafts";
-            return View(Nm);
+                TempData["Message"] = "Note has been successfully saved in Drafts";
+
+            return RedirectToAction("Dashboard", "RegisteredUser");
 
         }
 
@@ -199,17 +218,17 @@ namespace NotesMarketplace.Web.Controllers
         public ActionResult BuyerRequests()
         {
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = @"/RegisteredUser/BuyerRequests" });
 
             int UID = Convert.ToInt32(User.Identity.Name);
             BuyerRequestsModel br = new BuyerRequestsModel();
-            DownloadsModel dm = DownloadRepository.GetDownloads(UID, 1);
+            DownloadsModel dm = DownloadRepository.GetDownloads(UID, 0);
             foreach(DownloadsModel.InnerClassDownload d in dm.DownloadProperty)
             {
-                UserProfileModel usrp = UserRepository.GetUserData(d.BuyerID);
+                UserProfileModel usrp = UserRepository.GetUserData(d.Buyer.UserID);
                 br.BRequests.Add(new BuyerRequestsModel.BuyerRequest()
                 {
-                    BuyerEmail = usrp.User.Email,
+                    BuyerEmail = d.Buyer.Email,
                     BuyerPhone = usrp.PhoneNo != null ? usrp.CountryCode + " " + usrp.PhoneNo : "N/A",
                     NoteTitle = d.NoteTitle,
                     NoteID = d.NoteID,
@@ -230,7 +249,7 @@ namespace NotesMarketplace.Web.Controllers
         public ActionResult AllowDownload(string id)
         {
             if (Session["UserID"] == null)
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = @"/RegisteredUser/AllowDownload/"+id });
 
             int DownloadId = Convert.ToInt32(id);
             int UID = Convert.ToInt32(User.Identity.Name);
@@ -254,5 +273,59 @@ namespace NotesMarketplace.Web.Controllers
                 return RedirectToAction("BuyerRequests","RegisteredUser");
             }
         }
+
+        [HttpGet]
+        [Authorize(Roles = "NormalUser,SuperAdmin,SubAdmin")]
+        public ActionResult SoldNotes()
+        {
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = @"/RegisteredUser/SoldNotes" });
+
+            int UserID = Convert.ToInt32(User.Identity.Name);
+
+            DownloadsModel soldNotes = DownloadRepository.GetDownloads(UserID, 2); // DownnloadStatus : 2 for sold notes
+
+            ViewBag.Authorized = true;
+            ViewBag.Title = "SoldNotes";
+
+            return View(soldNotes);
+
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "NormalUser,SuperAdmin,SubAdmin")]
+        public ActionResult RejectedNotes()
+        {
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = @"/RegisteredUser/RejectedNotes" });
+
+            int UserID = Convert.ToInt32(User.Identity.Name);
+
+            RejectedNotes RejectedNotesObj = NotesRepository.GetRejectedNotes(UserID);
+
+            ViewBag.Authorized = true;
+            ViewBag.Title = "RejectedNotes";
+            return View(RejectedNotesObj);
+
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "NormalUser,SuperAdmin,SubAdmin")]
+        public ActionResult Downloads()
+        {
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = @"/RegisteredUser/Downloads" });
+
+            int UserID = Convert.ToInt32(User.Identity.Name);
+
+            DownloadsModel DownloadedNotes = DownloadRepository.GetDownloads(UserID, 1); // DownnloadStatus : 1 for downloads
+            ViewBag.LoadAjaxJS = true;
+            ViewBag.LoadValidationScript = true;
+            ViewBag.Authorized = true;
+            ViewBag.Title = "Downloads";
+            return View(DownloadedNotes);
+
+        }
+
     }
 }

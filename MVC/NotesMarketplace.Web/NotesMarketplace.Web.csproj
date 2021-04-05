@@ -133,6 +133,7 @@
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\GetViewHtmlString.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NoteActionsController.cs" />
     <Compile Include="Controllers\RegisteredUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -295,6 +296,12 @@
     <Content Include="Views\Email\RequestToReview.cshtml" />
     <Content Include="Views\RegisteredUser\_BuyNotesPopupModel.cshtml" />
     <Content Include="Views\Email\BuyerRequest.cshtml" />
+    <Content Include="Views\RegisteredUser\SoldNotes.cshtml" />
+    <Content Include="Views\RegisteredUser\RejectedNotes.cshtml" />
+    <Content Include="Views\RegisteredUser\Downloads.cshtml" />
+    <Content Include="Views\RegisteredUser\_RatingsPopupModal.cshtml" />
+    <Content Include="Views\RegisteredUser\_ReportNotePopupModal.cshtml" />
+    <Content Include="Views\Email\ReportedNote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -318,6 +325,7 @@
       <Name>NotesMarketplace.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,133 @@
+﻿@model NotesMarketplace.Models.RegisteredUserModels.DownloadsModel
+@{
+    ViewBag.Title = "SoldNotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- My Sold Notes page-->
+<section id="sold-notes" class="">
+
+    <!-- Content Section -->
+    <section id="content-section">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <!-- sold note table section -->
+                <section id="sold-notes-table-section">
+
+                    <div class="row table-heading justify-content-between">
+
+                        <div class="col-sm-5">
+
+                            <div class="horizontal-heading first-heading">
+                                <h3>My Sold Notes</h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <div class="row justify-content-sm-end justify-content-around">
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                    <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                    <input id="sold-notes-table-search" type="text" class="form-control" placeholder="Search" />
+                                </div>
+                                <button data-table-id="#sold-notes-table" data-search-input="#sold-notes-table-search" class="btn btn-general rblue-btn search-in-table">search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="sold-notes-table" class="table tablesorter" data-sort-on-col-and-order="6,1">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="srno">SR NO</th>
+                                    <th scope="col">NOTE TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">BUYER</th>
+                                    <th scope="col">SELL TYPE</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DOWNLOADED DATE/TIME</th>
+                                    <th scope="col" colspan="2" class="action"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-tr-per-page="10">
+                                @if (Model.DownloadProperty != null && Model.DownloadProperty.Count != 0)
+                                {
+                                    int i = 0;
+                                    foreach (var Download in Model.DownloadProperty)
+                                    {
+                                        <tr>
+                                            <td class="srno">@(++i)</td>
+                                            <td>@Download.NoteTitle</td>
+                                            <td>@Download.NoteCategory</td>
+                                            <td>@Download.Buyer.Email</td>
+                                            <td>@( Download.IsPaid ? "Paid" : "Free" )</td>
+                                            <td>&dollar;@Download.PurchasedPrice</td>
+                                            @if (Download.DownloadDate == null)
+                                            {
+                                                <td>N/A</td>
+                                            }
+                                            else
+                                            {
+                                                DateTime DwnTime = Download.DownloadDate ?? DateTime.MinValue;
+                                                <td>@(DwnTime.ToString("dd MMM yyyy, HH:mm:ss"))</td>
+                                            }
+                                            <td class="action"><a href="/Home/NoteDetails/@Download.NoteID"><img src="/Content/imgs/icons/eye.png"></a></td>
+                                            <td class="dots-menu-button">
+                                                <span class="dots">
+                                                    <img src="/Content/imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="/Assets/Notes/@Download.NoteID">Download Note</a>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="8">No Records Found</td></tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <span class="pagination-control" pagination-data="#sold-notes-table tbody" max-page-shown="20">
+
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png" class="img-fluid">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png" class="img-fluid">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+    <!-- Content Section Ends -->
+</section>
+<!-- Search Notes page Ends -->

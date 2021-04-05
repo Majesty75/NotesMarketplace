@@ -117,7 +117,14 @@
 
                                 <p id="professor-value">@Model.Professor</p>
 
-                                <p id="pages-value">@Model.Pages</p>
+                                @if (@Model.Pages == 0)
+                                {
+                                    <p id="pages-value">N/A</p>
+                                }
+                                else
+                                {
+                                    <p id="pages-value">@Model.Pages</p>
+                                }
 
                                 <p id="approved-date-value">@Model.Approved.ToString("MMM dd, yyyy")</p>
 

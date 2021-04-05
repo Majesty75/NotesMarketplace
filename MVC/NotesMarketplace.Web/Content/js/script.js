@@ -257,33 +257,31 @@ $(function() {
     Modal - Set Note ID For Popup Action
     ===================================== */
 
-$(function() {
+//$(function() {
    
-    //show modal on click on reject button on notes under review section
-    $('.table').on('click', '.btn-danger', function() {
+//    //show modal on click on reject button on notes under review section
+//    $('.table').on('click', '.btn-danger', function() {
         
-        var button = $(event.target);
-        var note = button.parents('tr');
-        console.log(note);
-        var noteIDInput = $($('#reject-popup').attr('data-noteid-element'));
-        noteIDInput.val(note.attr('id'));
-        $('#reject-popup').find('.horizontal-heading h4').text($(note).children().eq(1).text()+' - '+$(note).children().eq(2).text());
-        $('#reject-popup').modal('show');
+//        var button = $(event.target);
+//        var note = button.parents('tr');
+//        console.log(note);
+//        var noteIDInput = $($('#reject-popup').attr('data-noteid-element'));
+//        noteIDInput.val(note.attr('id'));
+//        $('#reject-popup').find('.horizontal-heading h4').text($(note).children().eq(1).text()+' - '+$(note).children().eq(2).text());
+//        $('#reject-popup').modal('show');
         
-    });
+//    });
     
-    //get noteID from tr parent element of event target element and set it for modal
-    $('#review-popup').on('show.bs.modal', function(event) {
+//    //get noteID from tr parent element of event target element and set it for modal
+//    $('#review-popup').on('show.bs.modal', function(event) {
         
-        var button = $(event.relatedTarget);
-        var noteID = button.parents('tr').attr('id');
-        var noteIDInput = $($(event.target).attr('data-noteid-element'));
-        noteIDInput.val(noteID);
-        
-        
-    });
+//        var button = $(event.relatedTarget);
+//        var noteID = button.parents('tr').attr('id');
+//        var noteIDInput = $($(event.target).attr('data-noteid-element'));
+//        noteIDInput.val(noteID);
+//    });
     
-});
+//});
 
 /*  =====================================
             Mobile Menu Toggle Button

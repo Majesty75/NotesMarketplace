@@ -9,6 +9,7 @@ using NotesMarketplace.Models.MailModels;
 using System;
 using System.Collections.Generic;
 using NotesMarketplace.Models.RegisteredUserModels;
+using System.Linq;
 
 namespace NotesMarketplace.Web.Controllers
 {
@@ -59,6 +60,7 @@ namespace NotesMarketplace.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult ContactUs(ContactUsModel cu)
         {
 
@@ -119,6 +121,7 @@ namespace NotesMarketplace.Web.Controllers
             ViewBag.FilterData = FilterData;
 
             ListNotes Ln = NotesRepository.GetAllAvailableNotes(new NoteModel() { IsItSearchAndFilter = false });
+            ViewBag.LoadAjaxJS = true;
             ViewBag.NotesData = Ln;
             return View();
         }
@@ -146,7 +149,21 @@ namespace NotesMarketplace.Web.Controllers
                 ViewBag.Authorized = true;
             }
 
+            int UserID = Convert.ToInt32(User.Identity.Name);
+
             NoteModel Nm = NotesRepository.GetNoteDetailsById(Convert.ToInt32(NoteId));
+
+            if (Nm == null)
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
+
+
+            string[] UserRoles = new RoleManager.NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
+
+            //Only show note details when notes is published or being accessed by owner or admins
+            if ( Nm.Status != 3 && !(Nm.SellerID == UserID || UserRoles.Contains("SuperAdmin") || UserRoles.Contains("SubAdmin")) ) 
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
+            }
 
             List<string> ReviewerList = new List<string>(); 
 
@@ -190,14 +207,9 @@ namespace NotesMarketplace.Web.Controllers
                 ViewBag.BuyerRequestSubmitted = true;
             }
 
+            ViewBag.Title = "NotesDetails";
+            return View(Nm);
 
-            if (Nm != null)
-            {
-                ViewBag.Title = "NotesDetails";
-                return View(Nm);
-            }
-
-            return new HttpNotFoundResult();
         }
 
     }

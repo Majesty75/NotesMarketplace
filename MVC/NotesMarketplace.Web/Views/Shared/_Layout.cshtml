@@ -4,6 +4,13 @@
         return ViewBag.Title == webpage ? "selected" : string.Empty;
     }
 }
+
+@{ 
+    if(TempData["Message"] != null)
+    {
+        ViewBag.Message = (string)TempData["Message"];
+    }
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,8 +84,8 @@
                                 {
                                     <li>
                                         <!-- User Profile Picture -->
-                                        <div class="user-img contex-menu-toggle">
-                                            <img src="@Session["UserProfile"]" class="img-fluid">
+                                        <div class="contex-menu-toggle">
+                                            <img src="@Session["UserProfile"]" class="user-img">
                                             <div class="dropdown" id="user-context-menu">
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
@@ -136,8 +143,8 @@
                             {
                                 <li class="nav-item contex-menu-toggle dropdown" id="user-context-menu">
                                     <!-- User Profile Picture -->
-                                    <div class="user-img">
-                                        <img src="@Session["UserProfile"]" class="img-fluid">
+                                    <div class="">
+                                        <img src="@Session["UserProfile"]" class="user-img">
                                     </div>
                                     <div class="dropdown" id="user-context-menu">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -204,6 +211,10 @@
     </div>
 
     @Scripts.Render("~/bundles/JSDependecies")
+    @if (ViewBag.LoadAjaxJS != null)
+    {
+        <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    }
     @if (ViewBag.LoadValidationScript != null)
     {
         @Scripts.Render("~/bundles/JSValidate")
@@ -212,14 +223,16 @@
     {
         @Scripts.Render("~/bundles/HomeHeaderScript")
     }
-    @if (ViewBag.Title == "SearchNotes")
-    {
-        <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    }
     @if (ViewBag.Message != null)
     {
         <script>
-            window.onload = (event) => { alert("@ViewBag.Message") };
+                window.onload = (event) => {
+                    alert("@ViewBag.Message");
+                    @*if ("@ViewBag.Message" == "Note has been submitted for review, we will send you mail when it gets approved." || "@ViewBag.Message" == "Note has been successfully saved in Drafts"
+                    ) {
+                        window.location.replace("/RegisteredUser/Dashboard");
+                    }*@
+                    };
         </script>
     }
 </body>

@@ -54,8 +54,16 @@
 
                                 <div class="col-10">
 
-                                    <p>@Note.Institution</p>
-                                    <p>@Note.Pages Pages</p>
+                                    <p>@(Note.Institution??"N/A")</p>
+                                    @if (Note.Pages == null)
+                                    {
+                                        <p>N/A</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@Note.Pages Pages</p>
+                                    }
+
                                     <p>@Note.Approved.ToString("ddd, MMM dd yyyy")</p>
                                     <p class="inappropriate">@Note.Reports users marked this note as inappropriate</p>
 

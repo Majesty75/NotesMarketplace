@@ -41,6 +41,7 @@
                 @*<form id="contact-us-form" action="">*@
                 @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post, new { id = "contact-us-form" }))
                 {
+                    @Html.AntiForgeryToken()
                     <section id="get-in-touch">
                         <div class="row">
 

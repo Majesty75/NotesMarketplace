@@ -48,7 +48,7 @@
                                     <th scope="col">PHONE NO.</th>
                                     <th scope="col">SELL TYPE</th>
                                     <th scope="col">PRICE</th>
-                                    <th scope="col">DOWNLOADED DATE/TIME</th>
+                                    <th scope="col">REQUEST RECIEVED</th>
                                     <th scope="col" class="action" colspan="2"></th>
                                 </tr>
                             </thead>
@@ -58,7 +58,7 @@
 
                                 @if(Model.BRequests.Count == 0)
                                 {
-                                    <tr class="no-results"><td class="text-center" colspan="100">No Records Found</td></tr>
+                                    <tr class="no-results"><td class="text-center" colspan="9">No Records Found</td></tr>
                                 }
 
                                 @foreach (BuyerRequestsModel.BuyerRequest br in Model.BRequests)
@@ -72,7 +72,7 @@
                                     <td>@br.BuyerPhone</td>
                                     <td>@br.SellType</td>
                                     <td>&dollar;@br.Price</td>
-                                    <td>@br.ReqTime.ToString("dd MMM yyyy, hh:mm:ss tt")</td>
+                                    <td>@br.ReqTime.ToString("dd MMM yyyy, HH:mm:ss")</td>
                                     <td class="action">
                                         <a href="@Url.Action("NoteDetails","Home",new { id = br.NoteID.ToString() })"><img src="/Content/imgs/icons/eye.png"></a>
                                     </td>

@@ -96,7 +96,7 @@ namespace NotesMarketplace.Web.Controllers
                 return Redirect("Authentication/Login?ReturnUrl=%2fAssets%2fNotes%2f"+NoteID);
             }
 
-            string [] NoteInfo = DownloadRepository.NoteAttachments(Convert.ToInt32(NoteID), Convert.ToInt32(User.Identity.Name));
+            string [] NoteInfo = DownloadRepository.GetNoteAttachments(Convert.ToInt32(NoteID), Convert.ToInt32(User.Identity.Name));
             string path = Server.MapPath("~/Members/");
             if(NoteInfo == null)
             {

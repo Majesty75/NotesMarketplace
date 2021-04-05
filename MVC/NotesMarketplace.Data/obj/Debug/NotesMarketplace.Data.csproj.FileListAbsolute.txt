@@ -1,69 +1,19 @@
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\NotesMarketplace.Data.dll.config
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\NotesMarketplace.Data.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\NotesMarketplace.Data.pdb
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\csc.exe
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\csc.exe.config
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\csc.rsp
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\csi.exe
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\csi.exe.config
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\csi.rsp
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\vbc.exe
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\vbc.exe.config
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\vbc.rsp
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\VBCSCompiler.exe
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csprojAssemblyReference.cache
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csproj.CoreCompileInputs.cache
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csproj.CopyComplete
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.pdb
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Buffers.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Memory.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Numerics.Vectors.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\EntityFramework.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\EntityFramework.SqlServer.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\NotesMarketplace.Models.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\NotesMarketplace.Models.pdb
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\NotesMarketplace.Models.dll.config
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\EntityFramework.xml
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\EntityFramework.SqlServer.xml
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Data.dll.config
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Data.dll
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Data.pdb
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.dll
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.SqlServer.dll
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Newtonsoft.Json.dll
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Models.dll
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Models.pdb
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\NotesMarketplace.Models.dll.config
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\EntityFramework.SqlServer.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Newtonsoft.Json.xml
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csprojAssemblyReference.cache
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csproj.CoreCompileInputs.cache
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.csproj.CopyComplete
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.dll
 C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\obj\Debug\NotesMarketplace.Data.pdb
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Newtonsoft.Json.dll
-C:\Users\LENOVO\OneDrive - Birla Vishvakarma Mahavidyalaya Engineering College\Tatvasoft\NotesMarketplace Frontend Github\MVC\NotesMarketplace.Data\bin\Newtonsoft.Json.xml

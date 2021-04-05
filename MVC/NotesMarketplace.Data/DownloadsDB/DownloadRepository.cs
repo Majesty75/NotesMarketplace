@@ -9,32 +9,73 @@ namespace NotesMarketplace.Data.DownloadsDB
     public class DownloadRepository
     {
 
-        // RequestOrDownloads : 1 for Buyer Reuests : 0 for Downloads
-        public static DownloadsModel GetDownloads(int UID, int RequestOrDownloads )
+        /* DownloadStatus :
+        * 0 : Buyer Requests (where UserID = Seller ID && IsAllowed != true)
+        * 1 : My Downloads (where UserID = Buyer ID && IsAllowed = true)
+        * 2 : Sold Notes (where UserID = Seller ID && IsAllowed = true)
+        */
+
+        public static DownloadsModel GetDownloads(int UserID, int downloadStatus)
         {
             using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
             {
-                if (!context.Downloads.Any(d => d.SellerID == UID || d.BuyerID == UID))
+                if (!context.Downloads.Any(d => d.SellerID == UserID || d.BuyerID == UserID))
                     return null;
 
                 DownloadsModel dm = new DownloadsModel();
                 List<Download> dls = null;
 
-                if (RequestOrDownloads == 1)
+                if (downloadStatus == 0)
                 {
-                    dls = context.Downloads.Where(d => d.SellerID == UID && !d.IsAllowed).ToList();
+                    dls = context.Downloads.Where(d => d.SellerID == UserID && !d.IsAllowed).ToList();
                 }
-                else if (RequestOrDownloads == 0)
+                else if (downloadStatus == 1)
                 {
-                    dls  = context.Downloads.Where(d => d.BuyerID == UID).ToList();
+                    dls  = context.Downloads.Where(d => d.BuyerID == UserID && d.IsAllowed).ToList();
                 }
+                else if(downloadStatus == 2){
+                    dls = context.Downloads.Where(d => d.SellerID == UserID && d.IsAllowed).ToList();
+                }
+
+
+                //Current User is user calling this function and other party is seller/buyer involved in transaction
+                User CurrentUser = context.Users.FirstOrDefault(u => u.UserID == UserID);
+                User OtherParty;
+
+                UserModel CurrentUserInfo = new UserModel()
+                {
+                    UserID = UserID,
+                    FirstName = CurrentUser.FirstName,
+                    LastName = CurrentUser.LastName,
+                    Email = CurrentUser.Email
+                };
+
+                UserModel OtherPartyInfo;
+
                 foreach (Download d in dls)
                 {
+                    int OtherPartyID = downloadStatus != 1 ? d.BuyerID : d.SellerID; 
+
+                    OtherParty = context.Users.FirstOrDefault(u => u.UserID == OtherPartyID);
+
+                    if(OtherParty == null)
+                    {
+                        continue;
+                    }
+
+                    OtherPartyInfo = new UserModel()
+                    {
+                        UserID = OtherPartyID,
+                        FirstName = OtherParty.FirstName,
+                        LastName = OtherParty.LastName,
+                        Email = OtherParty.Email
+                    };
+
                     dm.DownloadProperty.Add(new DownloadsModel.InnerClassDownload()
                     {
                         DownloadID = d.DownloadID,
-                        SellerID = d.SellerID,
-                        BuyerID = d.BuyerID,
+                        Seller = downloadStatus != 1 ? CurrentUserInfo : OtherPartyInfo,
+                        Buyer = downloadStatus != 1 ? OtherPartyInfo : CurrentUserInfo,
                         DownloadDate = d.DownloadDate,
                         IsAllowed = d.IsAllowed,
                         AttachmentsID = d.AttachmentsID,
@@ -44,7 +85,7 @@ namespace NotesMarketplace.Data.DownloadsDB
                         NoteCategory = d.NoteCategory1.CategoryName,
                         NoteTitle = d.NoteTitle,
                         NoteID = d.NoteID,
-                        RequestTime = d.CreatedDate
+                        RequestTime = d.ModifiedDate
                     });
                 }
                 return dm;
@@ -73,7 +114,7 @@ namespace NotesMarketplace.Data.DownloadsDB
          * else if book is free or user has purchased the book it return attachment path
          * It also return notetitle as first element of array.
          */
-        public static string[] NoteAttachments(int NoteID, int BuyerID)
+        public static string[] GetNoteAttachments(int NoteID, int BuyerID)
         {
             string ReturnPath = null;
             string NoteTitle = null;
@@ -116,8 +157,8 @@ namespace NotesMarketplace.Data.DownloadsDB
                         dwn.ModifiedDate = System.DateTime.Now;
                     }
 
-                    //if download entry not found and book is free create new entry
-                    else if (!note.IsPaid)
+                    //if download entry not found and book is free create new entry only if owner is not downloading note
+                    else if (!note.IsPaid && BuyerID != note.SellerID)
                     {
                         Download dwn = new Download()
                         {
@@ -181,6 +222,24 @@ namespace NotesMarketplace.Data.DownloadsDB
                 context.SaveChanges();
             }
             return new string[] { NoteTitle, ReturnPath };
+        }
+
+        public static Tuple<int, decimal, int, int, int> GetUserStats(int UserID)
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                int NotesSold = context.Downloads.Count(dwn => dwn.SellerID == UserID && dwn.IsAllowed);
+
+                var MoneyEarned = context.Downloads.Where(dwn => dwn.SellerID == UserID && dwn.IsAllowed && dwn.IsPaid).Sum(dwn => dwn.PurchasedPrice);
+
+                int Downloads = context.Downloads.Count(dwn => dwn.BuyerID == UserID && dwn.IsAllowed);
+
+                int RejectedNotes = context.Notes.Count(n => n.SellerID == UserID && n.NoteStatus == 4);
+
+                int BuyerRequests = context.Downloads.Count(dwn => dwn.SellerID == UserID && !dwn.IsAllowed);
+
+                return Tuple.Create<int, decimal, int, int, int>(NotesSold, MoneyEarned??0 , Downloads, RejectedNotes, BuyerRequests);
+            }
         }
 
     }

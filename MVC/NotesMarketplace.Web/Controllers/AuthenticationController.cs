@@ -19,8 +19,6 @@ namespace NotesMarketplace.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            string ReturnURL = HttpContext.Request.QueryString["ReturnUrl"];
-
             //If already login redirect to user dashboard
             if (Request.IsAuthenticated)
             {
@@ -37,13 +35,6 @@ namespace NotesMarketplace.Web.Controllers
 
                 Session["Email"] = userProfile.User.Email;
 
-                //Redirect to page from where they were redirected to login to authencate user
-
-                if (ReturnURL != null && Url.IsLocalUrl(ReturnURL))
-                {
-                    return Redirect(ReturnURL);
-                }
-
 
                 //Check if Admin
                 string[] roles = new NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
@@ -57,12 +48,6 @@ namespace NotesMarketplace.Web.Controllers
                 ViewBag.EmailVerificationMsg = TempData["EmailVerifiedMsg"].ToString();
                 ViewBag.EmailVerified = (bool)TempData["EmailVerified"];
             }
-
-            if (ReturnURL != null)
-            {
-                ViewBag.ReturnURL = ReturnURL;
-            }
-
             return View();
         }
 
@@ -97,26 +82,21 @@ namespace NotesMarketplace.Web.Controllers
                         return RedirectToAction("Login", "Authentication");
                     }
 
+                    if (!String.IsNullOrEmpty(userProfile.ProfilePicture))
+                        Session["UserProfile"] = userProfile.ProfilePicture;
+                    else
+                        Session["UserProfile"] = "/Content/SystemConfig/DefaultUserProfile.png";
+
+                    Session["FullName"] = userProfile.User.FirstName + " " + userProfile.User.LastName;
+
+                    Session["Email"] = userProfile.User.Email;
+
+
                     //if not entered user profile data redirect to user profile
-                    else if (userProfile.Country == null)
+                    if (userProfile.Country == null)
                         return RedirectToAction("UserProfile", "RegisteredUser");
                     else
                     {
-                        if(!String.IsNullOrEmpty(userProfile.ProfilePicture))
-                            Session["UserProfile"] = userProfile.ProfilePicture;
-                        else
-                            Session["UserProfile"] = "/Content/SystemConfig/DefaultUserProfile.png";
-
-                        Session["FullName"] = userProfile.User.FirstName + " " + userProfile.User.LastName;
-
-                        Session["Email"] = userProfile.User.Email;
-
-                        string ReturnURL = HttpContext.Request.QueryString["ReturnUrl"];
-
-                        if (ReturnURL != null && Url.IsLocalUrl(ReturnURL))
-                        {
-                            return Redirect(ReturnURL);
-                        }
 
                         //Check if Admin
                         string[] roles = new NotesMarketPlaceRoleManager().GetRolesForUser(AuthResult.ToString());
@@ -267,17 +247,25 @@ namespace NotesMarketplace.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "NormalUser,SuperAdmin,SubAdmin")]
         public ActionResult ChangePassword()
         {
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login","Authentication",new { ReturnUrl = @"/Authentication/ChangePassword" });
+
             ViewBag.Title = "ChangePassword";
             return View();
         }
 
         [HttpPost]
-        [Authorize]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "NormalUser,SuperAdmin,SubAdmin")]
         public ActionResult ChangePassword(ChangePasswordModel cp)
         {
+
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login", "Authentication", new { ReturnUrl = @"/Authentication/ChangePassword" });
+
             ViewBag.Title = "ChangePassword";
             if (!ModelState.IsValid)
                 return View(cp);
@@ -299,6 +287,14 @@ namespace NotesMarketplace.Web.Controllers
             //clear authcookie param and redirect to login
             FormsAuthentication.SignOut();
             Session.Clear();
+            Session.Abandon();
+            Session.RemoveAll();
+
+            //After logout, prevent back browser button action 
+            //System.Web.HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            //System.Web.HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+            //System.Web.HttpContext.Current.Response.AddHeader("Expires", "0");
+
             return RedirectToAction("Login");
         }
     }

@@ -21,6 +21,7 @@ namespace NotesMarketplace.Models.HomeModels
         public int? NoteId { get; set;}
 
         [Display(Name = "Title*")]
+        [StringLength(100, ErrorMessage = "Note Title must be less then 100 characters")]
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 

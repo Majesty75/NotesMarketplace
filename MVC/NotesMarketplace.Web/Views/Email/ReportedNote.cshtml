@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ReportedNote";
+    Layout = "~/Views/Email/_Email.cshtml";
+}
+
+<tbody class="table-component">
+
+    <tr>
+        <td class="msg-content">
+            <p class="user">Hello Admin,</p>
+
+            <p>
+                We want to inform you that, <b> @ViewBag.BuyerName </b> Reported an issue for <b> @ViewBag.SellerName’s </b>
+                Note with title <b> @ViewBag.NoteName </b>. Please look at the notes and take required actions.
+            </p>
+
+            <p>
+                Regards,<br />
+                Notes Marketplace
+            </p>
+        </td>
+    </tr>
+</tbody>
+
+<tfoot class="table-component">
+    <tr>
+        <td>
+            <a class="link-btn" href="https://localhost:44374/Admin/Reports">Notes Market Place</a>
+        </td>
+    </tr>
+</tfoot>
+

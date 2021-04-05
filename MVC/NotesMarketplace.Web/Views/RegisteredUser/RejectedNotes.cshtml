@@ -1,0 +1,119 @@
+﻿@model NotesMarketplace.Models.RegisteredUserModels.RejectedNotes
+@{
+    ViewBag.Title = "RejectedNotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- My Rejected Notes page-->
+<section id="rejected-notes" class="">
+
+    <!-- Content Section -->
+    <section id="content-section">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <!-- rejected note table section -->
+                <section id="rejected-notes-table-section">
+
+                    <div class="row table-heading justify-content-between">
+
+                        <div class="col-sm-5">
+
+                            <div class="horizontal-heading first-heading">
+                                <h3>My Rejected Notes</h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text-right">
+                            <div class="row justify-content-sm-end justify-content-around">
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+                                    <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                    <input id="rejected-notes-table-search" type="text" class="form-control" placeholder="Search" />
+                                </div>
+                                <button data-table-id="#rejected-notes-table" data-search-input="#rejected-notes-table-search" class="btn btn-general rblue-btn search-in-table">search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="rejected-notes-table" class="table tablesorter" data-sort-on-col-and-order="0,0">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="srno">SR NO</th>
+                                    <th scope="col">NOTE TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">REMARKS</th>
+                                    <th scope="col">CLONE</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody data-tr-per-page="10">
+
+                                @if (Model.RejectedNotesList != null && Model.RejectedNotesList.Count != 0)
+                                {
+                                    int i = 0;
+                                    foreach (var note in Model.RejectedNotesList)
+                                    {
+                                        <tr>
+                                            <td class="srno">@(++i)</td>
+                                            <td>@note.NoteTitle</td>
+                                            <td>@note.NoteCategory</td>
+                                            <td>@note.Remarks</td>
+                                            <td><a href="/NoteActions/Clone/@note.NoteID">Clone</a></td>
+                                            <td class="dots-menu-button">
+                                                <span class="dots">
+                                                    <img src="/Content/imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="/Assets/Notes/@note.NoteID">Download Note</a>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="6">No Records Found</td></tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <span class="pagination-control" pagination-data="#rejected-notes-table tbody" max-page-shown="20">
+
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png" class="img-fluid">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png" class="img-fluid">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+    <!-- Content Section Ends -->
+</section>
+<!-- Rejected Notes page Ends -->

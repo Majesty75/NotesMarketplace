@@ -1,4 +1,4 @@
-﻿
+﻿@model NotesMarketplace.Models.RegisteredUserModels.DashboardModel
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 text-md-right text-center">
-                            <a href="@Url.Action("AddNotes","RegisteredUser")"><button class="btn btn-general rblue-btn btn-add" role="link">Add Note</button></a>
+                            <a href="@Url.Action("AddNotes", "RegisteredUser")"><button class="btn btn-general rblue-btn btn-add" role="link">Add Note</button></a>
                         </div>
                     </div>
 
@@ -41,13 +41,13 @@
                                 </div>
                                 <div class="col-sm-4 text-center">
                                     <div class="stat">
-                                        <div class="stat-val">100</div>
+                                        <div class="stat-val"><a href="/RegisteredUser/SoldNotes/">@Model.NotesSold</a></div>
                                         <p>No of Notes Sold</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-5 text-center">
                                     <div class="stat">
-                                        <div class="stat-val">&dollar;10,00,000</div>
+                                        <div class="stat-val"><a href="/RegisteredUser/SoldNotes/">&dollar;@Model.MoneyEarned</a></div>
                                         <p>Money Earned</p>
                                     </div>
                                 </div>
@@ -57,20 +57,20 @@
                             <div class="row h-100">
                                 <div class="col-sm-4 text-center">
                                     <div class="stat stat-border">
-                                        <div class="stat-val">38</div>
+                                        <div class="stat-val"><a href="@Url.Action("Downloads", "RegisteredUser")">@Model.Downloads</a></div>
                                         <p>My Downloads</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-center">
                                     <div class="stat stat-border">
-                                        <div class="stat-val">12</div>
+                                        <div class="stat-val"><a href="@Url.Action("RejectedNotes", "RegisteredUser")">@Model.Rejecteds</a></div>
                                         <p>My Rejected<br>Notes</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-center">
                                     <div class="stat stat-border">
-                                        <div class="stat-val"><a href="@Url.Action("BuyerRequests","RegisteredUser")">102</a></div>
-                                        <p>Buyer Request</p>
+                                        <div class="stat-val"><a href="@Url.Action("BuyerRequests", "RegisteredUser")">@Model.BuyerRequests</a></div>
+                                        <p>Buyer<br /> Requests</p>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive-md">
+                    <div class="table-responsive">
                         <table id="inprogress-table" class="table tablesorter" data-sort-on-col-and-order="0,1">
 
                             <thead>
@@ -114,163 +114,43 @@
                             </thead>
 
                             <tbody data-tr-per-page="5">
-
-                                <tr>
-                                    <td>09-10-2020</td>
-                                    <td><a href="">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>Draft</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
-                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>10-10-2020</td>
-                                    <td><a href="">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>In Review</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>11-10-2020</td>
-                                    <td><a href="">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>Submitted</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>12-10-2020</td>
-                                    <td><a href="">AI</a></td>
-                                    <td>IT</td>
-                                    <td>Submitted</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>13-10-2020</td>
-                                    <td><a href="">Lorem ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>Draft</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
-                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>09-10-2020</td>
-                                    <td><a href="">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>Draft</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
-                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>10-10-2020</td>
-                                    <td><a href="">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>In Review</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>11-10-2020</td>
-                                    <td><a href="">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>Submitted</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>12-10-2020</td>
-                                    <td><a href="">AI</a></td>
-                                    <td>IT</td>
-                                    <td>Submitted</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>13-10-2020</td>
-                                    <td><a href="">Lorem ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>Draft</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
-                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>09-10-2020</td>
-                                    <td><a href="">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>Draft</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
-                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>10-10-2020</td>
-                                    <td><a href="">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>In Review</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>11-10-2020</td>
-                                    <td><a href="">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>Submitted</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>12-10-2020</td>
-                                    <td><a href="">AI</a></td>
-                                    <td>IT</td>
-                                    <td>Submitted</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>13-10-2020</td>
-                                    <td><a href="">Lorem ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>Draft</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/edit.png"></a>
-                                        <a href=""><img src="/Content/imgs/icons/delete.png"></a>
-                                    </td>
-                                </tr>
-
+                                @if (Model.InProgressNotes != null && Model.InProgressNotes.Count != 0)
+                                {
+                                    foreach (var note in Model.InProgressNotes)
+                                    {
+                                        <tr>
+                                            @if (note.AddedDate != null)
+                                            {
+                                                DateTime dt = note.AddedDate ?? DateTime.MinValue;
+                                                <td>@dt.ToString("dd-MM-yyyy")</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A</td>
+                                            }
+                                            <td>@note.NoteTitle</td>
+                                            <td>@note.NoteCategory</td>
+                                            <td>@note.Status</td>
+                                            @if (note.Status == "Draft")
+                                            {
+                                                <td class="action">
+                                                    <a href="/NoteActions/Edit/@note.NoteID"><img src="/Content/imgs/icons/edit.png"></a>
+                                                    <a href="/NoteActions/Delete/@note.NoteID" onclick="return confirm('Are you sure, you want to delete this note?')"><img src="/Content/imgs/icons/delete.png"></a>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="action">
+                                                    <a href="/NoteActions/View/@note.NoteID"><img src="/Content/imgs/icons/eye.png"></a>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="100">No Records Found</td></tr>
+                                }
                             </tbody>
 
                         </table>
@@ -328,7 +208,7 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive-md">
+                    <div class="table-responsive">
                         <table id="published-notes-table" class="table tablesorter" data-sort-on-col-and-order="0,1">
 
                             <thead>
@@ -343,61 +223,34 @@
                             </thead>
 
                             <tbody data-tr-per-page="5">
-
-                                <tr>
-                                    <td>9-10-2020</td>
-                                    <td><a href="">Computer Science</a></td>
-                                    <td>Science</td>
-                                    <td>Paid</td>
-                                    <td>&dollar;575</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>10-10-2020</td>
-                                    <td><a href="">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>11-10-2020</td>
-                                    <td><a href="">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>12-10-2020</td>
-                                    <td><a href="">AI</a></td>
-                                    <td>IT</td>
-                                    <td>Paid</td>
-                                    <td>&dollar;3542</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>13-10-2020</td>
-                                    <td><a href="">Lorem ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td class="action">
-                                        <a href=""><img src="/Content/imgs/icons/eye.png"></a>
-                                    </td>
-                                </tr>
+                                @if (Model.PublishedNotes != null && Model.PublishedNotes.Count != 0)
+                                {
+                                    foreach (var note in Model.PublishedNotes)
+                                    {
+                                        <tr>
+                                            @if (note.AddedDate != null)
+                                            {
+                                                DateTime dt = note.AddedDate ?? DateTime.MinValue;
+                                                <td>@dt.ToString("dd-MM-yyyy")</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A</td>
+                                            }
+                                            <td>@note.NoteTitle</td>
+                                            <td>@note.NoteCategory</td>
+                                            <td>@note.SellType</td>
+                                            <td>&dollar;@note.Price</td>
+                                            <td class="action">
+                                                <a href="/Home/NoteDetails/@note.NoteID"><img src="~/Content/imgs/icons/eye.png"></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="100">No Records Found</td></tr>
+                                }
 
                             </tbody>
 

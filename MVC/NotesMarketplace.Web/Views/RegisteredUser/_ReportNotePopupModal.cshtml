@@ -1,0 +1,75 @@
+﻿@model NotesMarketplace.Models.RegisteredUserModels.ReportNoteModel
+
+@using (Ajax.BeginForm("Report", "NoteActions", null, new AjaxOptions()
+{
+    OnSuccess = "new function(){" +
+        "alert('Note Reported Successfully.');" +
+        "$('#report-popup').modal('hide'); }",
+    OnFailure = "alert('Something went wrong please try again!')",
+    HttpMethod = "POST",
+    Confirm = "Are you sure you want to mark this report as spam, you cannot update it later?"
+}, null))
+{
+    @Html.AntiForgeryToken()
+    @Html.TextBoxFor(m => m.NoteID, new { @readonly = "readonly", hidden = true })
+    <div class="row">
+
+        <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+
+        <div class="col-md-12">
+            <div class="horizontal-heading pop-up-heading">
+                <h4>@Model.NoteTitle</h4>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.Remarks)
+                @Html.ValidationMessageFor(m => m.Remarks, String.Empty, new { @class = "incorrect-field" })
+                @if (Model.Remarks == null)
+                {
+                    @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control", @placeholder = "Comments..." })
+                }
+                else
+                {
+                    @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control", @readonly = "readonly" })
+                }
+
+            </div>
+
+            <div class="form-group">
+                @if (Model.Remarks == null)
+                {
+                    <button type="submit" class="btn btn-general btn-danger">Report</button>
+                }
+                else
+                {
+                    <button class="btn btn-general btn-danger" disabled>Report</button>
+                }
+
+                <button class="btn btn-general btn-secondary" data-dismiss="modal" role="button">Cancel</button>
+            </div>
+
+        </div>
+
+    </div>
+    @*</form>*@
+}
+<script>
+    /* This Function is called my ajax actionlink onSuceess so that
+        the form obstrusive validation can be reloaded as we are adding this
+        form dynamically while the validation script is already loaded.
+     */
+    function ReloadValidationScript() {
+        var form = $("#report-popup form");
+        //console.log(form);
+        form.removeData('validator');
+        form.removeData('unobtrusiveValidation');
+        $.validator.unobtrusive.parse(form);
+    }
+    $('#report-popup').modal('show');
+
+</script>

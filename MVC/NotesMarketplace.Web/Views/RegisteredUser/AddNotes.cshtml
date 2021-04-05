@@ -3,6 +3,20 @@
 @{
     ViewBag.Title = "AddNotes";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string FormAction;
+    string FormController;
+
+    if(ViewBag.Edit != null)
+    {
+        FormAction = @"Edit/" + Model.NoteId;
+        FormController = "NoteActions";
+    }
+    else
+    {
+        FormAction = "AddNotes";
+        FormController = "RegisteredUser";
+    }
 }
 
 
@@ -35,332 +49,415 @@
 
             <div class="container-fluid">
 
-                @using (Html.BeginForm("AddNotes", "RegisteredUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm(FormAction, FormController, FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @Html.AntiForgeryToken()
 
-                    <section id="basic-note-detail">
-                        <div class="row">
+                    if (ViewBag.Readonly != null)
+                    {
+                      @:<fieldset disabled>
+                    }
 
-                            <div class="col-md-12">
+                        @Html.AntiForgeryToken()
 
-                                <div class="horizontal-heading first-heading">
-                                    <h3>Basic Note Details</h3>
-                                </div>
-                            </div>
-                        </div>
+                        <section id="basic-note-detail">
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-12">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="category">Title *</label>
-        <input type="text" class="form-control" id="title" name="title" placeholder="Enter your notes title" required>*@
-
-                                    @Html.LabelFor(m => m.Title)
-                                    @Html.ValidationMessageFor(m => m.Title, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter your notes title" })
-
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="category">Category *</label>
-        <select class="form-control" id="category" name="category">
-            <option value="" disabled selected>Select your category</option>
-            <option value="cs">CS</option>
-            <option value="it">IT</option>
-            <option value="ca">CA</option>
-            <option value="mba">MBA</option>
-        </select>*@
-                                    @Html.LabelFor(m => m.Category)
-                                    @Html.ValidationMessageFor(m => m.Category, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.FilterData.Category, "Key", "Value"), "Select your note category", new { @class = "form-control" })
-
+                                    <div class="horizontal-heading first-heading">
+                                        <h3>Basic Note Details</h3>
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="row">
 
-                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
+                                        @*<label for="category">Title *</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Enter your notes title" required>*@
 
-                                    <label for="NotesCoverPage" class="file-picker-label">
-                                        <p>Display Picture @Html.ValidationMessageFor(m => m.NotesCoverPage, String.Empty, new { @class = "incorrect-field" })</p>
-                                        
-                                        <div class="file-picker text-center form-control">
-                                            <img src="/Content/imgs/icons/upload.png" class="img-fluid" id="note-cover">
-                                            <span>Upload a picture</span>
+                                        @Html.LabelFor(m => m.Title)
+                                        @Html.ValidationMessageFor(m => m.Title, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter your notes title" })
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="category">Category *</label>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="" disabled selected>Select your category</option>
+                                    <option value="cs">CS</option>
+                                    <option value="it">IT</option>
+                                    <option value="ca">CA</option>
+                                    <option value="mba">MBA</option>
+                                </select>*@
+                                        @Html.LabelFor(m => m.Category)
+                                        @Html.ValidationMessageFor(m => m.Category, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.FilterData.Category, "Key", "Value"), "Select your note category", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <label for="NotesCoverPage" class="file-picker-label">
+                                            <p>Display Picture @Html.ValidationMessageFor(m => m.NotesCoverPage, String.Empty, new { @class = "incorrect-field" })</p>
+
+                                            <div class="file-picker text-center form-control note-cover-file-picker">
+
+                                                @if (ViewBag.Readonly != null)
+                                                {
+                                                    if (Model.DisplayPicture != null)
+                                                    {
+                                                        <a class="plain-link" target="_blank" href="@Model.DisplayPicture">
+                                                            <img src="@Model.DisplayPicture" class="note-display-picture">
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/Content/imgs/icons/upload.png" class="img-fluid">
+                                                        <span id="">Note Cover Not Uploaded</span>
+                                                    }
+                                                    }
+
+                                                    else if (ViewBag.Edit != null)
+                                                    {
+                                                    if (Model.DisplayPicture != null)
+                                                    {
+                                                        <a class="plain-link" target="_blank" href="@Model.DisplayPicture"><img src="@Model.DisplayPicture" class="note-display-picture-edit" id="note-cover"></a>
+                                                        <span> Or upload a new display picture</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/Content/imgs/icons/upload.png" class="img-fluid">
+                                                        <span>Upload a picture</span>
+                                                    }
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/Content/imgs/icons/upload.png" class="img-fluid" id="note-cover">
+                                                        <span>Upload a picture</span>
+                                                    }
+</div>
+                                        </label>
+                                        @Html.TextBoxFor(m => m.NotesCoverPage, new { @type = "file", @data_change = "#note-cover", @data_isimage = true, @accept = "image/*" })
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <label for="NotesFiles" class="file-picker-label">
+                                            <p>Upload Notes * @Html.ValidationMessageFor(m => m.NotesFiles, String.Empty, new { @class = "incorrect-field" })</p>
+                                            <div class="file-picker text-center form-control notes-file-picker">
+                                                @if (ViewBag.Readonly != null)
+                                                {
+                                                    <img src="/Content/imgs/icons/upload-note.svg" class="img-fluid">
+                                                    <span id="files-selected-1"><a href="/Assets/Notes/@Model.NoteId" target="_blank" class="plain-link">Click here</a> to download uploaded notes</span>
+                                                }
+
+                                                else if (ViewBag.Edit != null)
+                                                {
+                                                    <img src="/Content/imgs/icons/upload-note.svg" class="img-fluid">
+                                                    <span id="files-selected-1">
+                                                        <a href="/Assets/Notes/@Model.NoteId" target="_blank" class="plain-link">Click here</a> to download uploaded notes
+                                                        Or upload new notes
+                                                    </span>
+                                                }
+
+                                                else
+                                                {
+                                                    <img src="/Content/imgs/icons/upload-note.svg" class="img-fluid">
+                                                    <span id="files-selected-1">Upload your notes</span>
+                                                }
+                                            </div>
+                                        </label>
+                                        @Html.TextBoxFor(m => m.NotesFiles, new { @type = "file", @multiple = "multiple", @data_change = "#files-selected-1", @accept = "application/pdf" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="type">Type</label>
+                                <select class="form-control" id="type" name="type">
+                                    <option value="" disabled selected>Select your note type</option>
+                                    <option value="university-notes">University Notes</option>
+                                    <option value="handwritten">Hand Written</option>
+                                    <option value="story-book">Story Book</option>
+                                </select>*@
+
+                                        @Html.LabelFor(m => m.Type)
+                                        @Html.ValidationMessageFor(m => m.Type, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.FilterData.Type, "Key", "Value"), "Select your note Type", new { @class = "form-control" })
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="pages">Number of Pages</label>
+                                <input type="number" name="pages" id="pages" class="form-control" placeholder="Enter number of note pages">*@
+
+                                        @Html.LabelFor(m => m.Pages)
+                                        @Html.ValidationMessageFor(m => m.Pages, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.Pages, new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        @*<label for="description">Description *</label>
+                                <textarea class="form-control" id="description" name="description" placeholder="Enter your note description" rows="7"></textarea>*@
+
+                                        @Html.LabelFor(m => m.Description)
+                                        @Html.ValidationMessageFor(m => m.Description, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter your note description", rows = "7" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="institution-information">
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="horizontal-heading first-heading">
+                                        <h3>Institution Information</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for='country'>Country</label>
+                                <select id="country" name="country" class="form-control">
+                                    <option value="" disabled selected>Select your country</option>
+                                    <option value="india">India</option>
+                                </select>*@
+
+                                        @Html.LabelFor(m => m.Country)
+                                        @Html.ValidationMessageFor(m => m.Country, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.FilterData.Country, "Key", "Value"), "Select country", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="">Institutuion Name</label>
+                                <input type="text" name="institution-name" id="institution-name" placeholder="Enter your institution name" class="form-control">*@
+
+                                        @Html.LabelFor(m => m.Institution)
+                                        @Html.ValidationMessageFor(m => m.Institution, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.Institution, new { @class = "form-control" })
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <section id="course-detail">
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="horizontal-heading">
+                                        <h3>Course Details</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @Html.LabelFor(m => m.CourseName)
+                                        @Html.ValidationMessageFor(m => m.CourseName, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.CourseName, new { @class = "form-control", placeholder = "Enter your course name" })
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="course-code">Course Code</label>
+                                <input type="text" name="course-code" id="course-code" placeholder="Enter your course code" class="form-control">*@
+
+                                        @Html.LabelFor(m => m.CourseCode)
+                                        @Html.ValidationMessageFor(m => m.CourseCode, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.CourseCode, new { @class = "form-control", placeholder = "Enter your course code" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        @*<label for="lecturer">Professor / Lecturer</label>
+                                <input type="text" name="lecturer" id="lecturer" placeholder="Enter your professor name" class="form-control">*@
+
+                                        @Html.LabelFor(m => m.Professor)
+                                        @Html.ValidationMessageFor(m => m.Professor, String.Empty, new { @class = "incorrect-field" })
+                                        @Html.TextBoxFor(m => m.Professor, new { @class = "form-control", placeholder = "Enter your professor name" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <section id="sell-detail">
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="horizontal-heading">
+                                        <h3>Selling Information</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <label for="sell-type">Sell For *</label>
+                                                <div id="sell-type">
+
+                                                    <label class="radio-label" for="Free">
+
+                                                        @*<input type="radio" id="free" name="sell-type" value="free" checked>*@
+
+                                                        @Html.RadioButtonFor(m => m.SellFor, false, new { @id = "Free" })
+
+                                                        <span></span>
+                                                        <p>Free</p>
+                                                    </label>
+
+                                                    <label class="radio-label" for="Paid">
+
+                                                        @*<input type="radio" id="paid" name="sell-type" value="paid">*@
+
+                                                        @Html.RadioButtonFor(m => m.SellFor, true, new { @id = "Paid" })
+
+                                                        <span></span>
+                                                        <p>Paid</p>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </label>                                    
-                                    @Html.TextBoxFor(m => m.NotesCoverPage, new { @type = "file", @data_change = "#note-cover", @data_isimage = true, @accept = "image/*" })
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
 
+                                                @*<label for="price">Sell Price *</label>
+                                        <input type="number" class="form-control" id="price" name="price" placeholder="Enter your price" required>*@
 
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
+                                                @Html.LabelFor(m => m.Price)
+                                                @Html.ValidationMessageFor(m => m.Price, String.Empty, new { @class = "incorrect-field" })
+                                                @Html.TextBoxFor(m => m.Price, new { @class = "form-control", placeholder = "Enter your price" })
 
-                                    <label for="NotesFiles" class="file-picker-label">
-                                        <p>Upload Notes * @Html.ValidationMessageFor(m => m.NotesFiles, String.Empty, new { @class = "incorrect-field" })</p>
-                                        <div class="file-picker text-center form-control">
-                                            <img src="/Content/imgs/icons/upload-note.svg" class="img-fluid">
-                                            <span id="files-selected-1">Upload your notes</span>
-                                        </div>
-                                    </label>
-                                    @Html.TextBoxFor(m => m.NotesFiles, new { @type = "file", @multiple = "multiple", @data_change = "#files-selected-1", @accept = "application/pdf" })
-                                    
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="type">Type</label>
-        <select class="form-control" id="type" name="type">
-            <option value="" disabled selected>Select your note type</option>
-            <option value="university-notes">University Notes</option>
-            <option value="handwritten">Hand Written</option>
-            <option value="story-book">Story Book</option>
-        </select>*@
-
-                                    @Html.LabelFor(m => m.Type)
-                                    @Html.ValidationMessageFor(m => m.Type, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.FilterData.Type, "Key", "Value"), "Select your note Type", new { @class = "form-control" })
-
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="pages">Number of Pages</label>
-        <input type="number" name="pages" id="pages" class="form-control" placeholder="Enter number of note pages">*@
-
-                                    @Html.LabelFor(m => m.Pages)
-                                    @Html.ValidationMessageFor(m => m.Pages, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextBoxFor(m => m.Pages, new { @class = "form-control" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-
-                                    @*<label for="description">Description *</label>
-        <textarea class="form-control" id="description" name="description" placeholder="Enter your note description" rows="7"></textarea>*@
-
-                                    @Html.LabelFor(m => m.Description)
-                                    @Html.ValidationMessageFor(m => m.Description, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter your note description", rows = "7" })
-
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="institution-information">
-                        <div class="row">
-
-                            <div class="col-md-12">
-
-                                <div class="horizontal-heading first-heading">
-                                    <h3>Institution Information</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for='country'>Country</label>
-        <select id="country" name="country" class="form-control">
-            <option value="" disabled selected>Select your country</option>
-            <option value="india">India</option>
-        </select>*@
-
-                                    @Html.LabelFor(m => m.Country)
-                                    @Html.ValidationMessageFor(m => m.Country, String.Empty, new { @class = "incorrect-field"})
-                                    @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.FilterData.Country, "Key", "Value"), "Select country", new { @class = "form-control" })
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="">Institutuion Name</label>
-        <input type="text" name="institution-name" id="institution-name" placeholder="Enter your institution name" class="form-control">*@
-
-                                    @Html.LabelFor(m => m.Institution)
-                                    @Html.ValidationMessageFor(m => m.Institution, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextBoxFor(m => m.Institution, new { @class = "form-control" })
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </section>
-
-                    <section id="course-detail">
-
-                        <div class="row">
-
-                            <div class="col-md-12">
-
-                                <div class="horizontal-heading">
-                                    <h3>Course Details</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @Html.LabelFor(m => m.CourseName)
-                                    @Html.ValidationMessageFor(m => m.CourseName, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextBoxFor(m => m.CourseName, new { @class = "form-control", placeholder = "Enter your course name" })
-
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="course-code">Course Code</label>
-        <input type="text" name="course-code" id="course-code" placeholder="Enter your course code" class="form-control">*@
-
-                                    @Html.LabelFor(m => m.CourseCode)
-                                    @Html.ValidationMessageFor(m => m.CourseCode, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextBoxFor(m => m.CourseCode, new { @class = "form-control", placeholder = "Enter your course code" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    @*<label for="lecturer">Professor / Lecturer</label>
-        <input type="text" name="lecturer" id="lecturer" placeholder="Enter your professor name" class="form-control">*@
-
-                                    @Html.LabelFor(m => m.Professor)
-                                    @Html.ValidationMessageFor(m => m.Professor, String.Empty, new { @class = "incorrect-field" })
-                                    @Html.TextBoxFor(m => m.Professor, new { @class = "form-control", placeholder = "Enter your professor name" })
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <section id="sell-detail">
-
-                        <div class="row">
-
-                            <div class="col-md-12">
-
-                                <div class="horizontal-heading">
-                                    <h3>Selling Information</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-
-                                            <label for="sell-type">Sell For *</label>
-                                            <div id="sell-type">
-
-                                                <label class="radio-label" for="Free">
-
-                                                    @*<input type="radio" id="free" name="sell-type" value="free" checked>*@
-
-                                                    @Html.RadioButtonFor(m => m.SellFor, false, new { @checked = "checked" , @id = "Free"})
-
-                                                    <span></span>
-                                                    <p>Free</p>
-                                                </label>
-
-                                                <label class="radio-label" for="Paid">
-
-                                                    @*<input type="radio" id="paid" name="sell-type" value="paid">*@
-
-                                                    @Html.RadioButtonFor(m => m.SellFor, true, new { @id ="Paid" })
-
-                                                    <span></span>
-                                                    <p>Paid</p>
-                                                </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
 
-                                            @*<label for="price">Sell Price *</label>
-        <input type="number" class="form-control" id="price" name="price" placeholder="Enter your price" required>*@
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                                            @Html.LabelFor(m => m.Price)
-                                            @Html.ValidationMessageFor(m => m.Price, String.Empty, new { @class = "incorrect-field" })
-                                            @Html.TextBoxFor(m => m.Price, new { @class = "form-control", placeholder = "Enter your price" })
+                                        <label for="PreviewFile" class="file-picker-label">
+                                            <p>Note Preview @Html.ValidationMessageFor(m => m.PreviewFile, String.Empty, new { @class = "incorrect-field" })</p>
 
-                                        </div>
+                                            <div class="file-picker text-center form-control preview-file-picker">
+                                                @if (ViewBag.Readonly != null)
+                                                {
+                                                    if (Model.Preview != null)
+                                                    {
+                                                        <img src="/Content/imgs/icons/upload.png" class="img-fluid">
+                                                        <span id="files-selected-2"><a href="/Content@(Model.Preview)" target="_blank" class="plain-link">Click here</a> to view uploaded preview file</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/Content/imgs/icons/upload.png" class="img-fluid">
+                                                        <span id="files-selected-2">Preview file not uploaded</span>
+                                                    }
+                                                }
+                                                else if (ViewBag.Edit != null)  
+                                                {
+                                                    <span id="files-selected-2">
+                                                        <a href="/Content@(Model.Preview)" target="_blank" class="plain-link">Click here</a> to view uploaded preview file
+                                                        <br />Or<br />
+                                                        Upload new preview file
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <img src="/Content/imgs/icons/upload.png" class="img-fluid">
+                                                    <span id="files-selected-2">Upload a file</span>
+                                                }
+                                            </div>
+                                        </label>
+
+                                        @*<input type="file" name="note-preview" id="note-preview">*@
+
+                                        @Html.TextBoxFor(m => m.PreviewFile, new { @type = "file", @data_change = "#files-selected-2", @accept = "application/pdf" })
+
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
+                        </section>
 
-                                    <label for="PreviewFile" class="file-picker-label">
-                                        <p>Note Preview @Html.ValidationMessageFor(m => m.PreviewFile, String.Empty, new { @class = "incorrect-field" })</p>
-                                        
-                                        <div class="file-picker text-center form-control">
-                                            <img src="/Content/imgs/icons/upload.png" class="img-fluid">
-                                            <span id="files-selected-2">Upload a file</span>
-                                        </div>
-                                    </label>
+                        <input type="submit" class="btn rblue-btn btn-general mb-3" name="SaveOrPublish" value="Save">
 
-                                    @*<input type="file" name="note-preview" id="note-preview">*@
 
-                                    @Html.TextBoxFor(m => m.PreviewFile, new { @type = "file", @data_change = "#files-selected-2", @accept = "application/pdf" })
+                        <input type="submit" class="btn rblue-btn btn-general mb-3" name="SaveOrPublish" value="Publish" onclick="return confirm('Publishing this note will send note to administrator for review, once administrator review and approve then this note will be published to portal. Press yes to continue');">
 
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <input type="submit" class="btn rblue-btn btn-general mb-3" name="SaveOrPublish" value="Save">
-                        
-
-                    <input type="submit" class="btn rblue-btn btn-general mb-3" name="SaveOrPublish" value="Publish">
-                        
-
+                    if (ViewBag.Readonly != null)
+                    {
+                        @:</fieldset> 
+                    }
                     @*</form>*@
                 }
             </div>

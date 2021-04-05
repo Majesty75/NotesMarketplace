@@ -1,0 +1,96 @@
+﻿@model NotesMarketplace.Models.RegisteredUserModels.RatingModel
+
+@using (Ajax.BeginForm("Rate", "NoteActions", null, new AjaxOptions()
+{
+    OnSuccess = "new function(){" +
+        "alert('Review Submitted Successfully.');" +
+        "$('#review-popup').modal('hide'); }",
+    OnFailure = "alert('Something went wrong please try again!')",
+    
+    HttpMethod = "POST"
+}, new { id = "review-form" }))
+{
+    @Html.AntiForgeryToken()
+    @*<form action="" name="review-form" id="review-form">*@
+    @Html.TextBoxFor(m => m.NoteID, new { @readonly = "readonly", hidden = true })
+    <div class="row">
+
+        <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+
+        <div class="col-md-12">
+            <div class="horizontal-heading pop-up-heading">
+                <h4>Add Review</h4>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            @Html.ValidationMessageFor(m => m.Stars, String.Empty, new { @class = "incorrect-field" })
+
+            <div class="rate">
+                @*<input type="radio" id="star5" name="rate" value="5" />*@
+                @Html.RadioButtonFor(m => m.Stars, 5, new { id = "Star5" })
+                <label for="Star5" title="5 Stars"></label>
+
+
+                @*<input type="radio" id="star4" name="rate" value="4" />*@
+                @Html.RadioButtonFor(m => m.Stars, 4, new { id = "Star4" })
+                <label for="Star4" title="4 Stars"></label>
+
+
+                @*<input type="radio" id="star3" name="rate" value="3" />*@
+                @Html.RadioButtonFor(m => m.Stars, 3, new { id = "Star3" })
+                <label for="Star3" title="3 Stars"></label>
+
+                @*<input type="radio" id="star2" name="rate" value="2" />*@
+                @Html.RadioButtonFor(m => m.Stars, 2, new { id = "Star2" })
+                <label for="Star2" title="2 Stars"></label>
+
+                @*<input type="radio" id="star1" name="rate" value="1" />*@
+                @Html.RadioButtonFor(m => m.Stars, 1, new { id = "Star1" })
+                <label for="Star1" title="1 Star"></label>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="form-group">
+
+                @*<label for="comment">Comments *</label>
+                    <textarea class="form-control" id="comment" name="comment" placeholder="Comments..." rows="3"></textarea>*@
+
+                @Html.LabelFor(m => m.Comment)
+                @Html.ValidationMessageFor(m => m.Comment, String.Empty, new { @class = "incorrect-field" })
+                @Html.TextAreaFor(m => m.Comment, new { @class = "form-control", @placeholder = "Comments..." })
+
+            </div>
+
+            <div class="form-group">
+
+                <button type="submit" class="btn rblue-btn btn-general">submit</button>
+
+            </div>
+
+        </div>
+
+    </div>
+    @*</form>*@
+}
+
+<script>
+        /* This Function is called my ajax actionlink onSuceess so that
+        the form obstrusive validation can be reloaded as we are adding this
+        form dynamically while the validation script is already loaded.
+     */
+    function ReloadValidationScript() {
+        var form = $("#review-popup form");
+        //console.log(form);
+        form.removeData('validator');
+        form.removeData('unobtrusiveValidation');
+        $.validator.unobtrusive.parse(form);
+    }
+    $('#review-popup').modal('show');
+</script>

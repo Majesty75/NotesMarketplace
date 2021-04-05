@@ -15,8 +15,8 @@ namespace NotesMarketplace.Models.RegisteredUserModels
         {
             public int DownloadID { get; set; }
             public int NoteID { get; set; }
-            public int SellerID { get; set; }
-            public int BuyerID { get; set; }
+            public UserModel Seller { get; set; }
+            public UserModel Buyer { get; set; }
             public bool IsAllowed { get; set; }
             public int AttachmentsID { get; set; }
             public bool IsDownloaded { get; set; }
