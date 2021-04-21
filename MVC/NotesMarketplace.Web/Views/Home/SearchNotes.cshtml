@@ -8,7 +8,7 @@
 
 
 <!-- search Notes page-->
-<section id="search-notes" class="">
+<section id="search-notes">
 
     <!-- Banner Image Section -->
     <section class="banner-img">
@@ -48,7 +48,6 @@
                         </div>
                     </div>
                     <div id="form-div">
-                        @*<form name="search-filter-notes" id="search-filter-notes" action="">*@
                         @using (Ajax.BeginForm("SearchNotes", "Home", new { }, new AjaxOptions
                         {
                             HttpMethod = "POST",
@@ -63,7 +62,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <img class="icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
-                                        @*<input type="text" class="form-control" name="notes-name" id="notes-name" placeholder="Search Notes here..." >*@
+                                       
                                         @Html.TextBoxFor(m => m.Title, new { id = "notes-name", placeholder = "Search Notes here...", @class="form-control"})
                                     </div>
                                 </div>
@@ -75,24 +74,12 @@
 
                                         @Html.DropDownListFor(m => m.Type, new SelectList(ViewBag.FilterData.Type, "Key", "Value"), "Select Type", new { @class = "form-control" })
 
-                                        @*<select name="type" id="type" class="form-control">
-                                    <option value="none" disabled selected>Select type</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>*@
-
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-2">
                                     <div class="form-group">
 
                                         @Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.FilterData.Category, "Key", "Value"), "Select Category", new { @class = "form-control" })
-
-                                        @*<select name="category" id="category" class="form-control">
-                                    <option value="none" disabled selected>Select category</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>*@
 
                                     </div>
                                 </div>
@@ -101,24 +88,12 @@
 
                                         @Html.DropDownListFor(m => m.Institution, new SelectList(ViewBag.FilterData.University, "Key", "Value"), "Select University", new { @class = "form-control" })
 
-                                        @*<select name="university" id="university" class="form-control">
-                                    <option value="none" disabled selected>Select university</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>*@
-
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-2">
                                     <div class="form-group">
 
                                         @Html.DropDownListFor(m => m.CourseName, new SelectList(ViewBag.FilterData.Course, "Key", "Value"), "Select Course", new { @class = "form-control" })
-
-                                        @*<select name="course" id="course" class="form-control">
-                                    <option value="none" disabled selected >Select course</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>*@
 
                                     </div>
                                 </div>
@@ -127,24 +102,12 @@
 
                                         @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.FilterData.Country, "Key", "Value"), "Select Country", new { @class = "form-control" })
 
-                                        @*<select name="" id="country" class="form-control">
-                                    <option value="none" disabled selected>Select country</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>*@
-
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-2">
                                     <div class="form-group">
 
                                         @Html.DropDownListFor(m => m.rating, new SelectList(ViewBag.FilterData.Rating, "Key", "Value"), "Select Rating", new { @class = "form-control" })
-
-                                        @*<select name="rating" id="rating" class="form-control">
-                                    <option value="none" disabled selected>Select rating</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                </select>*@
 
                                     </div>
                                 </div>

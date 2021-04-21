@@ -1,0 +1,44 @@
+﻿@model NotesMarketplace.Models.AdminModels.RejectNoteModel
+
+@using (Html.BeginForm("/Reject", "Admin", FormMethod.Post, new { id = "reject-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+
+        <div class="col-md-12">
+            <div class="horizontal-heading mb-4">
+                <h4>@Model.NoteTitle - @Model.NoteCategory</h4>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.Remarks)
+                @Html.ValidationMessageFor(m => m.Remarks, null,new { @class="incorrect-field" })
+                @Html.TextAreaFor(m => m.Remarks, new { @placeholder = "Write Remarks", rows="5", @class = "form-control" })
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-end">
+        <div class="form-group">
+
+            <button type="submit" form="reject-form" class="btn btn-danger" name="reject-submit">Reject</button>
+            <button class="btn btn-disabled" data-dismiss="modal">Cancle</button>
+
+        </div>
+
+    </div>
+}
+<script>
+
+    $('#reject-popup').modal('show');
+
+</script>

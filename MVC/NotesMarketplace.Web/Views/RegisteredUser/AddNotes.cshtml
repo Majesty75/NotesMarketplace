@@ -218,7 +218,7 @@
 
                                         @Html.LabelFor(m => m.Pages)
                                         @Html.ValidationMessageFor(m => m.Pages, String.Empty, new { @class = "incorrect-field" })
-                                        @Html.TextBoxFor(m => m.Pages, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Pages, new { @class = "form-control", placeholder = "Enter number of pages" })
 
                                     </div>
                                 </div>
@@ -276,7 +276,7 @@
 
                                         @Html.LabelFor(m => m.Institution)
                                         @Html.ValidationMessageFor(m => m.Institution, String.Empty, new { @class = "incorrect-field" })
-                                        @Html.TextBoxFor(m => m.Institution, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Institution, new { @class = "form-control", placeholder = "Enter your instituion name" })
 
 
                                     </div>
@@ -415,7 +415,7 @@
                                                     if (Model.Preview != null)
                                                     {
                                                         <img src="/Content/imgs/icons/upload.png" class="img-fluid">
-                                                        <span id="files-selected-2"><a href="/Content@(Model.Preview)" target="_blank" class="plain-link">Click here</a> to view uploaded preview file</span>
+                                                        <span id="files-selected-2"><a href="@(Model.Preview)" target="_blank" class="plain-link">Click here</a> to view uploaded preview file</span>
                                                     }
                                                     else
                                                     {
@@ -426,7 +426,7 @@
                                                 else if (ViewBag.Edit != null)  
                                                 {
                                                     <span id="files-selected-2">
-                                                        <a href="/Content@(Model.Preview)" target="_blank" class="plain-link">Click here</a> to view uploaded preview file
+                                                        <a href="@(Model.Preview)" target="_blank" class="plain-link">Click here</a> to view uploaded preview file
                                                         <br />Or<br />
                                                         Upload new preview file
                                                     </span>

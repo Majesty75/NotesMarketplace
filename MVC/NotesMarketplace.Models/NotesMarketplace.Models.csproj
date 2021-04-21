@@ -77,6 +77,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminModels\AdminDashboardModel.cs" />
+    <Compile Include="AdminModels\AdminNotesInReviewModel.cs" />
+    <Compile Include="AdminModels\PublishedNotesModel.cs" />
+    <Compile Include="AdminModels\RejectNoteModel.cs" />
     <Compile Include="AuthenticationModels\ChangePasswordModel.cs" />
     <Compile Include="AuthenticationModels\ForgotPassword.cs" />
     <Compile Include="AuthenticationModels\SignUp.cs" />

@@ -13,6 +13,7 @@ using System.Web;
 namespace NotesMarketplace.Web.Controllers
 {
     [Authorize(Roles = "NormalUser,SubAdmin,SuperAdmin")]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
     public class NoteActionsController : Controller
     {
         [HttpGet]
@@ -234,11 +235,23 @@ namespace NotesMarketplace.Web.Controllers
                 ModelState.AddModelError("PreviewFile", "Only PDF files that are under 30MBs are allowed.");
             }
 
+            long NoteSize = 0;
+
             foreach (HttpPostedFileBase file in Nm.NotesFiles)
+            {
                 if (file == null)
                     break;
-                else if (Path.GetExtension(file.FileName).ToLower() != ".pdf" || file.ContentLength > 31457280)
-                    ModelState.AddModelError("NotesFiles", "Only PDF file that are under 30MBs are allowed.");
+                else if (Path.GetExtension(file.FileName).ToLower() != ".pdf")
+                {
+                    ModelState.AddModelError("NotesFiles", "Only PDF file(s) are allowed.");
+                }
+                if(file != null)
+                    NoteSize += file.ContentLength;
+            }
+            if (Nm.NotesFiles[0] != null && NoteSize > 31457280)
+            {
+                ModelState.AddModelError("NotesFiles", "Combine PDF(s) size should not exceeds 30MBs");
+            }
 
             if (Nm.NotesCoverPage != null && !MimeMapping.GetMimeMapping(Nm.NotesCoverPage.FileName).ToLower().Contains("image"))
                 ModelState.AddModelError("NotesCoverPage", "Only Images are allowed.");

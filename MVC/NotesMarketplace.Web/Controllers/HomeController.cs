@@ -14,6 +14,7 @@ using System.Linq;
 namespace NotesMarketplace.Web.Controllers
 {
     [AllowAnonymous]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -142,25 +143,27 @@ namespace NotesMarketplace.Web.Controllers
             if(String.IsNullOrEmpty(NoteId))
                 return new HttpNotFoundResult();
 
+            int UserID = 0 ;
+            string[] UserRoles = null;
+
             if (Request.IsAuthenticated)
             {
                 if (Session["UserID"] == null)
                     return RedirectToAction("Login","Authentication");
                 ViewBag.Authorized = true;
-            }
 
-            int UserID = Convert.ToInt32(User.Identity.Name);
+                UserID = Convert.ToInt32(User.Identity.Name);
+
+                UserRoles = new RoleManager.NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
+            }
 
             NoteModel Nm = NotesRepository.GetNoteDetailsById(Convert.ToInt32(NoteId));
 
             if (Nm == null)
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
 
-
-            string[] UserRoles = new RoleManager.NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
-
             //Only show note details when notes is published or being accessed by owner or admins
-            if ( Nm.Status != 3 && !(Nm.SellerID == UserID || UserRoles.Contains("SuperAdmin") || UserRoles.Contains("SubAdmin")) ) 
+            if ( Nm.Status != 3 && (Request.IsAuthenticated && !(Nm.SellerID == UserID || UserRoles.Contains("SuperAdmin") || UserRoles.Contains("SubAdmin")) ))
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
             }

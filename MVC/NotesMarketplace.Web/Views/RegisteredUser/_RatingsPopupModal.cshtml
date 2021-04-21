@@ -11,7 +11,6 @@
 }, new { id = "review-form" }))
 {
     @Html.AntiForgeryToken()
-    @*<form action="" name="review-form" id="review-form">*@
     @Html.TextBoxFor(m => m.NoteID, new { @readonly = "readonly", hidden = true })
     <div class="row">
 
@@ -81,16 +80,5 @@
 }
 
 <script>
-        /* This Function is called my ajax actionlink onSuceess so that
-        the form obstrusive validation can be reloaded as we are adding this
-        form dynamically while the validation script is already loaded.
-     */
-    function ReloadValidationScript() {
-        var form = $("#review-popup form");
-        //console.log(form);
-        form.removeData('validator');
-        form.removeData('unobtrusiveValidation');
-        $.validator.unobtrusive.parse(form);
-    }
     $('#review-popup').modal('show');
 </script>

@@ -1,0 +1,44 @@
+﻿@model NotesMarketplace.Models.AdminModels.RejectNoteModel
+
+@using (Html.BeginForm("/Unpublish", "Admin", FormMethod.Post, new { id = "unpublish-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <button class="close close-x" data-dismiss="modal" role="button">&times;</button>
+
+        <div class="col-md-12">
+            <div class="horizontal-heading mb-4">
+                <h4>@Model.NoteTitle - @Model.NoteCategory</h4>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.Remarks)
+                @Html.ValidationMessageFor(m => m.Remarks, null, new { @class = "incorrect-field" })
+                @Html.TextAreaFor(m => m.Remarks, new { @placeholder = "Write Remarks", rows = "5", @class = "form-control" })
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-end">
+        <div class="form-group">
+
+            <button type="submit" form="unpublish-form" class="btn btn-danger" name="unpublish-submit" onclick="return confirm('Are you sure you want to Unpublish this note?')">Unpublish</button>
+            <button class="btn btn-disabled" data-dismiss="modal">Cancle</button>
+
+        </div>
+
+    </div>
+}
+<script>
+
+    $('#unpublish-popup').modal('show');
+
+</script>

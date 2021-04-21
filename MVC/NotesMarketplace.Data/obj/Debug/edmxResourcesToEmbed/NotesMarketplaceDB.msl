@@ -85,6 +85,7 @@
     <EntitySetMapping Name="NotesAttachments">
       <EntityTypeMapping TypeName="NotesMarketPlaceModel.NotesAttachment">
         <MappingFragment StoreEntitySet="NotesAttachments">
+          <ScalarProperty Name="AttachmentSize" ColumnName="AttachmentSize" />
           <ScalarProperty Name="AttachementID" ColumnName="AttachementID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
           <ScalarProperty Name="FilesName" ColumnName="FilesName" />

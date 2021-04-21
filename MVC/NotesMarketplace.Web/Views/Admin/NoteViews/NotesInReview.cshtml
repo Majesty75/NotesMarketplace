@@ -1,0 +1,164 @@
+﻿@model NotesMarketplace.Models.AdminModels.AdminNotesInReviewModel
+
+@{
+    ViewBag.Title = "NotesInReview";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- reject note pop-up -->
+<div class="modal fade" id="reject-popup" data-noteid-element="#note-to-be-rejected" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="reject-note-modal-content">
+        </div>
+    </div>
+</div>
+
+<!-- Notes Under Review Page-->
+<section id="notes-under-review">
+    <!-- Content Section -->
+    <section id="content-section">
+        <div class="content-box-sm">
+            <div class="container-fluid">
+                <!-- notes under review table section -->
+                <section id="notes-under-review-table-section">
+                    <div class="table-heading">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="horizontal-heading first-heading">
+                                    <h3>Notes Under Review</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 col-lg-3 col-xl-2">
+                                <p>Seller</p>
+                                <select class="form-control select-table-val" data-target-col="3" data-target-table="#notes-under-review-table" id="seller" name="seller">
+                                    <option value="All" selected>Select Seller</option>
+                                    @if (Model.NotesInReview != null && Model.NotesInReview.Count != 0)
+                                    {
+                                        var SellerList = Model.NotesInReview.Select(n => n.Seller).Distinct();
+                                        foreach (var Seller in SellerList)
+                                        {
+                                            <option value="@Seller">@Seller</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <p>&nbsp;</p>
+                                <div class="row justify-content-end">
+                                    <div class="col-md-4">
+                                        <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                        <input id="notes-under-review-table-search" type="text" class="form-control" placeholder="Search" />
+                                    </div>
+                                    <button data-table-id="#notes-under-review-table" data-search-input="#notes-under-review-table-search" class="btn btn-general rblue-btn search-in-table" href="">search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="notes-under-review-table" class="table tablesorter" data-sort-on-col-and-order="5,0">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="srno">SR NO</th>
+                                    <th scope="col">NOTE TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">SELLER</th>
+                                    <th scope="col"></th>
+                                    <th scope="col" data-sorter="shortDate" data-date-format="ddmmyyyy">DATE ADDED</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col" class="text-center">ACTION</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody data-tr-per-page="5">
+
+                                @if (Model.NotesInReview != null && Model.NotesInReview.Count != 0)
+                                {
+                                    int i = 0;
+                                    foreach (var note in Model.NotesInReview)
+                                    {
+                                        <tr>
+                                            <td class="srno">@(++i)</td>
+                                            <td><a href="/Admin/NoteDetails/@note.NoteID">@note.NoteTitle</a></td>
+                                            <td>@note.NoteCategory</td>
+                                            <td>@note.Seller</td>
+                                            <td><a href="/Admin/Member/@note.SellerID"><img src="/Content/imgs/icons/eye.png"></a></td>
+                                            @if (note.DateAdded != null)
+                                            {
+                                                DateTime DateAdded = note.DateAdded ?? System.DateTime.MinValue;
+
+                                                <td>@DateAdded.ToString("dd-MM-yyyy, HH:mm")</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A</td>
+                                            }
+                                            <td>@note.status</td>
+                                            <td class="action">
+                                                <a href="/Admin/NoteActions/@note.NoteID/Approve" onclick="return confirm('If you approve the notes – System will publish the notes over portal. Please press yes to continue.')">
+                                                    <button class="btn btn-success">Approve</button>
+                                                </a>
+                                                @using (Ajax.BeginForm("/NoteActions/" + note.NoteID + "/Reject", "Admin", null , new AjaxOptions()
+                                                    {
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        UpdateTargetId = "reject-note-modal-content",
+                                                        HttpMethod = "GET",
+                                                        OnFailure = "alert('Something Went Wrong')",
+                                                        OnSuccess = "ReloadValidationScript('#reject-popup form')"
+                                                    }, new { style = "display: inline-block;" }))
+                                                {
+                                                    <button type="submit" class='btn btn-danger'>Reject</button>
+                                                }
+                                                <a href="/Admin/NoteActions/@note.NoteID/InReview" onclick="return confirm('Via marking the note In Review – System will let user know that review process has been initiated. Please press yes to continue.')">
+                                                    <button class="btn  btn-disabled">InReview</button>
+                                                </a>
+                                            </td>
+                                            <td class="dots-menu-button">
+                                                <span class="dots">
+                                                    <img src="/Content/imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="/Assets/Notes/@note.NoteID">Download Note</a>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="9">No Records Found</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="pagination-control" pagination-data="#notes-under-review-table tbody" max-page-shown="20">
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- Content Section Ends -->
+</section>
+<!-- Notes under review page Ends -->

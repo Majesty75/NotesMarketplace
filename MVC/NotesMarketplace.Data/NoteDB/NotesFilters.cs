@@ -47,12 +47,14 @@ namespace NotesMarketplace.Data.NoteDB
         {
             using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
             {
-                var UniversitiesInDB = context.Notes.Select(n => n.University).Distinct().ToList();
+                var UniversitiesInDB = context.Notes.Where(n => n.NoteStatus == 3).Select(n => n.University).Distinct().ToList();
                 if (UniversitiesInDB.Count != 0)
                 {
                     IDictionary<string, string> AvailableUniversities = new Dictionary<string, string>();
                     foreach (var University in UniversitiesInDB)
                     {
+                        if (University == null)
+                            continue;
                         AvailableUniversities.Add(University, University);
                     }
                     return AvailableUniversities;
@@ -65,12 +67,14 @@ namespace NotesMarketplace.Data.NoteDB
         {
             using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
             {
-                var CoursesInDB = context.Notes.Select(n => n.Course).Distinct().ToList();
+                var CoursesInDB = context.Notes.Where(n => n.NoteStatus == 3).Select(n => n.Course).Distinct().ToList();
                 if (CoursesInDB.Count != 0)
                 {
                     IDictionary<string, string> AvailableCourses = new Dictionary<string, string>();
                     foreach (var Course in CoursesInDB)
                     {
+                        if (Course == null)
+                            continue;
                         AvailableCourses.Add(Course,Course);
                     }
                     return AvailableCourses;

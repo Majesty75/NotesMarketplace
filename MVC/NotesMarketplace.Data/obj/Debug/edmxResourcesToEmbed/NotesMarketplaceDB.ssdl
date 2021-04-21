@@ -90,6 +90,7 @@
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="AttachmentSize" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="NotesReports">
     <Key>

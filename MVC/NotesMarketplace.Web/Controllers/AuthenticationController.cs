@@ -12,6 +12,7 @@ using System.IO;
 
 namespace NotesMarketplace.Web.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
     public class AuthenticationController : Controller
     {
 
@@ -38,7 +39,7 @@ namespace NotesMarketplace.Web.Controllers
 
                 //Check if Admin
                 string[] roles = new NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
-                if (roles.Contains("SuperAdmin") | roles.Contains("SubAdmin"))
+                if (roles.Contains("SuperAdmin") || roles.Contains("SubAdmin"))
                     return RedirectToAction("AdminDashBoard", "Admin");
 
                 return RedirectToAction("Dashboard", "RegisteredUser");

@@ -1,9 +1,16 @@
-﻿
+﻿@model NotesMarketplace.Models.AdminModels.AdminDashboardModel
 @{
-    ViewBag.Title = "AdminDashBoard";
+    ViewBag.Title = "AdminDashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<!--unpublish note pop-up -->
+<div class="modal fade" id="unpublish-popup" data-noteid-element="#note-to-be-rejected" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="unpublish-modal-content">
+        </div>
+    </div>
+</div>
 
 <!-- Dash Board page-->
 <section id="dashboard" class="admin-dashboard">
@@ -32,19 +39,19 @@
                             <div class="row h-100">
                                 <div class="col-sm-4 text-center">
                                     <div class="stat stat-border">
-                                        <div class="stat-val"><a href="./notes-under-review.html">20</a></div>
+                                        <div class="stat-val"><a href=@Url.Action("NotesInReview", "Admin")>@Model.NoteInReview</a></div>
                                         <p>Number of Notes in Review for Publish</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-center">
                                     <div class="stat stat-border">
-                                        <div class="stat-val"><a href="./downloaded-notes.html">103</a></div>
+                                        <div class="stat-val"><a href=@Url.Action("DownloadedNotes", "Admin")>@Model.Downloads</a></div>
                                         <p>Number of New Notes Downloads<br>(Last 7 days)</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-center">
                                     <div class="stat stat-border">
-                                        <div class="stat-val"><a href="./members.html">223</a></div>
+                                        <div class="stat-val"><a href=@Url.Action("Members", "Admin")>@Model.NewUsers</a></div>
                                         <p>Number of New Registrations<br>(Last 7 days)</p>
                                     </div>
                                 </div>
@@ -73,21 +80,35 @@
                                 <button data-table-id="#published-notes-table" data-search-input="#published-notes-table-search" class="btn btn-general rblue-btn search-in-table" href="">search</button>
                                 <div class="col-sm-5 col-md-4">
                                     <select class="form-control select-table-val" data-target-col="7" data-target-table="#published-notes-table" data-is-dat="1" id="month" name="month">
-                                        <option value="" disabled selected>Select Month</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
+                                        @{
+                                            DateTime Now = DateTime.Now;
+                                            <option value="All" selected>Select Month</option>
+
+                                            <option value=@Now.ToString("yyyy-MM")>@Now.ToString("MMMM")</option>
+
+                                            Now = Now.AddMonths(-1);
+                                            <option value=@Now.ToString("yyyy-MM")>@Now.ToString("MMMM")</option>
+
+                                            Now = Now.AddMonths(-1);
+                                            <option value=@Now.ToString("yyyy-MM")>@Now.ToString("MMMM")</option>
+
+                                            Now = Now.AddMonths(-1);
+                                            <option value=@Now.ToString("yyyy-MM")>@Now.ToString("MMMM")</option>
+
+                                            Now = Now.AddMonths(-1);
+                                            <option value=@Now.ToString("yyyy-MM")>@Now.ToString("MMMM")</option>
+
+                                            Now = Now.AddMonths(-1);
+                                            <option value=@Now.ToString("yyyy-MM")>@Now.ToString("MMMM")</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="table-responsive-lg">
-                        <table id="published-notes-table" class="table tablesorter" data-sort-on-col-and-order="0,0">
+                    <div class="table-responsive">
+                        <table id="published-notes-table" class="table tablesorter" data-sort-on-col-and-order="8,1">
 
                             <thead>
                                 <tr>
@@ -98,435 +119,66 @@
                                     <th scope="col">SELL TYPE</th>
                                     <th scope="col">PRICE</th>
                                     <th scope="col">PUBLISHER</th>
-                                    <th scope="col">PUBLISHED DATE</th>
+                                    <th scope="col" data-sorter="shortDate" data-date-format="ddmmyyyy">PUBLISHED DATE</th>
                                     <th scope="col" class="text-center">NUMBER OF DOWNLOADS</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
 
                             <tbody data-tr-per-page="5">
+                                @if (Model.PublishedNotes != null && Model.PublishedNotes.Count != 0)
+                                {
+                                    int i = 0;
+                                    foreach (var note in Model.PublishedNotes)
+                                    {
+                                        <tr>
+                                            <td class="srno">@(++i)</td>
+                                            <td><a href="/Admin/NoteDetails/@note.NoteID">@note.NoteTitle</a></td>
+                                            <td>@note.Category</td>
+                                            <td>@note.AttachmentSize</td>
+                                            <td>@note.SellType</td>
+                                            <td>&dollar;@note.Price</td>
+                                            <td>@note.Publisher</td>
+                                            @if (note.PublishedDate != null)
+                                            {
+                                                DateTime PublishedDate = note.PublishedDate ?? System.DateTime.MinValue;
 
-                                <tr>
-                                    <td class="srno">1</td>
-                                    <td><a href="#">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>10KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Pritesh Panchal</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a>
+                                                <td>@PublishedDate.ToString("dd-MM-yyyy, HH:mm")</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A</td>
 
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
+                                            }
+                                            <td class="text-center"><a href="/Admin/DownloadedNotes/@note.NoteID">@note.NoOfDownloads</a></td>
+                                            <td class="dots-menu-button">
+                                                <span class="dots">
+                                                    <img src="/Content/imgs/icons/dots.png">
+                                                    <div class="dropdown dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="/Assets/Notes/@note.NoteID">Download Note</a>
+                                                            <a class="dropdown-item" href="/Admin/NoteDetails/@note.NoteID">View More Details</a>
+                                                            @Ajax.ActionLink("Unpublish", "/NoteActions/" + note.NoteID + "/Unpublish", "Admin", null, new AjaxOptions()
+                                                            {
+                                                               UpdateTargetId = "unpublish-modal-content",
+                                                               HttpMethod = "GET",
+                                                               InsertionMode = InsertionMode.Replace,
+                                                               OnFailure = "alert('Something Went Wrong')",
+                                                               OnSuccess = "ReloadValidationScript('#unpublish-popup form')"
 
-                                <tr>
-                                    <td class="srno">2</td>
-                                    <td><a href="#">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>23MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Rahil Shah</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
+                                                            }, new { @class = "dropdown-item" })
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="10">No Records Found</td></tr>
+                                }
 
-                                <tr>
-                                    <td class="srno">3</td>
-                                    <td><a href="#">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>3KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Anish Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">4</td>
-                                    <td><a href="#">AI</a></td>
-                                    <td>IT</td>
-                                    <td>1MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Vijay Vaishnav</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">5</td>
-                                    <td><a href="#">Lorem Ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>105KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Mehul Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">6</td>
-                                    <td><a href="#">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>10KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Pritesh Panchal</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">7</td>
-                                    <td><a href="#">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>23MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Rahil Shah</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">8</td>
-                                    <td><a href="#">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>3KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Anish Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">9</td>
-                                    <td><a href="#">AI</a></td>
-                                    <td>IT</td>
-                                    <td>1MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Vijay Vaishnav</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">10</td>
-                                    <td><a href="#">Lorem Ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>105KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Mehul Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">11</td>
-                                    <td><a href="#">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>10KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Pritesh Panchal</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">12</td>
-                                    <td><a href="#">Accounts</a></td>
-                                    <td>Commerce</td>
-                                    <td>23MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Rahil Shah</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">13</td>
-                                    <td><a href="#">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>3KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Anish Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">14</td>
-                                    <td><a href="#">AI</a></td>
-                                    <td>IT</td>
-                                    <td>1MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Vijay Vaishnav</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">15</td>
-                                    <td><a href="#">Lorem Ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>105KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Mehul Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">16</td>
-                                    <td><a href="#">Data Science</a></td>
-                                    <td>Science</td>
-                                    <td>10KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Pritesh Panchal</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">17</td>
-                                    <td><a href="#">Account</a></td>
-                                    <td>Commerce</td>
-                                    <td>23MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Rahil Shah</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">18</td>
-                                    <td><a href="#">Social Studies</a></td>
-                                    <td>Social</td>
-                                    <td>3KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Anish Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">19</td>
-                                    <td><a href="#">AI</a></td>
-                                    <td>IT</td>
-                                    <td>1MB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Vijay Vaishnav</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a> </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="srno">20</td>
-                                    <td><a href="#">Lorem Ipsum</a></td>
-                                    <td>Lorem</td>
-                                    <td>105KB</td>
-                                    <td>Free</td>
-                                    <td>&dollar;0</td>
-                                    <td>Mehul Patel</td>
-                                    <td>09-10-2020, 10:10</td>
-                                    <td class="text-center"><a href="#">10</a></td>
-                                    <td class="dots-menu-button">
-
-                                        <span class="dots">
-                                            <img src="/Content/imgs/icons/dots.png">
-                                            <div class="dropdown" class="dots-menu">
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Download Note</a><a class="dropdown-item" href="#">View More Details</a><a class="dropdown-item" href="#">Unpublish</a>
-                                                    <a class="dropdown-item add-review-icon">Add Reviews/Feedback</a>
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
 
                             </tbody>
 
@@ -568,5 +220,3 @@
     <!-- Content Section Ends -->
 </section>
 <!-- Dashboard page Ends -->
-
-<script>alert("Work in progress, Yet to be completed.")</script>

@@ -14,6 +14,7 @@ using NotesMarketplace.Models.MailModels;
 namespace NotesMarketplace.Web.Controllers
 {
     [Authorize(Roles = "NormalUser, SuperAdmin, SubAdmin")]
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
     public class ContentController : Controller
     {
         public ActionResult GetProfilePicture(string MemberId, string UserProfile)

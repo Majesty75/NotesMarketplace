@@ -56,20 +56,9 @@
         </div>
 
     </div>
-    @*</form>*@
 }
 <script>
-    /* This Function is called my ajax actionlink onSuceess so that
-        the form obstrusive validation can be reloaded as we are adding this
-        form dynamically while the validation script is already loaded.
-     */
-    function ReloadValidationScript() {
-        var form = $("#report-popup form");
-        //console.log(form);
-        form.removeData('validator');
-        form.removeData('unobtrusiveValidation');
-        $.validator.unobtrusive.parse(form);
-    }
+    
     $('#report-popup').modal('show');
 
 </script>

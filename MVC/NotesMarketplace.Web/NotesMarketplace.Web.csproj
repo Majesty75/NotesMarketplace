@@ -224,6 +224,7 @@
     <Content Include="Content\js\bootstrap\bootstrap.min.js" />
     <Content Include="Content\js\header.js" />
     <Content Include="Content\js\jquery\jquery-3.5.1.min.js" />
+    <Content Include="Content\js\moment\moment.js" />
     <Content Include="Content\js\script.js" />
     <Content Include="Content\js\tablesorter\jquery.tablesorter.min.js" />
     <Content Include="Content\NotesData\4\CoverPage-4.png" />
@@ -287,7 +288,7 @@
     <Content Include="Views\Email\ContactUsMail.cshtml" />
     <Content Include="Views\Email\TempPassword.cshtml" />
     <Content Include="Views\Authentication\ChangePassword.cshtml" />
-    <Content Include="Views\Admin\AdminDashBoard.cshtml" />
+    <Content Include="Views\Admin\AdminDashboard.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Home\NoteDetails.cshtml" />
     <Content Include="Views\RegisteredUser\AddNotes.cshtml" />
@@ -302,6 +303,12 @@
     <Content Include="Views\RegisteredUser\_RatingsPopupModal.cshtml" />
     <Content Include="Views\RegisteredUser\_ReportNotePopupModal.cshtml" />
     <Content Include="Views\Email\ReportedNote.cshtml" />
+    <Content Include="Views\Admin\NoteViews\NoteDetails.cshtml" />
+    <Content Include="Views\Admin\NoteViews\NotesInReview.cshtml" />
+    <Content Include="Views\Admin\NoteViews\_RejectPopupModal.cshtml" />
+    <Content Include="Views\Admin\NoteViews\PublishedNotes.cshtml" />
+    <Content Include="Views\Email\NoteUnpublished.cshtml" />
+    <Content Include="Views\Admin\NoteViews\_UnpublishNotePopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

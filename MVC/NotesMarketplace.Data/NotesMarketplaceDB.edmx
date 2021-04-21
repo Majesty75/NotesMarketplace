@@ -95,6 +95,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="AttachmentSize" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="NotesReports">
           <Key>
@@ -648,6 +649,7 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Note" Relationship="Self.NotesAttachments_NoteID_FK" FromRole="NotesAttachments" ToRole="Notes" />
+          <Property Name="AttachmentSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NotesReport">
           <Key>
@@ -1195,6 +1197,7 @@
           <EntitySetMapping Name="NotesAttachments">
             <EntityTypeMapping TypeName="NotesMarketPlaceModel.NotesAttachment">
               <MappingFragment StoreEntitySet="NotesAttachments">
+                <ScalarProperty Name="AttachmentSize" ColumnName="AttachmentSize" />
                 <ScalarProperty Name="AttachementID" ColumnName="AttachementID" />
                 <ScalarProperty Name="NoteID" ColumnName="NoteID" />
                 <ScalarProperty Name="FilesName" ColumnName="FilesName" />

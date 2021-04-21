@@ -12,10 +12,11 @@ using NotesMarketplace.Data.DownloadsDB;
 using NotesMarketplace.Models.MailModels;
 using NotesMarketplace.Web.Mailer;
 using NotesMarketplace.Data.SystemConfigDB;
-
+using NotesMarketplace.Web.RoleManager;
 
 namespace NotesMarketplace.Web.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
     public class RegisteredUserController : Controller
     {
         [HttpGet]
@@ -24,6 +25,11 @@ namespace NotesMarketplace.Web.Controllers
         {
             if (Session["UserID"] == null)
                 return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/Dashboard" });
+
+            //Check if Admin
+            string[] roles = new NotesMarketPlaceRoleManager().GetRolesForUser(User.Identity.Name);
+            if (roles.Contains("SuperAdmin") || roles.Contains("SubAdmin"))
+                return RedirectToAction("AdminDashBoard", "Admin");
 
             int UserID = Convert.ToInt32(User.Identity.Name);
 
@@ -141,6 +147,10 @@ namespace NotesMarketplace.Web.Controllers
         public ActionResult AddNotes(NoteModel Nm,string SaveOrPublish)
         {
 
+            ViewBag.Title = "AddNotes";
+            ViewBag.Authorized = true;
+            ViewBag.LoadValidationScript = true;
+
             if (Session["UserID"] == null)
                 return RedirectToAction("Login", "Authentication", new { ReturnUrl = "/RegisteredUser/AddNotes" });
 
@@ -158,12 +168,25 @@ namespace NotesMarketplace.Web.Controllers
                 ModelState.AddModelError("PreviewFile", "Only PDF files that are under 30MBs are allowed.");
             }
 
+            long NoteSize = 0;
 
             foreach (HttpPostedFileBase file in Nm.NotesFiles)
-                if(file == null)
-                    ModelState.AddModelError("NotesFiles", "Make sure you have uploaded PDF file that are under 30MBs");
-                else if (Path.GetExtension(file.FileName).ToLower() != ".pdf" || file.ContentLength > 31457280)
-                    ModelState.AddModelError("NotesFiles", "Only PDF file that are under 30MBs are allowed.");
+            {
+                if (file == null)
+                    ModelState.AddModelError("NotesFiles", "Make sure you have uploaded PDF file(s) that are under 30MBs");
+                else if (Path.GetExtension(file.FileName).ToLower() != ".pdf")
+                {
+
+                    ModelState.AddModelError("NotesFiles", "Only PDF file(s) are allowed.");
+                }
+                if (file != null)
+                    NoteSize += file.ContentLength;
+            }
+            if(NoteSize > 31457280)
+            {
+                ModelState.AddModelError("NotesFiles", "Combine PDF(s) size should not exceeds 30MBs");
+            }
+                
 
             if (Nm.NotesCoverPage != null && !MimeMapping.GetMimeMapping(Nm.NotesCoverPage.FileName).ToLower().Contains("image"))
                 ModelState.AddModelError("NotesCoverPage", "Only Images are allowed.");

@@ -1,6 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
+@functions
+{
+    public string isActive(string webpage)
+    {
+        return ViewBag.Title == webpage ? "selected" : string.Empty;
+    }
+}
+
+@{
+    if (TempData["Message"] != null)
+    {
+        ViewBag.Message = (string)TempData["Message"];
+    }
+}
+
+
 <head>
 
     <!-- Meta Tags -->
@@ -36,33 +52,33 @@
             <div class="container-fluid">
                 <div class="header-wrapper">
                     <div class="logo-wrapper">
-                        <a href="./dashboard.html" title="Site Logo">
-                            <img src="../imgs/icons/logo.png" alt="logo">
+                        <a href=@Url.Action("AdminDashboard", "Admin") title="Site Logo">
+                            <img src="/Content/imgs/icons/logo.png" alt="logo">
                         </a>
                     </div>
                     <div class="navigation-wrapper d-none d-md-flex">
                         <nav class="main-nav">
                             <ul class="menu-navigation">
-                                <li class="selected">
-                                    <a href="./dashboard.html">Dashboard</a>
+                                <li class="@isActive("AdminDashboard")">
+                                    <a href=@Url.Action("AdminDashboard", "Admin")>Dashboard</a>
                                 </li>
                                 <li class="contex-menu-toggle">
                                     <a>Notes</a>
                                     <div class="dropdown">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
-                                            <a class="dropdown-item" href="./published-notes.html">Published Notes</a>
-                                            <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
-                                            <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                            <a class="dropdown-item @isActive("NotesInReview")" href=@Url.Action("NotesInReview", "Admin")>Notes Under Review</a>
+                                            <a class="dropdown-item @isActive("PublishedNotes")" href=@Url.Action("PublishedNotes", "Admin")>Published Notes</a>
+                                            <a class="dropdown-item @isActive("DownloadedNotes")" href=@Url.Action("DownloadedNotes", "Admin")>Downloaded Notes</a>
+                                            <a class="dropdown-item @isActive("RejectedNotes")" href=@Url.Action("RejectedNotes", "Admin")>Rejected Notes</a>
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="./members.html">Members</a></li>
+                                <li class="@isActive("Members")"><a href=@Url.Action("Members", "Admin")>Members</a></li>
                                 <li class="contex-menu-toggle">
                                     <a>Reports</a>
                                     <div class="dropdown">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                            <a class="dropdown-item @isActive("SpamReports")" href=@Url.Action("SpamReports", "Admin")>Spam Reports</a>
                                         </div>
                                     </div>
                                 </li>
@@ -70,23 +86,23 @@
                                     <a>Settings</a>
                                     <div class="dropdown">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="./manage-system-config.html">Manage System Configuration</a>
-                                            <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
-                                            <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
-                                            <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
-                                            <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                            <a class="dropdown-item @isActive("SystemConfig")" href=@Url.Action("SystemConfig", "Admin")>Manage System Configuration</a>
+                                            <a class="dropdown-item @isActive("Admins")" href=@Url.Action("Admins", "Admin")>Manage Administator</a>
+                                            <a class="dropdown-item @isActive("Categories")" href=@Url.Action("Categories", "Admin")>Manage Category</a>
+                                            <a class="dropdown-item @isActive("Types")" href=@Url.Action("Types", "Admin")>Manage Type</a>
+                                            <a class="dropdown-item @isActive("Countries")" href=@Url.Action("Countries", "Admin")>Manage Countries</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <!-- User Profile Picture -->
-                                    <div class="user-img contex-menu-toggle">
-                                        <img src="../imgs/user-images/user-img.png">
+                                    <div class="contex-menu-toggle">
+                                        <img src="@Session["UserProfile"]" class="user-img">
                                         <div class="dropdown" id="user-context-menu">
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
-                                                <a class="dropdown-item" href="../change-password.html">Change Password</a>
-                                                <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                                <a class="dropdown-item @isActive("AdminProfile")" href=@Url.Action("AdminProfile", "Admin")>Update Profile</a>
+                                                <a class="dropdown-item @isActive("ChangePassword")" href=@Url.Action("ChangePassword", "Authentication")>Change Password</a>
+                                                <a class="dropdown-item" href=@Url.Action("Logout", "Authentication")>LOGOUT</a>
                                             </div>
                                         </div>
                                     </div>
@@ -96,30 +112,30 @@
                         </nav>
                     </div>
 
-                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="../imgs/icons/bars-solid-rblue.png"></button>
+                    <button class="btn btn-general menu-btn d-md-none"><img class="img-fluid" src="/Content/imgs/icons/bars-solid-rblue.png"></button>
                     <!-- Mobile Navigation -->
                     <nav class="d-md-none navbar" id="mobile-navigation-wrapper">
                         <ul class="menu-navigation navbar-nav">
-                            <li class="nav-item">
-                                <a href="./dashboard.html">Dashboard</a>
+                            <li class="nav-item @isActive("AdminDashboard")">
+                                <a href=@Url.Action("AdminDashboard", "Admin")>Dashboard</a>
                             </li>
                             <li class="contex-menu-toggle nav-item">
                                 <a>Notes</a>
                                 <div class="dropdown">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
-                                        <a class="dropdown-item" href="./published-notes.html">Published Notes</a>
-                                        <a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
-                                        <a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+                                        <a class="dropdown-item @isActive("NotesInReview")" href=@Url.Action("NotesInReview", "Admin")>Notes Under Review</a>
+                                        <a class="dropdown-item @isActive("PublishedNotes")" href=@Url.Action("PublishedNotes", "Admin")>Published Notes</a>
+                                        <a class="dropdown-item @isActive("DownloadedNotes")" href=@Url.Action("DownloadedNotes", "Admin")>Downloaded Notes</a>
+                                        <a class="dropdown-item @isActive("RejectedNotes")" href=@Url.Action("RejectedNotes", "Admin")>Rejected Notes</a>
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item"><a href="./members.html">Members</a></li>
+                            <li class="@isActive("Members")"><a href=@Url.Action("Members", "Admin")>Members</a></li>
                             <li class="contex-menu-toggle nav-item">
                                 <a>Reports</a>
                                 <div class="dropdown">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="./reports.html">Spam Reports</a>
+                                        <a class="dropdown-item @isActive("SpamReports")" href=@Url.Action("SpamReports", "Admin")>Spam Reports</a>
                                     </div>
                                 </div>
                             </li>
@@ -127,24 +143,24 @@
                                 <a>Settings</a>
                                 <div class="dropdown">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="./manage-system-config.html">Manage System Configuration</a>
-                                        <a class="dropdown-item" href="./manage-admin.html">Manage Administator</a>
-                                        <a class="dropdown-item" href="./manage-category.html">Manage Category</a>
-                                        <a class="dropdown-item" href="./manage-types.html">Manage Type</a>
-                                        <a class="dropdown-item" href="./manage-countries.html">Manage Countries</a>
+                                        <a class="dropdown-item @isActive("SystemConfig")" href=@Url.Action("SystemConfig", "Admin")>Manage System Configuration</a>
+                                        <a class="dropdown-item @isActive("Admins")" href=@Url.Action("Admins", "Admin")>Manage Administator</a>
+                                        <a class="dropdown-item @isActive("Categories")" href=@Url.Action("Categories", "Admin")>Manage Category</a>
+                                        <a class="dropdown-item @isActive("Types")" href=@Url.Action("Types", "Admin")>Manage Type</a>
+                                        <a class="dropdown-item @isActive("Countries")" href=@Url.Action("Countries", "Admin")>Manage Countries</a>
                                     </div>
                                 </div>
                             </li>
                             <li class="nav-item dropdown contex-menu-toggle">
                                 <!-- User Profile Picture -->
-                                <div class="user-img">
-                                    <img src="../imgs/user-images/user-img.png">
+                                <div class="">
+                                    <img src="@Session["UserProfile"]" class="user-img">
                                 </div>
                                 <div class="dropdown" id="user-context-menu">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="./admin-profile.html">Update Profile</a>
-                                        <a class="dropdown-item" href="../change-password.html">Change Password</a>
-                                        <a class="dropdown-item" href="../logout.html">LOGOUT</a>
+                                        <a class="dropdown-item @isActive("AdminProfile")" href=@Url.Action("AdminProfile", "Admin")>Update Profile</a>
+                                        <a class="dropdown-item @isActive("ChangePassword")" href=@Url.Action("ChangePassword", "Authentication")>Change Password</a>
+                                        <a class="dropdown-item" href=@Url.Action("Logout", "Authentication")>LOGOUT</a>
                                     </div>
                                 </div>
                             </li>
@@ -189,7 +205,27 @@
 
 
     @Scripts.Render("~/bundles/JSDependecies")
-    @Scripts.Render("~/bundles/JSValidate")
+    <script src="/Content/js/moment/moment.js"></script>
+    @if (ViewBag.LoadAjaxJS != null)
+    {
+        <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    }
+    @if (ViewBag.LoadValidationScript != null)
+    {
+        @Scripts.Render("~/bundles/JSValidate")
+    }
+    @if (@ViewBag.Title == "Home")
+    {
+        @Scripts.Render("~/bundles/HomeHeaderScript")
+    }
+    @if (ViewBag.Message != null)
+    {
+        <script>
+                window.onload = (event) => {
+                    alert("@ViewBag.Message");
+                };
+        </script>
+    }
 </body>
 
 </html>

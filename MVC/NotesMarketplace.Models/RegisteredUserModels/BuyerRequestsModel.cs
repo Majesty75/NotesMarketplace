@@ -7,6 +7,7 @@ namespace NotesMarketplace.Models.RegisteredUserModels
 {
     public class BuyerRequestsModel
     {
+
         public BuyerRequestsModel()
         {
             BRequests = new List<BuyerRequest>();

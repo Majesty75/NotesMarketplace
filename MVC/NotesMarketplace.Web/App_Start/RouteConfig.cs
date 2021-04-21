@@ -13,10 +13,18 @@ namespace NotesMarketplace.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "EmailVerification",
                 url: "Authentication/VerifyEmailAddress/{UiD}/{strGuid}",
                 defaults: new { Controller = "Authentication", Action = "VerifyEmailAddress"}
+            );
+
+            routes.MapRoute(
+                name: "AdminNoteActionsRoutes",
+                url: "Admin/NoteActions/{NoteID}/{action}/{ID}",
+                defaults: new { controller = "Admin", ID = UrlParameter.Optional }
             );
 
             routes.MapRoute(

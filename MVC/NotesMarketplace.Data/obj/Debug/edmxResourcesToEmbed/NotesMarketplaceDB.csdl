@@ -109,6 +109,7 @@
     <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Note" Relationship="Self.NotesAttachments_NoteID_FK" FromRole="NotesAttachments" ToRole="Notes" />
+    <Property Name="AttachmentSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="NotesReport">
     <Key>

@@ -82,82 +82,232 @@ $(function() {
     
 });
 
+/* ======================================
+    Select from table
+   ====================================== */
+function SelectTableValue() {
+
+    //console.log("Initialized");
+
+    var table = $($(this).attr('data-target-table'));
+
+    var targetCol = $(this).attr('data-target-col');
+
+    var isDate = $(this).attr('data-is-dat');
+
+    //data selected is not date
+    if (isDate != "1") {
+        $(this).on("change", function () {
+
+            if (table.find('tbody tr.no-results').length > 0 && table.find('tbody').find('tr').length == 1)
+                return
+            else if (table.find('tbody tr').length > 0)
+                table.find('tbody tr.no-results').remove();
+
+            var tableRows = table.find('tbody').children();
+
+            var searchText = $(this).val();
+
+            var resultsFound = false
+
+            if (searchText == "All") {
+                tableRows.toggle(true);
+                return
+            }
+
+            searchText = searchText.toLowerCase();
+
+            tableRows.filter(function () {
+                console.log($(this).children().eq(targetCol).text());
+                doesItContainText = $(this).children().eq(targetCol).text().toLowerCase().indexOf(searchText) > -1;
+                $(this).toggle(doesItContainText);
+                if (doesItContainText) {
+                    resultsFound = true;
+                }
+            });
+
+            if (!resultsFound) {
+                var colSpan = table.find('tr:first').children().length;
+                table.find('tbody').append('<tr class="no-results"><td class="text-center" colspan="' + colSpan + '">No Records Found</td></tr>');
+            }
+
+        });
+    }
+
+    else {
+        $(this).on("change", function () {
+
+            //console.log("Called On Change");
+
+            if (table.find('tbody tr.no-results').length > 0 && table.find('tbody').find('tr').length == 1)
+                return
+            else if (table.find('tbody tr').length > 0)
+                table.find('tbody tr.no-results').remove();
+
+            var tableRows = table.find('tbody').children();     
+
+            tableRows.toggle(false);
+
+            var searchVal = $(this).val();
+
+            if (searchVal != "All") {
+
+                var searchMonth = moment(searchVal, "yyyy-MM").month();
+
+                //console.log("Search month:", searchMonth);
+
+                var resultsFound = false;
+                tableRows.filter(function () {
+
+                    var monthOfRow = moment($(this).children().eq(targetCol).text(), "dd-MM-yyyy, HH:mm");
+
+                    if (monthOfRow.month() != NaN) {
+                        if (monthOfRow.month() == searchMonth) {
+                            $(this).toggle();
+                            resultsFound = true;
+                        }
+                    }
+                });
+
+                if (!resultsFound) {
+                    var colSpan = table.find('tr:first').children().length;
+                    table.find('tbody').append('<tr class="no-results"><td class="text-center" colspan="' + colSpan + '">No Records Found</td></tr>');
+                }
+            }
+            else {
+                if (tableRows.length != 0) {
+                    tableRows.toggle(true);
+                }
+                else {
+                    var colSpan = table.find('tr:first').children().length;
+                    table.find('tbody').append('<tr class="no-results"><td class="text-center" colspan="' + colSpan + '">No Records Found</td></tr>');
+                }
+            }
+            $('.pagination-control[pagination-data="' + $(this).attr('data-target-table') + ' tbody"]').each(PaginateTable);
+        });
+    }
+}
+
+$(function () {
+    $(".select-table-val").each(SelectTableValue);
+});
+
+/*  =====================================
+    Initialize table sorter
+    ===================================== */
+
+$(function () {
+
+    //initialize table sorter and sort on descending 1st column
+    $('.tablesorter').each(function () {
+
+        //disable sort on action column
+        $(".tablesorter thead tr th:last-child").data("sorter", false);
+
+        //get default sort type
+        var sortType = $(this).attr('data-sort-on-col-and-order').split(',');
+        var sortArr = sortType.map(Number);
+
+        //sort on default sort type
+        $(this).tablesorter({
+
+            sortList: [sortArr],
+
+            dateFormat: "ddmmyyyy"
+
+        });
+
+        $(this).bind("sortEnd", function (e, t) {
+            //console.log("paginated");
+            $('.pagination-control[pagination-data="' + $(this).attr('id') + ' tbody"]').each(PaginateTable);
+        });
+    });
+
+});
 
 
 /*  =====================================
                 Pagination
     ===================================== */
 
-function paginateView() {
+function PaginateTable() {
 
-    $('.pagination-control').each(function () {
+    //paginator element
+    var pageControl = $(this);
 
-        //paginator element
-        var pageControl = $(this);
+    //element to be paginated
+    var paginate = $(pageControl.attr('pagination-data'));
 
-        //element to be paginated
-        var paginate = $(pageControl.attr('pagination-data'));
+    //no of element shown per page
+    var elementsShown = parseInt(paginate.attr('data-tr-per-page'), 10);
 
-        //no of element shown per page
-        var elementsShown = parseInt(paginate.attr('data-tr-per-page'), 10);
+    //no of total elements
+    var totalElements = paginate.children().filter(':visible');
 
-        //no of total elements
-        var totalElements = paginate.children();
+    //no of total pages
+    var numPages = Math.ceil(totalElements.length / elementsShown);
 
-        //no of total pages
-        var numPages = Math.ceil(totalElements.length / elementsShown);
+    //Max page shown in paginator (incomplete function  to show limited pages link in paginator)
+    var maxPage = parseInt(pageControl.attr('max-page-shown'));
 
-        //Max page shown in paginator (incomplete function  to show limited pages link in paginator)
-        var maxPage = parseInt(pageControl.attr('max-page-shown'));
+    totalElements.hide();
 
+    pageControl.find('nav ul>li').not(':first').not(':last').remove();
+
+    // add links to paginator for all pages
+    for (i = numPages; i > 0; i--) {
+
+        //max page (incomplte function)
+        if (i > maxPage) {
+            pageControl.find('nav ul>li:first').after('<li style="display:none;" class="page-item"><a class="page-no page-link" page="' + i + '">' + i + '</a></li>');
+        } else {
+
+            pageControl.find('nav ul>li:first').after('<li class="page-item"><a class="page-no page-link" page="' + i + '">' + i + '</a></li>');
+        }
+    }
+
+    //click function to show page and hide current page
+    pageControl.find('.page-no').on('click', function () {
+
+        //active class change 
+        pageControl.find('nav ul>li a').removeClass('active');
+        $(this).addClass('active');
+
+        var page = parseInt($(this).attr('page'));
         totalElements.hide();
 
-        // add links to paginator for all pages
-        for (i = numPages; i > 0; i--) {
+        var showStart = (page - 1) * elementsShown;
 
-            //max page (incomplte function)
-            if (i > maxPage) {
-                pageControl.find('nav ul>li:first').after('<li style="display:none;" class="page-item"><a class="page-no page-link" page="' + i + '">' + i + '</a></li>');
-            } else {
-
-                pageControl.find('nav ul>li:first').after('<li class="page-item"><a class="page-no page-link" page="' + i + '">' + i + '</a></li>');
-            }
-        }
-
-        //click function to show page and hide current page
-        pageControl.find('.page-no').on('click', function () {
-
-            //active class change 
-            pageControl.find('nav ul>li a').removeClass('active');
-            $(this).addClass('active');
-
-            var page = parseInt($(this).attr('page'));
-            totalElements.hide();
-
-            var showStart = (page - 1) * elementsShown;
-
-            //calculate and show next max element per page
-            totalElements.slice(showStart, ((showStart + elementsShown) < totalElements.length) ? (showStart + elementsShown) : totalElements.length).fadeIn('slow');
-        });
-
-
-        //trigger click on first page to show initial page
-        pageControl.find('.page-no:first').trigger('click');
-
-        //nprevious page trigger click on previos page link
-        pageControl.find('nav ul>li:first').on('click', function () {
-
-            pageControl.find('nav ul>li a.active').parent().prev().find('a.page-no').trigger('click');
-
-        });
-
-        //next page trigger click on next page link
-        pageControl.find('nav ul>li:last').on('click', function () {
-
-            pageControl.find('nav ul>li a.active').parent().next().find('a.page-no').trigger('click');
-
-        });
+        //calculate and show next max element per page
+        totalElements.slice(showStart, ((showStart + elementsShown) < totalElements.length) ? (showStart + elementsShown) : totalElements.length).fadeIn('slow');
     });
+
+    pageControl.find('nav ul>li:first').off("click");
+
+    pageControl.find('nav ul>li:last').off("click");
+
+    //nprevious page trigger click on previos page link
+    pageControl.find('nav ul>li:first').on('click', function () {
+
+        //console.log(pageControl.find('nav ul>li a.active').parent().prev().find('a.page-no').text());
+        pageControl.find('nav ul>li a.active').parent().prev().find('a.page-no').trigger('click');
+
+    });
+
+    //next page trigger click on next page link
+    pageControl.find('nav ul>li:last').on('click', function () {
+
+        pageControl.find('nav ul>li a.active').parent().next().find('a.page-no').trigger('click');
+
+    });
+
+    //trigger click on first page to show initial page
+    pageControl.find('.page-no:first').trigger('click');
+}
+
+function paginateView() {
+
+    $('.pagination-control').each(PaginateTable);
 }
 
 $(function () {
@@ -178,110 +328,58 @@ $(function() {
 
         $(this).on('click', function() {
 
-            if (tableBody.find('.no-results').length > 0)
+            if (tableBody.find('.no-results').length > 0 && tableBody.find('tr').length == 1)
                 return
+            else if (tableBody.find('.no-results').length > 0)
+                tableBody.find('.no-results').remove();
+
 
             var resultsFound = false;
             //search text
             var text = $($(this).attr('data-search-input')).val();
-            if(!text.trim()){
+            if (!text.trim()) {
+                tableBody.find('tr').toggle(true);
+
+                $('.pagination-control[pagination-data="' + tableBodyString + '"]').each(PaginateTable);
+            
                 return
             }
 
             text = text.toLowerCase();
+
             var doesItContainText;
-
+            
             //search tbody
-            tableBody.find('tr').filter(function(){
+            tableBody.find('tr').each(function () {
 
-                doesItContainText = $(this).text().toLowerCase().indexOf(text) > -1;
-                $(this).toggle(doesItContainText);
-                if(doesItContainText) {
+                doesItContainText = false;
+
+                $(this).find('td:not(:last-child)').each(function () {
+                    if ($(this).text().toLowerCase().indexOf(text) > -1) {
+                        doesItContainText = true;
+                    }
+                });
+
+                if (doesItContainText) {
                     resultsFound = true;
                 }
+
+                $(this).toggle(doesItContainText);
 
             });
 
             if(!resultsFound) {
-                //var colSpan = tableBody.find('tr:first').children().length;
-                var colSpan = 100;
+
+                var colSpan = tableBody.find('tr:first').children().length;
+                //var colSpan = 100;
                 tableBody.append('<tr class="no-results"><td class="text-center" colspan="'+colSpan+'">No Records Found</td></tr>');
-                setTimeout(function () {
-
-                    if (tableBody.children.length > 1) {
-                        tableBody.find('.no-results').remove();
-
-                        //trigger click on first page to show initial page
-                        $('.pagination-control[pagination-data="'+ tableBodyString + '"]').find('.page-no:first').trigger('click');
-                    }
-
-                },3000);
             }
 
+            $('.pagination-control[pagination-data="' + tableBodyString + '"]').each(PaginateTable);
         });
 
     });
 });
-
-/*  =====================================
-    Initialize table sorter
-    ===================================== */
-
-$(function() {
-    
-    //initialize table sorter and sort on descending 1st column
-    $('.tablesorter').each(function() {
-        
-        //disable sort on action column
-        $(".tablesorter thead tr th:last-child").data("sorter", false);
-        
-        //get default sort type
-        var sortType = $(this).attr('data-sort-on-col-and-order').split(',');
-        var sortArr = sortType.map(Number);
-        
-        //sort on default sort type
-        $(this).tablesorter({ 
-            
-            sortList: [sortArr],
-            
-            dateFormat : "ddmmyyyy"
-            
-        });
-        
-    });
-
-});
-
-
-/*  =====================================
-    Modal - Set Note ID For Popup Action
-    ===================================== */
-
-//$(function() {
-   
-//    //show modal on click on reject button on notes under review section
-//    $('.table').on('click', '.btn-danger', function() {
-        
-//        var button = $(event.target);
-//        var note = button.parents('tr');
-//        console.log(note);
-//        var noteIDInput = $($('#reject-popup').attr('data-noteid-element'));
-//        noteIDInput.val(note.attr('id'));
-//        $('#reject-popup').find('.horizontal-heading h4').text($(note).children().eq(1).text()+' - '+$(note).children().eq(2).text());
-//        $('#reject-popup').modal('show');
-        
-//    });
-    
-//    //get noteID from tr parent element of event target element and set it for modal
-//    $('#review-popup').on('show.bs.modal', function(event) {
-        
-//        var button = $(event.relatedTarget);
-//        var noteID = button.parents('tr').attr('id');
-//        var noteIDInput = $($(event.target).attr('data-noteid-element'));
-//        noteIDInput.val(noteID);
-//    });
-    
-//});
 
 /*  =====================================
             Mobile Menu Toggle Button
@@ -392,3 +490,19 @@ $(function () {
     }); 
 
 });
+
+/*  ==================================
+        Reload unobstrusive validation 
+    ================================== */
+
+/* This Function is called my ajax actionlink onSuceess so that
+    the form obstrusive validation can be reloaded as we are adding this
+    form dynamically while the validation script is already loaded.
+*/
+function ReloadValidationScript(formId) {
+    var form = $(formId);
+    //console.log(form);
+    form.removeData('validator');
+    form.removeData('unobtrusiveValidation');
+    $.validator.unobtrusive.parse(form);
+}

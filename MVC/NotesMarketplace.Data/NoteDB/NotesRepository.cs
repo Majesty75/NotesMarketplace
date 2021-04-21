@@ -7,6 +7,7 @@ using NotesMarketplace.Models.HomeModels;
 using NotesMarketplace.Models.RegisteredUserModels;
 using System.IO;
 using System.Diagnostics;
+using NotesMarketplace.Models.AdminModels;
 
 namespace NotesMarketplace.Data.NoteDB
 {
@@ -206,6 +207,8 @@ namespace NotesMarketplace.Data.NoteDB
                 string Serverpath = AppRoot + "\\Members\\" + UID + "\\Notes\\" + note.NoteID + "\\";
                 Directory.CreateDirectory(Serverpath);
 
+                DirectoryInfo Dir = new DirectoryInfo(Serverpath);
+
                 foreach (HttpPostedFileBase file in Nm.NotesFiles)
                 {
                     if (file != null)
@@ -216,6 +219,9 @@ namespace NotesMarketplace.Data.NoteDB
                     }
                 }
 
+                double filesize = Dir.EnumerateFiles().Sum(file => file.Length) / 1000;
+                string SizeFormatString = filesize > 1024 ? "{0:0.0}MB" : "{0:0}KB";
+
                 NotesAttachment Na = new NotesAttachment()
                 {
                     NoteID = note.NoteID,
@@ -225,7 +231,8 @@ namespace NotesMarketplace.Data.NoteDB
                     ModifiedBy = UID,
                     IsActive = true,
                     ModifiedDate = System.DateTime.Now,
-                    CreatedDate = System.DateTime.Now
+                    CreatedDate = System.DateTime.Now,
+                    AttachmentSize = String.Format(SizeFormatString, filesize > 1024 ? filesize/1024 : filesize)
                 };
 
                 context.NotesAttachments.Add(Na);
@@ -571,6 +578,7 @@ namespace NotesMarketplace.Data.NoteDB
                 {
                     string filenames = "";
                     int i = 1;
+                    long filesize = 0;
 
                     string Serverpath = AppRoot + "\\Members\\" + UserID + "\\Notes\\" + NoteInDB.NoteID + "\\";
                     Directory.CreateDirectory(Serverpath);
@@ -589,11 +597,15 @@ namespace NotesMarketplace.Data.NoteDB
                         }
                     }
 
+                    filesize = Dir.EnumerateFiles().Sum(file => file.Length)/1000;
+                    string SizeFormatString = filesize > 1024 ? "{0:0.0}MB" : "{0:0}KB";
+
                     NotesAttachment Na = context.NotesAttachments.FirstOrDefault(n => n.NoteID == NoteInDB.NoteID);
 
                     Na.FilesName = filenames;
                     Na.ModifiedBy = UserID;
                     Na.ModifiedDate = System.DateTime.Now;
+                    Na.AttachmentSize = String.Format(SizeFormatString, filesize > 1024 ? filesize/1024 : filesize);
                 }
 
                 try
@@ -664,4 +676,217 @@ namespace NotesMarketplace.Data.NoteDB
         }
     }
 
+    public class AdminNoteRepository
+    {
+        /// <summary>
+        /// loads Published notes having status 3 in a list of <code>AdminDashboardModel.PublishedNote</code> and returns it 
+        /// </summary>
+        /// <returns>List of type <code>AdminDashboardModel.PublishedNote</code></returns>
+        public static List<AdminDashboardModel.PublishedNote> GetPublishedNotes()
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                var PublishedNotesInDB = context.Notes.Where(n => n.NoteStatus == 3).ToList();
+
+                List<AdminDashboardModel.PublishedNote> PublishedNotes = new List<AdminDashboardModel.PublishedNote>();
+
+                foreach(var note in PublishedNotesInDB)
+                {
+                    User Seller = context.Users.FirstOrDefault(u => u.UserID == note.SellerID);
+                    User Admin = context.Users.FirstOrDefault(u => u.UserID == note.ActionBy);
+                    PublishedNotes.Add(new AdminDashboardModel.PublishedNote()
+                    {
+                        NoteID = note.NoteID,
+                        NoteTitle = note.Title,
+                        Category = note.NoteCategory.CategoryName,
+                        AttachmentSize = context.NotesAttachments.FirstOrDefault(na => na.NoteID == note.NoteID).AttachmentSize,
+                        SellType = note.IsPaid ? "Paid" : "Free",
+                        Price = note.Price ?? 0,
+                        Publisher = Seller.FirstName + " " + Seller.LastName,
+                        PublishedDate = note.PublishedDate,
+                        NoOfDownloads = context.Downloads.Where(dwn => dwn.NoteID == note.NoteID && dwn.IsAllowed && dwn.User.RoleID > 2).Count(),
+                        ApprovedBy = Admin.FirstName + " " + Admin.LastName,
+                        PublisherID = Seller.UserID
+                    });
+                }
+
+                return PublishedNotes;
+            }
+        }
+
+        /// <summary>
+        /// Get Counts of notes in review
+        /// </summary>
+        /// <returns>Int count of notes in reviews</returns>
+        public static int GetCountNotesInReview()
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                return context.Notes.Where(n => n.NoteStatus == 2 || n.NoteStatus == 1).Count();
+            }
+        }
+
+        /// <summary>
+        /// Get all notes in review for admin
+        /// </summary>
+        /// <returns>Return List of AdminNotesInReview's Inner class NotesInReview</returns>
+        public static List<AdminNotesInReviewModel.NoteInReview> GetNotesInReviews()
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                var NotesInDB = context.Notes.Where(n => n.NoteStatus == 1 || n.NoteStatus == 2).ToList();
+
+                List<AdminNotesInReviewModel.NoteInReview> Notes = new List<AdminNotesInReviewModel.NoteInReview>();
+
+                foreach (var note in NotesInDB)
+                {
+                    User Seller = context.Users.FirstOrDefault(u => u.UserID == note.SellerID);
+                    Notes.Add(new AdminNotesInReviewModel.NoteInReview()
+                    {
+                        NoteID = note.NoteID,
+                        NoteTitle = note.Title,
+                        NoteCategory = note.NoteCategory.CategoryName,
+                        Seller = Seller.FirstName + " " + Seller.LastName,
+                        SellerID = Seller.UserID,
+                        DateAdded = note.ModifiedDate,
+                        status = note.NoteStatus == 1 ? "Submitted For Review" : "In Review"
+                    });
+                }
+
+                return Notes;
+            }
+        }
+
+        public static bool UnpublishNote(int NoteID, int AdminID, string Remarks)
+        {
+            using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
+            {
+                var note = context.Notes.FirstOrDefault(n => n.NoteID == NoteID && n.NoteStatus == 3);
+
+                if (note == null)
+                    return false;
+                else
+                {
+                    note.NoteStatus = 5;
+                    note.ModifiedDate = System.DateTime.Now;
+                    note.ModifiedBy = AdminID;
+                    note.ActionBy = AdminID;
+                    note.AdminRemarks = Remarks;
+                }
+                try
+                {
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Approves Note i.e changes status to 3: published and adds admin's id and remarks as Ok
+        /// </summary>
+        /// <param name="NoteID">Note To Be Approved</param>
+        /// <param name="AdminID">UserID of Admin that approved the note.</param>
+        /// <returns>Boolean true if successful else false </returns>
+        public static bool ApproveNote(int NoteID, int AdminID)
+        {
+            using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
+            {
+                var note = context.Notes.FirstOrDefault(n => n.NoteID == NoteID && (n.NoteStatus == 1 || n.NoteStatus == 2));
+
+                if (note == null)
+                    return false;
+                else
+                {
+                    note.NoteStatus = 3;
+                    note.ActionBy = AdminID;
+                    note.AdminRemarks = "Ok";
+                    note.PublishedDate = System.DateTime.Now;
+                    note.ModifiedDate = System.DateTime.Now;
+                    note.ModifiedBy = AdminID;
+                }
+                try
+                {
+                    context.SaveChanges();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Approves Note i.e changes status to 3: published and adds admin's id and remarks as Ok
+        /// </summary>
+        /// <param name="NoteID">Note To Be Approved</param>
+        /// <param name="AdminID">UserID of Admin that approved the note.</param>
+        /// <returns> int: meaning
+        ///             1: Successful
+        ///             0: Unsuccessful
+        ///            -1: Already inreview
+        /// </returns>
+        public static int MakeNoteInReview(int NoteID, int AdminID)
+        {
+            using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
+            {
+                var note = context.Notes.FirstOrDefault(n => n.NoteID == NoteID && (n.NoteStatus == 1 || n.NoteStatus == 2));
+
+                if (note == null)
+                    return 0;
+                else if (note.NoteStatus == 2)
+                {
+                    return -1;
+                }
+                else
+                {
+                    note.NoteStatus = 2;
+                    note.ModifiedDate = System.DateTime.Now;
+                    note.ModifiedBy = AdminID;
+                    note.ActionBy = AdminID;
+                }
+                try
+                {
+                    context.SaveChanges();
+                    return 1;
+                }
+                catch (Exception e)
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public static bool RejectNote(int NoteID, int AdminID, string Remarks)
+        {
+            using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
+            {
+                var note = context.Notes.FirstOrDefault(n => n.NoteID == NoteID && (n.NoteStatus == 1 || n.NoteStatus == 2));
+
+                if (note == null)
+                    return false;
+                else
+                {
+                    note.NoteStatus = 4;
+                    note.ModifiedDate = System.DateTime.Now;
+                    note.ModifiedBy = AdminID;
+                    note.ActionBy = AdminID;
+                    note.AdminRemarks = Remarks;
+                }
+                try
+                {
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+    }
 }

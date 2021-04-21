@@ -1,0 +1,169 @@
+﻿@model NotesMarketplace.Models.AdminModels.PublishedNotesModel
+@{
+    ViewBag.Title = "PublishedNotes";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!--unpublish note pop-up -->
+<div class="modal fade" id="unpublish-popup" data-noteid-element="#note-to-be-rejected" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="unpublish-modal-content">
+        </div>
+    </div>
+</div>
+
+<!-- Published Notes page-->
+<section id="published-notes" class="">
+
+    <!-- Content Section -->
+    <section id="content-section">
+
+        <div class="content-box-sm">
+
+            <div class="container-fluid">
+
+                <!-- published notes section -->
+                <section id="published-notes-section">
+
+                    <div class="table-heading">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="horizontal-heading first-heading">
+                                    <h3>Published Notes</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 col-lg-3 col-xl-2">
+                                <p>Seller</p>
+                                <select class="form-control select-table-val" data-target-col="5" data-target-table="#published-notes-table" id="seller" name="seller">
+                                    <option value="All" selected>Select Seller</option>
+                                    @if (Model.PublishedNotes != null && Model.PublishedNotes.Count != 0)
+                                    {
+                                        var SellerList = Model.PublishedNotes.Select(n => n.Publisher).Distinct();
+                                        foreach (var Seller in SellerList)
+                                        {
+                                            <option value="@Seller">@Seller</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <p>&nbsp;</p>
+                                <div class="row justify-content-end">
+                                    <div class="col-md-4">
+                                        <img class="search-icon" src="/Content/imgs/icons/search-icon.svg" alt="search-icon">
+                                        <input id="published-notes-table-search" type="text" class="form-control" placeholder="Search" />
+                                    </div>
+                                    <button data-table-id="#published-notes-table" data-search-input="#published-notes-table-search" class="btn btn-general rblue-btn search-in-table" href="">search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="published-notes-table" class="table tablesorter" data-sort-on-col-and-order="7,1">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="srno">SR NO</th>
+                                    <th scope="col">NOTE TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">SELL TYPE</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">SELLER</th>
+                                    <th scope="col"></th>
+                                    <th scope="col" data-sorter="shortDate" data-date-format="ddmmyyyy">PUBLISHED DATE</th>
+                                    <th scope="col">APPROVED BY</th>
+                                    <th scope="col" class="text-center">NUMBER OF DOWNLOADS</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-tr-per-page="5">
+                                @if (Model.PublishedNotes != null && Model.PublishedNotes.Count > 0)
+                                {
+                                    int i = 0;
+                                    foreach (var note in Model.PublishedNotes)
+                                    {
+                                        <tr>
+                                            <td class="srno">@(++i)</td>
+                                            <td>@note.NoteTitle</td>
+                                            <td>@note.Category</td>
+                                            <td>@note.SellType</td>
+                                            <td>&dollar;@note.Price</td>
+                                            <td>@note.Publisher</td>
+                                            <td><a href="/Admin/Member/@note.PublisherID"><img src="/Content/imgs/icons/eye.png"></a></td>
+                                            @if (note.PublishedDate != null)
+                                            {
+                                                DateTime PublishedDate = note.PublishedDate ?? System.DateTime.MinValue;
+
+                                                <td>@PublishedDate.ToString("dd-MM-yyyy, HH:mm")</td>
+                                            }
+                                            <td>@note.ApprovedBy</td>
+                                            <td class="text-center"><a href="/Admin/Downloads/@note.NoteID">@note.NoOfDownloads</a></td>
+                                            <td class="dots-menu-button">
+                                                <span class="dots">
+                                                    <img src="/Content/imgs/icons/dots.png">
+                                                    <div class="dropdown" class="dots-menu">
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="/Assets/Notes/@note.NoteID">Download Note</a>
+                                                            <a class="dropdown-item" href="/Admin/NoteDetails/@note.NoteID">View More Details</a>
+                                                            @Ajax.ActionLink("Unpublish", "/NoteActions/" + note.NoteID + "/Unpublish", "Admin", null, new AjaxOptions()
+                                                            {
+                                                               UpdateTargetId = "unpublish-modal-content",
+                                                               HttpMethod = "GET",
+                                                               InsertionMode = InsertionMode.Replace,
+                                                               OnFailure = "alert('Something Went Wrong')",
+                                                               OnSuccess = "ReloadValidationScript('#unpublish-popup form')"
+
+                                                            }, new { @class = "dropdown-item" })
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="11">No Records Found</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <span class="pagination-control" pagination-data="#published-notes-table tbody" max-page-shown="20">
+
+                                <nav aria-label="search results navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item" start-page="1">
+                                            <a class="page-link" aria-label="Previous">
+                                                <img src="/Content/imgs/icons/left-arrow.png">
+                                            </a>
+                                        </li>
+                                        <li class="page-item" end-page="1">
+                                            <a class="page-link" aria-label="Next">
+                                                <img src="/Content/imgs/icons/right-arrow.png">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- Content Section Ends -->
+</section>
+<!-- Search Notes page Ends -->

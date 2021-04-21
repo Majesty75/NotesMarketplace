@@ -7,10 +7,6 @@ namespace NotesMarketplace.Models.RegisteredUserModels
 {
     public class DownloadsModel
     {
-        public DownloadsModel()
-        {
-            DownloadProperty = new List<InnerClassDownload>();
-        }
         public class InnerClassDownload
         {
             public int DownloadID { get; set; }

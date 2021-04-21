@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using NotesMarketplace.Models.RegisteredUserModels;
@@ -19,10 +20,13 @@ namespace NotesMarketplace.Data.DownloadsDB
         {
             using (NotesMarketPlaceEntities context = new NotesMarketPlaceEntities())
             {
-                if (!context.Downloads.Any(d => d.SellerID == UserID || d.BuyerID == UserID))
-                    return null;
-
                 DownloadsModel dm = new DownloadsModel();
+
+                dm.DownloadProperty = new List<DownloadsModel.InnerClassDownload>();
+
+                if (!context.Downloads.Any(d => d.SellerID == UserID || d.BuyerID == UserID))
+                    return dm;
+
                 List<Download> dls = null;
 
                 if (downloadStatus == 0)
@@ -59,6 +63,10 @@ namespace NotesMarketplace.Data.DownloadsDB
                     OtherParty = context.Users.FirstOrDefault(u => u.UserID == OtherPartyID);
 
                     if(OtherParty == null)
+                    {
+                        continue;
+                    }
+                    else if(OtherParty.RoleID <= 2)
                     {
                         continue;
                     }
@@ -158,7 +166,7 @@ namespace NotesMarketplace.Data.DownloadsDB
                     }
 
                     //if download entry not found and book is free create new entry only if owner is not downloading note
-                    else if (!note.IsPaid && BuyerID != note.SellerID)
+                    else if ((!note.IsPaid && BuyerID != note.SellerID) || context.Users.FirstOrDefault(u => u.UserID == BuyerID).RoleID < 3)
                     {
                         Download dwn = new Download()
                         {
@@ -228,9 +236,9 @@ namespace NotesMarketplace.Data.DownloadsDB
         {
             using (var context = new NotesMarketPlaceEntities())
             {
-                int NotesSold = context.Downloads.Count(dwn => dwn.SellerID == UserID && dwn.IsAllowed);
+                int NotesSold = context.Downloads.Count(dwn => dwn.SellerID == UserID && dwn.IsAllowed && dwn.User.RoleID >2);
 
-                var MoneyEarned = context.Downloads.Where(dwn => dwn.SellerID == UserID && dwn.IsAllowed && dwn.IsPaid).Sum(dwn => dwn.PurchasedPrice);
+                var MoneyEarned = context.Downloads.Where(dwn => dwn.SellerID == UserID && dwn.IsAllowed && dwn.IsPaid && dwn.User.RoleID > 2).Sum(dwn => dwn.PurchasedPrice);
 
                 int Downloads = context.Downloads.Count(dwn => dwn.BuyerID == UserID && dwn.IsAllowed);
 
@@ -239,6 +247,55 @@ namespace NotesMarketplace.Data.DownloadsDB
                 int BuyerRequests = context.Downloads.Count(dwn => dwn.SellerID == UserID && !dwn.IsAllowed);
 
                 return Tuple.Create<int, decimal, int, int, int>(NotesSold, MoneyEarned??0 , Downloads, RejectedNotes, BuyerRequests);
+            }
+        }
+
+    }
+
+    public class AdminDownloadRepository
+    {
+        /// <summary>
+        /// Get Counts of downloads of last <code>BeforeDays</code> Days.
+        /// </summary>
+        /// <param name="BeforeDays">No of past days to be considered</param>
+        /// <returns>Int count of downloads</returns>
+        public static int CountNewDownloads(int BeforeDays = 7)
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                System.DateTime Criteria = System.DateTime.Now.AddDays(-1*BeforeDays);
+                return context.Downloads.Where(dwn => dwn.ModifiedDate > Criteria && dwn.IsAllowed).Count();
+            }
+        }
+
+        /// <summary>
+        /// Delete review from Database
+        /// </summary>
+        /// <param name="ReviewID">ReviewID of review to be deleted</param>
+        /// <returns>Return NoteID of Review Deleted or 0 if fails to delete review</returns>
+        public static bool DeleteReview(int ReviewID)
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                var Review = context.NotesReviews.FirstOrDefault(nr => nr.ReviewID == ReviewID);
+
+                if (Review == null)
+                    return false;
+
+                int NoteID = Review.NoteID;
+
+                context.NotesReviews.Remove(Review);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    return false;
+                }
+                return true;
             }
         }
 

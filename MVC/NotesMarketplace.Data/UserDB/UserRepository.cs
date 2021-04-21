@@ -304,4 +304,21 @@ namespace NotesMarketplace.Data.UserDB
         }
 
     }
+
+    public class AdminUserRepository
+    {
+        /// <summary>
+        /// Get Counts of new users of last <code>BeforeDays</code> Days.
+        /// </summary>
+        /// <param name="BeforeDays">No of past days to be considered</param>
+        /// <returns>Int count of new users</returns>
+        public static int CountNewUsers(int BeforeDays = 7)
+        {
+            using (var context = new NotesMarketPlaceEntities())
+            {
+                DateTime Criteria = System.DateTime.Now.AddDays(BeforeDays*-1);
+                return context.Users.Where(u => u.CreatedDate >= Criteria).Count();
+            }
+        }
+    }
 }

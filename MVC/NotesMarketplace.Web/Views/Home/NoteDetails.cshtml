@@ -181,7 +181,7 @@
                                     <div class="iframe-wrapper-inner">
                                         @if (!String.IsNullOrEmpty(@Model.Preview))
                                         { 
-                                            ViewBag.PreviewPath = "/Content/" + @Model.Preview;
+                                            ViewBag.PreviewPath =  @Model.Preview;
                                         }else 
                                         { 
                                             ViewBag.PreviewPath = "/Content/SystemConfig/PreviewNotFound.pdf";

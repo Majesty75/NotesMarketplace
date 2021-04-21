@@ -88,7 +88,7 @@
                                         <tr>
                                             <td class="srno">@(++i)</td>
                                             <td><a href="/Home/NoteDetails/@Note.NoteID">@Note.NoteTitle</a></td>
-                                            <td>@Note.NoteTitle</td>
+                                            <td>@Note.NoteCategory</td>
                                             <td>@Note.Seller.Email</td>
                                             <td>@(Note.IsPaid ? "Paid" : "Free")</td>
                                             <td>&dollar;@Note.PurchasedPrice</td>
@@ -114,23 +114,27 @@
                                                            HttpMethod = "GET",
                                                            InsertionMode = InsertionMode.Replace,
                                                            OnFailure = "alert('Something Went Wrong')",
-                                                           OnSuccess = "ReloadValidationScript()"
+                                                           OnSuccess = "ReloadValidationScript('#review-popup form')"
 
                                                        }, new { @class = "dropdown-item add-review-icon" })
-                                                            @Ajax.ActionLink("Report as Inappropriate", "Report/" + Note.NoteID, "NoteActions", null, new AjaxOptions()
-                                                            {
-                                                                UpdateTargetId = "report-modal-content",
-                                                                HttpMethod = "GET",
-                                                                InsertionMode = InsertionMode.Replace,
-                                                                OnFailure = "alert('Something Went Wrong')",
-                                                                OnSuccess = "ReloadValidationScript()"
-                                                            }, new { @class = "dropdown-item" })
+                                                                @Ajax.ActionLink("Report as Inappropriate", "Report/" + Note.NoteID, "NoteActions", null, new AjaxOptions()
+                                                           {
+                                                               UpdateTargetId = "report-modal-content",
+                                                               HttpMethod = "GET",
+                                                               InsertionMode = InsertionMode.Replace,
+                                                               OnFailure = "alert('Something Went Wrong')",
+                                                               OnSuccess = "ReloadValidationScript('#report-popup form')"
+                                                           }, new { @class = "dropdown-item" })
                                                         </div>
                                                     </div>
                                                 </span>
                                             </td>
                                         </tr>
                                     }
+                                }
+                                else
+                                {
+                                    <tr class="no-results"><td class="text-center" colspan="8">No Records Found</td></tr>
                                 }
 
                             </tbody>
